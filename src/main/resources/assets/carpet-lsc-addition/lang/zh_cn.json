@@ -1,0 +1,23 @@
+{
+  // 分类
+  "carpet.category.lsc": "LSC",
+
+  // 规则
+  "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
+
+  "carpet.rule.inventoryTotem.desc": "放在背包里的不死图腾也能在玩家即将死亡时消耗并触发效果。",
+
+  "carpet.rule.accurateBlockPlacement.desc": "客户端可指定方块的精确放置状态。",
+
+  "carpet.rule.commandPing.desc": "启用 /ping 指令以查看自己的延迟。",
+
+  "carpet.rule.fastLeafDecay.desc": "原木被破坏后，该树木对应的树叶会迅速腐烂。",
+
+  "carpet.rule.emeraldTemptsVillagers.desc": "手持绿宝石的玩家会吸引附近的村民。",
+
+  "carpet.rule.daytimeSleep.desc": "玩家可以在白天睡觉，时间直接跳到夜晚。",
+
+  // 指令回显
+  "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",
+  "carpet-lsc-addition.ping.notPlayer": "只有玩家才能查询自己的延迟。"
+}

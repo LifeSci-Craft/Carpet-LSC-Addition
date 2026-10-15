@@ -1,0 +1,23 @@
+{
+  // Categories
+  "carpet.category.lsc": "LSC",
+
+  // Rules
+  "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
+
+  "carpet.rule.inventoryTotem.desc": "A totem of undying in your inventory still protects you from death.",
+
+  "carpet.rule.accurateBlockPlacement.desc": "Client can provide alternative block placement.",
+
+  "carpet.rule.commandPing.desc": "Enables /ping command to check your latency.",
+
+  "carpet.rule.fastLeafDecay.desc": "Leaves of a tree decay quickly once its log is broken.",
+
+  "carpet.rule.emeraldTemptsVillagers.desc": "Villagers are attracted to players holding an emerald.",
+
+  "carpet.rule.daytimeSleep.desc": "Players can sleep during the day, skipping time to nightfall.",
+
+  // Command feedback
+  "carpet-lsc-addition.ping.result": "Your ping is: %s ms",
+  "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping."
+}

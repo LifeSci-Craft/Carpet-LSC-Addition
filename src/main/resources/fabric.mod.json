@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "carpet-lsc-addition",
+  "version": "${version}",
+  "name": "Carpet LSC Addition",
+  "description": "A fabric-carpet extension adding totem wrench, accurate block placement, /ping, fast leaf decay, emerald-villager temptation and daytime sleeping.",
+  "authors": [
+    "LifeSci-Craft"
+  ],
+  "contact": {
+    "homepage": "https://github.com/LifeSci-Craft",
+    "sources": "https://github.com/LifeSci-Craft"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "lifescicraft.carpetlsc.CarpetLscAddition"
+    ]
+  },
+  "mixins": [
+    "carpet-lsc-addition.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "${minecraft_dependency}",
+    "java": ">=25",
+    "carpet": "${carpet_dependency}"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": "carpet"
+    }
+  }
+}

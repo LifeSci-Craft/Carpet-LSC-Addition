@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "lifescicraft.carpetlsc.mixins",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "ServerPlayerGameModeTotemWrenchMixin",
+    "BlockItemAccuratePlacementMixin",
+    "ServerGamePacketListenerImplAccuratePlacementMixin",
+    "ServerPlayerGameModeFastLeafDecayMixin",
+    "LivingEntityInventoryTotemMixin",
+    "MobGoalSelectorAccessor",
+    "VillagerTemptRangeAttributeMixin",
+    "VillagerEmeraldTemptMixin",
+    "ServerPlayerDaytimeSleepMixin",
+    "PlayerDaytimeSleepMixin",
+    "ServerLevelDaytimeSleepMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

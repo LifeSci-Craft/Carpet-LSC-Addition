@@ -1,0 +1,81 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.18.0-alpha.9'
+    id 'maven-publish'
+}
+
+// Minecraft 26.x ships with Mojang's own class names already present in the vanilla
+// jars, so this project compiles directly against named classes.
+def usesMojangNames = project.minecraft_version.tokenize('.')[0] as int >= 26
+if (!usesMojangNames) {
+    throw new GradleException("This project targets Minecraft 26.1 and above (got ${project.minecraft_version}).")
+}
+
+version = "${project.mod_version}+mc${project.minecraft_version}"
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // Minecraft 26.x ships unobfuscated (Mojang's names are already in the vanilla jars),
+    // so no mappings dependency may be declared here.
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // fabric-carpet is a compile-time dependency only; it is loaded at runtime on the server.
+    // Resolution order:
+    //   1. -Pcarpet_jar=<path>  (explicit override)
+    //   2. libs/fabric-carpet-<version>.jar
+    //   3. libs/fabric-carpet.jar
+    def carpetFile = null
+    if (project.hasProperty('carpet_jar')) {
+        carpetFile = file(project.property('carpet_jar'))
+    } else {
+        def byVersion = file("libs/fabric-carpet-${project.carpet_version}.jar")
+        carpetFile = byVersion.exists() ? byVersion : file('libs/fabric-carpet.jar')
+    }
+    if (!carpetFile.exists()) {
+        throw new GradleException(
+                "fabric-carpet jar not found (looked for ${carpetFile}).\n" +
+                "Put the Carpet ${project.carpet_version} jar in libs/fabric-carpet.jar " +
+                "or pass -Pcarpet_jar=<path to carpet jar>.")
+    }
+    implementation files(carpetFile)
+
+    // The game/loader jars are named already, but MixinExtras is bundled inside the loader.
+    compileOnly "io.github.llamalad7:mixinextras-fabric:0.5.5"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'minecraft_dependency', project.minecraft_dependency
+    inputs.property 'carpet_dependency', project.carpet_dependency
+
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version,
+                'minecraft_dependency': project.minecraft_dependency,
+                'carpet_dependency': project.carpet_dependency
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    it.options.release = 25
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+    from 'LICENSE'
+}
