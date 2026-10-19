@@ -49,4 +49,16 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, COMMAND, FEATURE})
     public static boolean skipCommandConfirm = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean rightClickHarvest = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean noFarmlandTrample = false;
+
+    @Rule(categories = {LSC, FEATURE}, options = {"off", "self", "broadcast"})
+    public static String deathCoordinates = "off";
+
+    @Rule(categories = {LSC, FEATURE})
+    public static boolean afkMarker = false;
 }

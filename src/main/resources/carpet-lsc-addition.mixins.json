@@ -19,7 +19,11 @@
     "PaintingVariantInvoker",
     "PlayerPaintingSwapMixin",
     "PlayerListChatItemMixin",
-    "CommandEntryRestrictedMixin"
+    "CommandEntryRestrictedMixin",
+    "ServerPlayerGameModeHarvestMixin",
+    "FarmlandTrampleMixin",
+    "ServerPlayerDeathCoordinatesMixin",
+    "PlayerAfkMarkerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

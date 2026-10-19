@@ -38,6 +38,10 @@
 | `mcdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
 | `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品。 |
 | `skipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
+| `rightClickHarvest` | `false` | 空手右键成熟作物即收获并补种。 |
+| `noFarmlandTrample` | `false` | 玩家不再把耕地踩成泥土。 |
+| `deathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
+| `afkMarker` | `false` | 挂机 5 分钟自动加 `[AFK]` 前缀。 |
 
 ### `totemWrench`
 

@@ -14,6 +14,10 @@
   "carpet.rule.mcdrCommandBridge.name": "MCDR 指令接口",
   "carpet.rule.chatHeldItem.name": "聊天展示手持物品",
   "carpet.rule.skipCommandConfirm.name": "禁用指令确认",
+  "carpet.rule.rightClickHarvest.name": "右键收获",
+  "carpet.rule.noFarmlandTrample.name": "耕地防踩踏",
+  "carpet.rule.deathCoordinates.name": "死亡坐标播报",
+  "carpet.rule.afkMarker.name": "AFK 标记",
 
   // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -38,9 +42,18 @@
 
   "carpet.rule.skipCommandConfirm.desc": "执行需要更高权限的指令时，客户端不再弹出确认窗口，直接执行。",
 
+  "carpet.rule.rightClickHarvest.desc": "空手右键成熟的作物即可收获，并自动补种。",
+
+  "carpet.rule.noFarmlandTrample.desc": "玩家跳跃或坠落不再把耕地踩成泥土。",
+
+  "carpet.rule.deathCoordinates.desc": "玩家死亡时播报死亡坐标，可选仅告知本人或全服。",
+
+  "carpet.rule.afkMarker.desc": "玩家 5 分钟未移动也未转向时，名字前会加上 [AFK] 前缀。",
+
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",
   "carpet-lsc-addition.ping.notPlayer": "只有玩家才能查询自己的延迟。",
   "carpet-lsc-addition.mcdr.notPlayer": "只有玩家才能使用 /!! 指令。",
-  "carpet-lsc-addition.chat.emptyHand": "[空手]"
+  "carpet-lsc-addition.chat.emptyHand": "[空手]",
+  "carpet-lsc-addition.death.coordinates": "%s 死亡于 %s, %s, %s（%s）"
 }

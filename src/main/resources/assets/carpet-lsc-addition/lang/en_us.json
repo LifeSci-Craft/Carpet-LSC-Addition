@@ -14,6 +14,10 @@
   "carpet.rule.mcdrCommandBridge.name": "MCDR Command Bridge",
   "carpet.rule.chatHeldItem.name": "Chat Held Item",
   "carpet.rule.skipCommandConfirm.name": "Skip Command Confirmation",
+  "carpet.rule.rightClickHarvest.name": "Right-Click Harvest",
+  "carpet.rule.noFarmlandTrample.name": "No Farmland Trample",
+  "carpet.rule.deathCoordinates.name": "Death Coordinates",
+  "carpet.rule.afkMarker.name": "AFK Marker",
 
   // Rule descriptions
   "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -38,9 +42,18 @@
 
   "carpet.rule.skipCommandConfirm.desc": "Commands that need elevated permissions run without the client-side confirmation dialog.",
 
+  "carpet.rule.rightClickHarvest.desc": "An empty-hand right-click on a grown crop harvests it and replants.",
+
+  "carpet.rule.noFarmlandTrample.desc": "Players no longer turn farmland into dirt by falling on it.",
+
+  "carpet.rule.deathCoordinates.desc": "Announces where a player died, either to that player only or to everyone.",
+
+  "carpet.rule.afkMarker.desc": "Players who have neither moved nor turned for five minutes get an [AFK] name prefix.",
+
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",
   "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping.",
   "carpet-lsc-addition.mcdr.notPlayer": "Only a player can use /!!.",
-  "carpet-lsc-addition.chat.emptyHand": "[Empty hand]"
+  "carpet-lsc-addition.chat.emptyHand": "[Empty hand]",
+  "carpet-lsc-addition.death.coordinates": "%s died at %s, %s, %s (%s)"
 }

@@ -39,6 +39,10 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `mcdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
 | `chatHeldItem` | `false` | A `#` in chat is replaced by the held item. |
 | `skipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
+| `rightClickHarvest` | `false` | Empty-hand right-click harvests and replants a grown crop. |
+| `noFarmlandTrample` | `false` | Players no longer turn farmland into dirt. |
+| `deathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
+| `afkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
 
 ### `totemWrench`
 
