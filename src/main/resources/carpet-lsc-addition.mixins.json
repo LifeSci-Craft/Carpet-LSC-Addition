@@ -7,13 +7,15 @@
     "BlockItemAccuratePlacementMixin",
     "ServerGamePacketListenerImplAccuratePlacementMixin",
     "ServerPlayerGameModeFastLeafDecayMixin",
+    "ServerLevelFastLeafDecayMixin",
     "LivingEntityInventoryTotemMixin",
     "MobGoalSelectorAccessor",
     "VillagerTemptRangeAttributeMixin",
     "VillagerEmeraldTemptMixin",
     "ServerPlayerDaytimeSleepMixin",
     "PlayerDaytimeSleepMixin",
-    "ServerLevelDaytimeSleepMixin"
+    "ServerLevelDaytimeSleepMixin",
+    "CarpetTranslationColonFixMixin"
   ],
   "injectors": {
     "defaultRequire": 1

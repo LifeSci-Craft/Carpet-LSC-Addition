@@ -12,6 +12,7 @@
     "sources": "https://github.com/LifeSci-Craft"
   },
   "license": "MIT",
+  "icon": "assets/carpet-lsc-addition/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

@@ -22,6 +22,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | fabric-carpet | >= 26.1 |
 | Java | >= 25 |
 | Environment | Server-side |
+| Language | Simplified Chinese / English, follows `/carpet language` |
 
 ## Rules
 
@@ -31,7 +32,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `inventoryTotem` | `false` | A totem of undying in the inventory prevents death. |
 | `accurateBlockPlacement` | `false` | Accurate block placement protocol, from Carpet Extra. |
 | `commandPing` | `false` | Enables the `/ping` command. |
-| `fastLeafDecay` | `false` | Leaves decay quickly once their tree is chopped down. |
+| `fastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
 | `emeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
 | `daytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
 
@@ -71,8 +72,18 @@ into the hit vector and the server honours it.
 
 ### `fastLeafDecay`
 
-Breaking a log decays the leaves of that tree immediately. Leaves of other trees are unaffected,
-and player-placed persistent leaves are never destroyed.
+Breaking a log decays the leaves of that tree over a few seconds instead of wiping the whole
+canopy in a single tick.
+
+| Item | Behaviour |
+| --- | --- |
+| Start | Leaves touching the stump start dropping after about 0.2 s. |
+| Spread | The wave travels outwards layer by layer, roughly 0.25 s per block, so a tree usually finishes in 1 – 3 s. |
+| Ceiling | At most 6 s per break; a canopy larger than 4096 leaves is left entirely to vanilla rather than being torn down halfway. |
+| Drops | Removed through vanilla's own leaf random tick, so drops, tool bonuses and statistics match vanilla. |
+
+Leaves of other trees are unaffected, and player-placed persistent leaves are never destroyed.
+Switching the rule off stops any decay that is still pending.
 
 ### `emeraldTemptsVillagers`
 

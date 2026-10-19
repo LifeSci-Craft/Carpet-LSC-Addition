@@ -10,16 +10,19 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
  * Fast leaf decay: once a tree's trunk is chopped down, the leaves that belonged to it decay
- * right away instead of waiting for random ticks.
+ * within a few seconds instead of waiting for random ticks.
  *
  * <p>Rather than guessing which leaves belong together geometrically, this recomputes
  * vanilla's own leaf {@code distance} value for the affected canopy:
@@ -31,8 +34,8 @@ import java.util.Set;
  *     <li>Propagate distance outwards through the leaf mass, exactly like
  *     {@code LeavesBlock.updateDistance}: a leaf's distance is one more than its closest
  *     neighbour's, capped at {@link LeavesBlock#DECAY_DISTANCE}.</li>
- *     <li>Leaves left without any log within range get the decay distance and are decayed
- *     through vanilla's own leaf random tick, so drops and loot use vanilla behaviour.</li>
+ *     <li>Leaves left without any log within range get the decay distance and are queued for
+ *     removal; the rest just get resynchronised.</li>
  * </ol>
  *
  * <p>This is inherently safe around other trees: a leaf that still has a path to a log in the
@@ -41,6 +44,21 @@ import java.util.Set;
  *
  * <p>Persistent leaves (placed by players) are never part of the flood fill and are never
  * touched.
+ *
+ * <h2>Why the removal is delayed</h2>
+ *
+ * <p>Clearing the whole canopy in one tick reads as blocks blinking out of existence. Instead
+ * each doomed leaf is queued with a deadline derived from its flood-fill depth, so the decay
+ * visibly ripples outwards from the stump over a couple of seconds. The removal itself is still
+ * vanilla's own leaf random tick, so drops, tool bonuses and statistics behave exactly as they
+ * do in vanilla.
+ *
+ * <p>The queue has to be driven by hand because vanilla offers no usable hook here:
+ * {@code LeavesBlock.tick} only recomputes the distance property — it never removes the block —
+ * so {@code ServerLevel.scheduleTick} cannot stagger the removal, and
+ * {@code MinecraftServer.schedule(new TickTask(...))} runs as soon as the server has spare time
+ * in the tick, which would collapse the stagger on an idle server.
+ * {@code ServerLevelFastLeafDecayMixin} drains this queue once per level per tick.
  */
 public final class FastLeafDecay
 {
@@ -49,6 +67,21 @@ public final class FastLeafDecay
      * rather than risking a partial, inconsistent update.
      */
     private static final int MAX_CANOPY = 4096;
+
+    /** Ticks before the leaves closest to the stump go away (0.2 s). */
+    private static final int FIRST_DECAY_DELAY = 4;
+
+    /** Extra ticks per flood-fill layer, i.e. how fast the wave travels (0.25 s per block). */
+    private static final int TICKS_PER_LAYER = 5;
+
+    /** Ceiling on the whole wave, so a very tall canopy still finishes promptly (6 s). */
+    private static final int MAX_DECAY_DELAY = 120;
+
+    /**
+     * Pending removals per level. Keyed weakly so a level that goes away takes its queue with it.
+     * Only ever touched from the server thread.
+     */
+    private static final Map<ServerLevel, PriorityQueue<Pending>> PENDING = new WeakHashMap<>();
 
     private FastLeafDecay()
     {
@@ -62,6 +95,7 @@ public final class FastLeafDecay
         }
 
         Set<BlockPos> canopy = new HashSet<>();
+        Map<BlockPos, Integer> layers = new HashMap<>();
         List<BlockPos> logSources = new ArrayList<>();
         Set<BlockPos> logSeen = new HashSet<>();
         Deque<BlockPos> queue = new ArrayDeque<>();
@@ -73,6 +107,7 @@ public final class FastLeafDecay
 
             if (isDecayableLeaf(level.getBlockState(neighbour)) && canopy.add(neighbour))
             {
+                layers.put(neighbour, 0);
                 queue.add(neighbour);
             }
         }
@@ -87,6 +122,7 @@ public final class FastLeafDecay
             }
 
             BlockPos current = queue.poll();
+            int nextLayer = layers.get(current) + 1;
 
             for (Direction direction : Direction.values())
             {
@@ -102,6 +138,7 @@ public final class FastLeafDecay
                 }
                 else if (isDecayableLeaf(state) && canopy.add(neighbour))
                 {
+                    layers.put(neighbour, nextLayer);
                     queue.add(neighbour);
                 }
             }
@@ -152,6 +189,8 @@ public final class FastLeafDecay
             }
         }
 
+        long now = level.getGameTime();
+
         // Apply: unreachable leaves are orphaned and decay; the rest just get resynchronised.
         for (BlockPos pos : canopy)
         {
@@ -167,11 +206,14 @@ public final class FastLeafDecay
 
             if (distance >= LeavesBlock.DECAY_DISTANCE)
             {
-                BlockState decaying = state.setValue(LeavesBlock.DISTANCE, LeavesBlock.DECAY_DISTANCE);
-                level.setBlockAndUpdate(pos, decaying);
+                if (current != LeavesBlock.DECAY_DISTANCE)
+                {
+                    level.setBlockAndUpdate(pos, state.setValue(LeavesBlock.DISTANCE, LeavesBlock.DECAY_DISTANCE));
+                }
 
-                // Vanilla leaf random tick drops the resources and removes the block.
-                decaying.randomTick(level, pos, level.getRandom());
+                long delay = Math.min(MAX_DECAY_DELAY,
+                        FIRST_DECAY_DELAY + (long) layers.getOrDefault(pos, 0) * TICKS_PER_LAYER);
+                enqueue(level, pos, now + delay);
             }
             else if (current != distance)
             {
@@ -180,11 +222,70 @@ public final class FastLeafDecay
         }
     }
 
+    /**
+     * Removes every leaf whose deadline has passed. Called once per level per tick from
+     * {@code ServerLevelFastLeafDecayMixin}.
+     */
+    public static void tickDelayedDecay(ServerLevel level)
+    {
+        PriorityQueue<Pending> queue = PENDING.get(level);
+
+        if (queue == null)
+        {
+            return;
+        }
+
+        if (!CarpetLscSettings.fastLeafDecay)
+        {
+            // The rule was switched off mid-flight: drop the remaining work.
+            PENDING.remove(level);
+            return;
+        }
+
+        long now = level.getGameTime();
+
+        while (!queue.isEmpty() && queue.peek().dueTick() <= now)
+        {
+            Pending pending = queue.poll();
+            BlockPos pos = pending.pos();
+
+            if (!level.isLoaded(pos))
+            {
+                // Unloaded chunk: leave the leaf at the decay distance so vanilla's own random
+                // tick finishes the job when the chunk comes back.
+                continue;
+            }
+
+            BlockState state = level.getBlockState(pos);
+
+            if (isDecayableLeaf(state) && state.getValue(LeavesBlock.DISTANCE) >= LeavesBlock.DECAY_DISTANCE)
+            {
+                // Vanilla leaf random tick drops the resources and removes the block.
+                state.randomTick(level, pos, level.getRandom());
+            }
+        }
+
+        if (queue.isEmpty())
+        {
+            PENDING.remove(level);
+        }
+    }
+
+    private static void enqueue(ServerLevel level, BlockPos pos, long dueTick)
+    {
+        PENDING.computeIfAbsent(level, key -> new PriorityQueue<>(Comparator.comparingLong(Pending::dueTick)))
+                .add(new Pending(dueTick, pos.immutable()));
+    }
+
     private static boolean isDecayableLeaf(BlockState state)
     {
         return state.is(BlockTags.LEAVES)
                 && state.hasProperty(LeavesBlock.PERSISTENT)
                 && !state.getValue(LeavesBlock.PERSISTENT)
                 && state.hasProperty(LeavesBlock.DISTANCE);
+    }
+
+    private record Pending(long dueTick, BlockPos pos)
+    {
     }
 }

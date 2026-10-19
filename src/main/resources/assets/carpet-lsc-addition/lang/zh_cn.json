@@ -2,7 +2,16 @@
   // 分类
   "carpet.category.lsc": "LSC",
 
-  // 规则
+  // 规则名（显示在 /carpet 列表中）
+  "carpet.rule.totemWrench.name": "不死图腾扳手",
+  "carpet.rule.inventoryTotem.name": "背包图腾保命",
+  "carpet.rule.accurateBlockPlacement.name": "精准放置协议",
+  "carpet.rule.commandPing.name": "Ping 指令",
+  "carpet.rule.fastLeafDecay.name": "树叶快速腐烂",
+  "carpet.rule.emeraldTemptsVillagers.name": "绿宝石吸引村民",
+  "carpet.rule.daytimeSleep.name": "白天睡觉",
+
+  // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
 
   "carpet.rule.inventoryTotem.desc": "放在背包里的不死图腾也能在玩家即将死亡时消耗并触发效果。",
@@ -11,7 +20,7 @@
 
   "carpet.rule.commandPing.desc": "启用 /ping 指令以查看自己的延迟。",
 
-  "carpet.rule.fastLeafDecay.desc": "原木被破坏后，该树木对应的树叶会迅速腐烂。",
+  "carpet.rule.fastLeafDecay.desc": "原木被破坏后，该树木对应的树叶会在数秒内逐层腐烂。",
 
   "carpet.rule.emeraldTemptsVillagers.desc": "手持绿宝石的玩家会吸引附近的村民。",
 
