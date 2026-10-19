@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 7 条规则。
+> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 10 条规则。
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,7 +9,7 @@
 
 **简体中文**（本页） | [English](README_en.md)
 
-服务端模组，玩家无需安装。7 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
+服务端模组，玩家无需安装。10 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
 在 `/carpet` 里归入 `LSC` 分类。
 
 ## 基本信息
@@ -34,6 +34,9 @@
 | `fastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
 | `emeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
 | `daytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
+| `quickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
+| `mcdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
+| `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品。 |
 
 ### `totemWrench`
 
@@ -94,6 +97,40 @@
 | 夜晚睡觉 | 与原版一致，所有人醒于次日清晨。 |
 | 无昼夜循环的维度 | 不受影响。 |
 
+### `quickPaintingSwap`
+
+潜行时右键已放置的画，按画作 ID 顺序切换到下一幅**同尺寸**的画。
+
+| 项目 | 行为 |
+| --- | --- |
+| 触发 | 潜行 + 主手右键已放置的画。 |
+| 可切换范围 | 只切换宽高完全相同的画，因此画的体积与位置都不变。 |
+| 顺序 | 按画作 ID 排序后循环。 |
+| 未潜行 | 不潜行时右键不会改变画作。 |
+
+### `mcdrCommandBridge`
+
+启用 `/!!` 指令，把参数交给 MCDReforged 处理，避免以聊天方式输入 `!!` 指令时指令内容出现在聊天栏。
+
+| 项目 | 行为 |
+| --- | --- |
+| 用法 | `/!! <MCDR 指令>`，例如 `/!! ig check`。 |
+| 转发方式 | 在服务端日志打出一条 `<玩家名> !!<指令>`，由 MCDR 按玩家聊天解析并派发。 |
+| 前置 | MCDR 使用默认 `vanilla` 处理器，且 `command_prefix` 为 `!!`。 |
+| 未装 MCDR | 指令能执行，但不会有任何响应。 |
+
+### `chatHeldItem`
+
+聊天内容中的 `#` 会替换成当前手持物品，悬停可查看完整物品信息。
+
+| 项目 | 行为 |
+| --- | --- |
+| 触发字符 | `#`，一条消息可出现多次。 |
+| 显示 | `[物品名]`，名称样式沿用物品本身。 |
+| 悬停 | 原版 `show_item`，显示完整物品提示框。 |
+| 空手 | 显示 `[空手]`。 |
+| 取值 | 优先主手，主手为空时取副手。 |
+
 ## 安装
 
 1. 安装 Fabric Loader 0.19.5 或更高版本，以及与 Minecraft 版本对应的 Fabric API。
@@ -104,6 +141,7 @@
 | 命令 | 说明 |
 | --- | --- |
 | `/ping` | 查看自己到服务器的延迟。需要 `commandPing`。 |
+| `/!! <指令>` | 把 MCDR 指令转发给 MCDR。需要 `mcdrCommandBridge`。 |
 
 ## 配置
 
@@ -114,6 +152,8 @@
 - 本模组只在服务端生效，玩家客户端无需安装，原版客户端可正常进入服务器。
 - `accurateBlockPlacement` 需要客户端安装 Litematica 或 Tweakeroo 并开启对应功能；其他规则无客户端要求。
 - `totemWrench` 的方块转动不触发方块更新，与 `flippinCactus` 一致。
+- `mcdrCommandBridge` 依赖 MCDR 的默认 `vanilla` 处理器与 `!!` 前缀；未装 MCDR 时该规则无实际作用。
+- `chatHeldItem` 用原版 `show_item` 呈现物品，客户端无需安装模组，但不会显示物品图标。
 
 ## 构建
 

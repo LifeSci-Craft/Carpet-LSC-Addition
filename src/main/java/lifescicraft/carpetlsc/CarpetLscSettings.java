@@ -37,4 +37,13 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean daytimeSleep = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean quickPaintingSwap = false;
+
+    @Rule(categories = {LSC, COMMAND, FEATURE})
+    public static boolean mcdrCommandBridge = false;
+
+    @Rule(categories = {LSC, FEATURE})
+    public static boolean chatHeldItem = false;
 }

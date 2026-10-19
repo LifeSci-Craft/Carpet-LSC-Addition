@@ -3,6 +3,7 @@ package lifescicraft.carpetlsc;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
+import lifescicraft.carpetlsc.commands.McdrBridgeCommand;
 import lifescicraft.carpetlsc.commands.PingCommand;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.commands.CommandBuildContext;
@@ -44,6 +45,7 @@ public class CarpetLscAddition implements CarpetExtension, ModInitializer
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext)
     {
         PingCommand.register(dispatcher);
+        McdrBridgeCommand.register(dispatcher);
     }
 
     @Override

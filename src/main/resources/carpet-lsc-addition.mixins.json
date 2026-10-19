@@ -15,7 +15,10 @@
     "ServerPlayerDaytimeSleepMixin",
     "PlayerDaytimeSleepMixin",
     "ServerLevelDaytimeSleepMixin",
-    "CarpetTranslationColonFixMixin"
+    "CarpetTranslationColonFixMixin",
+    "PaintingVariantInvoker",
+    "PlayerPaintingSwapMixin",
+    "PlayerListChatItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

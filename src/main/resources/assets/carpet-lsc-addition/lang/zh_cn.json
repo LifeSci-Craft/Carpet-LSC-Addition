@@ -10,6 +10,9 @@
   "carpet.rule.fastLeafDecay.name": "树叶快速腐烂",
   "carpet.rule.emeraldTemptsVillagers.name": "绿宝石吸引村民",
   "carpet.rule.daytimeSleep.name": "白天睡觉",
+  "carpet.rule.quickPaintingSwap.name": "快捷换画",
+  "carpet.rule.mcdrCommandBridge.name": "MCDR 指令接口",
+  "carpet.rule.chatHeldItem.name": "聊天展示手持物品",
 
   // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -26,7 +29,15 @@
 
   "carpet.rule.daytimeSleep.desc": "玩家可以在白天睡觉，时间直接跳到夜晚。",
 
+  "carpet.rule.quickPaintingSwap.desc": "潜行时右键已放置的画，会切换成另一幅同尺寸的画作。",
+
+  "carpet.rule.mcdrCommandBridge.desc": "启用 /!! 指令，把后面的内容交给 MCDR 处理，玩家的聊天栏里不会留下指令内容。",
+
+  "carpet.rule.chatHeldItem.desc": "聊天内容里的 # 会替换成当前手持物品，悬停可以查看物品详情。",
+
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",
-  "carpet-lsc-addition.ping.notPlayer": "只有玩家才能查询自己的延迟。"
+  "carpet-lsc-addition.ping.notPlayer": "只有玩家才能查询自己的延迟。",
+  "carpet-lsc-addition.mcdr.notPlayer": "只有玩家才能使用 /!! 指令。",
+  "carpet-lsc-addition.chat.emptyHand": "[空手]"
 }

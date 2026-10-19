@@ -10,6 +10,9 @@
   "carpet.rule.fastLeafDecay.name": "Fast Leaf Decay",
   "carpet.rule.emeraldTemptsVillagers.name": "Emerald Tempts Villagers",
   "carpet.rule.daytimeSleep.name": "Daytime Sleep",
+  "carpet.rule.quickPaintingSwap.name": "Quick Painting Swap",
+  "carpet.rule.mcdrCommandBridge.name": "MCDR Command Bridge",
+  "carpet.rule.chatHeldItem.name": "Chat Held Item",
 
   // Rule descriptions
   "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -26,7 +29,15 @@
 
   "carpet.rule.daytimeSleep.desc": "Players can sleep during the day, skipping time to nightfall.",
 
+  "carpet.rule.quickPaintingSwap.desc": "Sneak and right-click a placed painting to cycle it to another painting of the same size.",
+
+  "carpet.rule.mcdrCommandBridge.desc": "Enables /!! so MCDR commands are run as a command instead of being typed into chat.",
+
+  "carpet.rule.chatHeldItem.desc": "A # in chat is replaced by your held item; hover it for the full tooltip.",
+
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",
-  "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping."
+  "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping.",
+  "carpet-lsc-addition.mcdr.notPlayer": "Only a player can use /!!.",
+  "carpet-lsc-addition.chat.emptyHand": "[Empty hand]"
 }

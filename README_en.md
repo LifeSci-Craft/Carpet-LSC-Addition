@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 4 more rules.
+> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 7 more rules.
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,7 +9,7 @@
 
 [简体中文](README.md) | **English** (this page)
 
-A server-side mod; players do not need to install it. All 7 rules are off by default and are
+A server-side mod; players do not need to install it. All 10 rules are off by default and are
 enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are grouped under the
 `LSC` category.
 
@@ -35,6 +35,9 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `fastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
 | `emeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
 | `daytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
+| `quickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
+| `mcdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
+| `chatHeldItem` | `false` | A `#` in chat is replaced by the held item. |
 
 ### `totemWrench`
 
@@ -101,6 +104,42 @@ Players can get into a bed during the day and skip time to nightfall (the `night
 | Sleeping at night | Unchanged; everyone wakes up in the morning. |
 | Dimensions without a day/night cycle | Unaffected. |
 
+### `quickPaintingSwap`
+
+Sneaking while right-clicking a placed painting cycles it to the next painting of the **same
+size**, ordered by variant id.
+
+| Item | Behaviour |
+| --- | --- |
+| Trigger | Sneak + right-click a placed painting with the main hand. |
+| Range | Only paintings with identical width and height, so the entity's size and position never change. |
+| Order | Sorted by painting id, wrapping around. |
+| Not sneaking | A plain right-click leaves the painting alone. |
+
+### `mcdrCommandBridge`
+
+Enables `/!!` so an MCDReforged command is run as a command instead of being typed into chat,
+which keeps the command text out of the chat box.
+
+| Item | Behaviour |
+| --- | --- |
+| Usage | `/!! <MCDR command>`, for example `/!! ig check`. |
+| Forwarding | Emits a `<player> !!<command>` line to the server log, which MCDR parses as player chat and dispatches. |
+| Requires | MCDR's default `vanilla` handler and `command_prefix` still set to `!!`. |
+| Without MCDR | The command runs but nothing answers it. |
+
+### `chatHeldItem`
+
+A `#` in chat is replaced by the held item; hovering it shows the full item tooltip.
+
+| Item | Behaviour |
+| --- | --- |
+| Trigger | `#`; a message may contain several. |
+| Display | `[Item name]`, keeping the item's own name styling. |
+| Hover | Vanilla `show_item`, showing the complete item tooltip. |
+| Empty hand | Shows `[Empty hand]`. |
+| Source | Main hand first, off hand when the main hand is empty. |
+
 ## Installation
 
 1. Install Fabric Loader 0.19.5 or newer, plus Fabric API for your Minecraft version.
@@ -111,6 +150,7 @@ Players can get into a bed during the day and skip time to nightfall (the `night
 | Command | Description |
 | --- | --- |
 | `/ping` | Show your latency to the server. Requires `commandPing`. |
+| `/!! <command>` | Forward an MCDR command to MCDR. Requires `mcdrCommandBridge`. |
 
 ## Configuration
 
@@ -122,6 +162,10 @@ Rules are set with `/carpet` and `config/carpet-lsc-addition.conf`; see the Rule
 - `accurateBlockPlacement` needs Litematica or Tweakeroo on the client; the other rules have no
   client requirement.
 - `totemWrench` rotating does not cause block updates, matching `flippinCactus`.
+- `mcdrCommandBridge` depends on MCDR's default `vanilla` handler and the `!!` prefix; without
+  MCDR the rule does nothing useful.
+- `chatHeldItem` renders the item through vanilla `show_item`, so clients need no mod but also do
+  not see an item icon.
 
 ## Building
 
