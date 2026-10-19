@@ -1,6 +1,7 @@
 package lifescicraft.carpetlsc.helpers;
 
 import lifescicraft.carpetlsc.CarpetLscSettings;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
@@ -69,8 +70,8 @@ public final class HeldItemChat
         }
 
         Component token = held.isEmpty()
-                ? Component.translatable("carpet-lsc-addition.chat.emptyHand")
-                : itemLabel(held);
+                ? tokenLabel(Component.translatable("carpet-lsc-addition.chat.emptyHand"), null)
+                : tokenLabel(held.getHoverName(), held);
 
         MutableComponent result = Component.empty();
         String[] parts = raw.split(String.valueOf(TOKEN), -1);
@@ -91,15 +92,32 @@ public final class HeldItemChat
         return result;
     }
 
-    private static Component itemLabel(ItemStack stack)
+    /**
+     * Wraps the displayed name in brackets and paints the whole token light purple.
+     *
+     * <p>The colour is the point: a server-only mod cannot draw the item's sprite, so the purple
+     * token is what tells the reader "this is an item". The hover carries the full vanilla
+     * {@code show_item} tooltip, which a vanilla client renders without any mod installed.
+     *
+     * @param inner the text to show, normally the item's own display name
+     * @param stack the item for the hover tooltip, or {@code null} for the empty-hand case
+     */
+    private static Component tokenLabel(Component inner, ItemStack stack)
     {
-        HoverEvent hover = new HoverEvent.ShowItem(ItemStackTemplate.fromNonEmptyStack(stack));
+        Style style = Style.EMPTY.withColor(ChatFormatting.LIGHT_PURPLE);
 
-        // The hover sits on the whole label and again on the name, because a child component only
-        // shows the tooltip when its own resolved style carries the event.
+        if (stack != null)
+        {
+            // The hover sits on every piece, because a child component only shows the tooltip when
+            // its own resolved style carries the event.
+            style = style.withHoverEvent(new HoverEvent.ShowItem(ItemStackTemplate.fromNonEmptyStack(stack)));
+        }
+
+        Style applied = style;
+
         return Component.literal("[")
-                .append(stack.getHoverName().copy().withStyle(style -> style.withHoverEvent(hover)))
+                .append(inner.copy().withStyle(applied))
                 .append(Component.literal("]"))
-                .withStyle(Style.EMPTY.withHoverEvent(hover));
+                .withStyle(applied);
     }
 }

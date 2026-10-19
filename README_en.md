@@ -96,6 +96,9 @@ rule can be toggled at any time and takes effect immediately.
 
 The follow speed is about 1.2× that of a wheat-tempted cow (measured: 3.2 blocks/s versus 2.8).
 
+A villager that gets attacked runs away instead, and ignores emeralds for five seconds after being
+hurt.
+
 ### `daytimeSleep`
 
 Players can get into a bed during the day and skip time to nightfall (the `night` time marker,
@@ -138,9 +141,9 @@ A `#` in chat is replaced by the held item; hovering it shows the full item tool
 | Item | Behaviour |
 | --- | --- |
 | Trigger | `#`; a message may contain several. |
-| Display | `[Item name]`, keeping the item's own name styling. |
+| Display | `[Item name]`, entirely in light purple so it stands out from normal chat. |
 | Hover | Vanilla `show_item`, showing the complete item tooltip. |
-| Empty hand | Shows `[Empty hand]`. |
+| Empty hand | Shows `[Empty hand]`, also light purple. |
 | Source | Main hand first, off hand when the main hand is empty. |
 
 ### `skipCommandConfirm`
@@ -179,7 +182,8 @@ Rules are set with `/carpet` and `config/carpet-lsc-addition.conf`; see the Rule
 - `mcdrCommandBridge` depends on MCDR's default `vanilla` handler and the `!!` prefix; without
   MCDR the rule does nothing useful.
 - `chatHeldItem` renders the item through vanilla `show_item`, so clients need no mod but also do
-  not see an item icon.
+  not see an item icon — vanilla chat text can only draw font glyphs, so an inline icon has to be
+  drawn by a client mod.
 - Singleplayer works too: put this mod and fabric-carpet in the client's `mods` folder and the
   integrated server runs the same logic. `mcdrCommandBridge` is the exception, since there is no
   MCDR in singleplayer.
