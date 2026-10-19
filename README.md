@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 10 条规则。
+> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 11 条规则。
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,7 +9,7 @@
 
 **简体中文**（本页） | [English](README_en.md)
 
-服务端模组，玩家无需安装。10 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
+服务端模组，玩家无需安装。11 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
 在 `/carpet` 里归入 `LSC` 分类。
 
 ## 基本信息
@@ -37,6 +37,7 @@
 | `quickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
 | `mcdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
 | `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品。 |
+| `skipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
 
 ### `totemWrench`
 
@@ -87,6 +88,8 @@
 
 村民会被手持绿宝石的玩家吸引，类似手持小麦吸引牛羊。规则可随时切换，立即生效。
 
+跟随速度约为被小麦吸引的牛的 1.2 倍（实测 3.2 方块/秒对 2.8 方块/秒）。
+
 ### `daytimeSleep`
 
 玩家可以在白天上床睡觉，时间跳到夜晚（`night` 时间标记，13000 刻）。
@@ -131,6 +134,16 @@
 | 空手 | 显示 `[空手]`。 |
 | 取值 | 优先主手，主手为空时取副手。 |
 
+### `skipCommandConfirm`
+
+执行需要更高权限的指令时，客户端不再弹出「确认执行指令」窗口，直接执行。
+
+| 项目 | 行为 |
+| --- | --- |
+| 生效范围 | 需要额外权限的指令（例如管理员指令）。 |
+| 不改变的 | 权限本身；无权限时仍会被服务端拒绝。 |
+| 不影响 | 指令拼写错误时的「无法识别指令」提示。 |
+
 ## 安装
 
 1. 安装 Fabric Loader 0.19.5 或更高版本，以及与 Minecraft 版本对应的 Fabric API。
@@ -154,6 +167,8 @@
 - `totemWrench` 的方块转动不触发方块更新，与 `flippinCactus` 一致。
 - `mcdrCommandBridge` 依赖 MCDR 的默认 `vanilla` 处理器与 `!!` 前缀；未装 MCDR 时该规则无实际作用。
 - `chatHeldItem` 用原版 `show_item` 呈现物品，客户端无需安装模组，但不会显示物品图标。
+- 单机游戏中同样生效：把本模组与 fabric-carpet 放进客户端 `mods` 目录即可，集成服务端会执行相同的逻辑。`mcdrCommandBridge` 例外，单机没有 MCDR，该规则无作用。
+- 单机未开启作弊时指令不会下发给客户端，`skipCommandConfirm` 无法消除「无法识别指令」提示。
 
 ## 构建
 

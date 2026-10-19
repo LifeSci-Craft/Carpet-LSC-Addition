@@ -18,7 +18,8 @@
     "CarpetTranslationColonFixMixin",
     "PaintingVariantInvoker",
     "PlayerPaintingSwapMixin",
-    "PlayerListChatItemMixin"
+    "PlayerListChatItemMixin",
+    "CommandEntryRestrictedMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 7 more rules.
+> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 8 more rules.
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,7 +9,7 @@
 
 [简体中文](README.md) | **English** (this page)
 
-A server-side mod; players do not need to install it. All 10 rules are off by default and are
+A server-side mod; players do not need to install it. All 11 rules are off by default and are
 enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are grouped under the
 `LSC` category.
 
@@ -38,6 +38,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `quickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
 | `mcdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
 | `chatHeldItem` | `false` | A `#` in chat is replaced by the held item. |
+| `skipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
 
 ### `totemWrench`
 
@@ -93,6 +94,8 @@ Switching the rule off stops any decay that is still pending.
 Villagers follow a player holding an emerald, in the same way cows and sheep follow wheat. The
 rule can be toggled at any time and takes effect immediately.
 
+The follow speed is about 1.2× that of a wheat-tempted cow (measured: 3.2 blocks/s versus 2.8).
+
 ### `daytimeSleep`
 
 Players can get into a bed during the day and skip time to nightfall (the `night` time marker,
@@ -140,6 +143,17 @@ A `#` in chat is replaced by the held item; hovering it shows the full item tool
 | Empty hand | Shows `[Empty hand]`. |
 | Source | Main hand first, off hand when the main hand is empty. |
 
+### `skipCommandConfirm`
+
+Commands that need elevated permissions run straight away, without the client's "Confirm Command
+Execution" window.
+
+| Item | Behaviour |
+| --- | --- |
+| Applies to | Commands that require additional permissions, such as admin commands. |
+| Unchanged | The permissions themselves; a player without the level is still rejected by the server. |
+| Does not affect | The "unrecognised command" prompt shown for a typo. |
+
 ## Installation
 
 1. Install Fabric Loader 0.19.5 or newer, plus Fabric API for your Minecraft version.
@@ -166,6 +180,11 @@ Rules are set with `/carpet` and `config/carpet-lsc-addition.conf`; see the Rule
   MCDR the rule does nothing useful.
 - `chatHeldItem` renders the item through vanilla `show_item`, so clients need no mod but also do
   not see an item icon.
+- Singleplayer works too: put this mod and fabric-carpet in the client's `mods` folder and the
+  integrated server runs the same logic. `mcdrCommandBridge` is the exception, since there is no
+  MCDR in singleplayer.
+- Without cheats enabled in singleplayer the commands are never sent to the client, so
+  `skipCommandConfirm` cannot remove the "unrecognised command" prompt there.
 
 ## Building
 

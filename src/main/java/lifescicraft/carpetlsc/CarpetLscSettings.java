@@ -46,4 +46,7 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, FEATURE})
     public static boolean chatHeldItem = false;
+
+    @Rule(categories = {LSC, COMMAND, FEATURE})
+    public static boolean skipCommandConfirm = false;
 }

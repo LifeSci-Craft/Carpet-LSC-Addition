@@ -13,6 +13,7 @@
   "carpet.rule.quickPaintingSwap.name": "快捷换画",
   "carpet.rule.mcdrCommandBridge.name": "MCDR 指令接口",
   "carpet.rule.chatHeldItem.name": "聊天展示手持物品",
+  "carpet.rule.skipCommandConfirm.name": "禁用指令确认",
 
   // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -34,6 +35,8 @@
   "carpet.rule.mcdrCommandBridge.desc": "启用 /!! 指令，把后面的内容交给 MCDR 处理，玩家的聊天栏里不会留下指令内容。",
 
   "carpet.rule.chatHeldItem.desc": "聊天内容里的 # 会替换成当前手持物品，悬停可以查看物品详情。",
+
+  "carpet.rule.skipCommandConfirm.desc": "执行需要更高权限的指令时，客户端不再弹出确认窗口，直接执行。",
 
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",
