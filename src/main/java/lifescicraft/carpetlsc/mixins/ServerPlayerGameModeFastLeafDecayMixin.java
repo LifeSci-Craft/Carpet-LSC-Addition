@@ -43,7 +43,7 @@ public abstract class ServerPlayerGameModeFastLeafDecayMixin
         BlockState broken = this.carpetLsc$preBreakState;
         this.carpetLsc$preBreakState = null;
 
-        if (broken != null && broken.is(BlockTags.LOGS) && cir.getReturnValueZ())
+        if (broken.is(BlockTags.LOGS) && cir.getReturnValueZ())
         {
             FastLeafDecay.onLogBroken(this.level, pos);
         }

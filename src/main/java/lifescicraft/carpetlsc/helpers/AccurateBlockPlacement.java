@@ -67,7 +67,7 @@ public final class AccurateBlockPlacement
                 // Special case: the opposite of the normal facing was requested.
                 facing = facing.getOpposite();
             }
-            else if (facingIndex >= 0 && facingIndex <= 5)
+            else if (facingIndex <= 5)
             {
                 facing = Direction.from3DDataValue(facingIndex);
             }

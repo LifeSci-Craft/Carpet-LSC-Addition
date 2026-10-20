@@ -2,8 +2,10 @@ package lifescicraft.carpetlsc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -30,14 +32,13 @@ public final class LscTranslations
                 return Collections.emptyMap();
             }
 
-            Map<String, String> translations = GSON.fromJson(
+            return GSON.fromJson(
                     new InputStreamReader(stream, StandardCharsets.UTF_8),
                     new TypeToken<Map<String, String>>() { }.getType());
-
-            return translations == null ? Collections.emptyMap() : translations;
         }
-        catch (Exception e)
+        catch (IOException | JsonParseException e)
         {
+            CarpetLscAddition.LOGGER.warn("Could not read the {} translation file", lang, e);
             return Collections.emptyMap();
         }
     }

@@ -37,7 +37,7 @@ public class CarpetTranslationColonFixMixin
         String value = cir.getReturnValue();
 
         // U+FF1A FULLWIDTH COLON — only present in the Chinese translations.
-        if (value != null && !value.isEmpty() && value.charAt(value.length() - 1) == '\uFF1A')
+        if (value.endsWith("\uFF1A"))
         {
             cir.setReturnValue(value.substring(0, value.length() - 1));
         }

@@ -54,12 +54,6 @@ public final class PaintingSwap
         }
 
         Holder<PaintingVariant> current = painting.getVariant();
-
-        if (current == null || current.value() == null)
-        {
-            return false;
-        }
-
         PaintingVariant size = current.value();
 
         Registry<PaintingVariant> registry =

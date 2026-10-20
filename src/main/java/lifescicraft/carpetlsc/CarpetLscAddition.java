@@ -3,11 +3,13 @@ package lifescicraft.carpetlsc;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.logging.LogUtils;
 import lifescicraft.carpetlsc.commands.McdrBridgeCommand;
 import lifescicraft.carpetlsc.commands.PingCommand;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
+import org.slf4j.Logger;
 
 import java.util.Map;
 
@@ -20,6 +22,8 @@ import java.util.Map;
 public class CarpetLscAddition implements CarpetExtension, ModInitializer
 {
     public static final String MOD_ID = "carpet-lsc-addition";
+
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     private static final CarpetLscAddition INSTANCE = new CarpetLscAddition();
 

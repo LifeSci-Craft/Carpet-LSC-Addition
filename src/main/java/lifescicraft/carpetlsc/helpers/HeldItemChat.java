@@ -50,14 +50,14 @@ public final class HeldItemChat
      */
     public static Component decorate(ServerPlayer sender, PlayerChatMessage message)
     {
-        if (!CarpetLscSettings.chatHeldItem || sender == null || message == null)
+        if (!CarpetLscSettings.chatHeldItem)
         {
             return null;
         }
 
         String raw = message.signedContent();
 
-        if (raw == null || raw.indexOf(TOKEN) < 0)
+        if (raw.indexOf(TOKEN) < 0)
         {
             return null;
         }
