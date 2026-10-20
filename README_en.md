@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 8 more rules.
+> A Fabric Carpet extension: totem wrench, accurate block placement, fast leaf decay and 12 more rules.
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,9 +9,9 @@
 
 [简体中文](README.md) | **English** (this page)
 
-A server-side mod; players do not need to install it. All 11 rules are off by default and are
+A server-side mod; players do not need to install it. All 15 rules are off by default and are
 enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are grouped under the
-`LSC` category.
+`LSC` category. Installing the mod on a client is optional and only adds chat item icons.
 
 ## Basic information
 
@@ -21,7 +21,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | Fabric Loader | >= 0.19.5 |
 | fabric-carpet | >= 26.1 |
 | Java | >= 25 |
-| Environment | Server-side |
+| Environment | Server-side (client optional) |
 | Language | Simplified Chinese / English, follows `/carpet language` |
 
 ## Rules
@@ -37,7 +37,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `daytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
 | `quickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
 | `mcdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
-| `chatHeldItem` | `false` | A `#` in chat is replaced by the held item. |
+| `chatHeldItem` | `false` | A `#` in chat is replaced by the held item; the client mod draws its icon. |
 | `skipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
 | `rightClickHarvest` | `false` | Empty-hand right-click harvests and replants a grown crop. |
 | `noFarmlandTrample` | `false` | Players no longer turn farmland into dirt. |
@@ -140,13 +140,13 @@ which keeps the command text out of the chat box.
 
 ### `chatHeldItem`
 
-A `#` in chat is replaced by the held item; hovering it shows the full item tooltip.
+A `#` in chat is replaced by the held item.
 
 | Item | Behaviour |
 | --- | --- |
 | Trigger | `#`; a message may contain several. |
-| Display | `[Item name]`, entirely in light purple so it stands out from normal chat. |
-| Hover | Vanilla `show_item`, showing the complete item tooltip. |
+| Server and client | Draws the item's 16×16 icon where the name would be; hovering shows the complete item tooltip (count, durability, …). |
+| Server only | Shows `[Item name]`, entirely in light purple, with the vanilla item tooltip on hover. |
 | Empty hand | Shows `[Empty hand]`, also light purple. |
 | Source | Main hand first, off hand when the main hand is empty. |
 
@@ -164,7 +164,9 @@ Execution" window.
 ## Installation
 
 1. Install Fabric Loader 0.19.5 or newer, plus Fabric API for your Minecraft version.
-2. Put `fabric-carpet` and this mod in the server's `mods` directory.
+2. Server: put `fabric-carpet` and this mod in the server's `mods` directory.
+3. Client (optional): put this mod in the client's `mods` directory to get the item icons; it needs
+   Fabric API (which loads mod resources) but not `fabric-carpet`.
 
 ## Commands
 
@@ -179,15 +181,18 @@ Rules are set with `/carpet` and `config/carpet-lsc-addition.conf`; see the Rule
 
 ## Notes
 
-- The mod is server-side only. Clients do not need it, and vanilla clients can join normally.
+- The rules themselves only run on the server, and vanilla clients can join normally. A client
+  that installs this mod additionally gets the `chatHeldItem` icons; it does not need
+  `fabric-carpet`.
 - `accurateBlockPlacement` needs Litematica or Tweakeroo on the client; the other rules have no
   client requirement.
 - `totemWrench` rotating does not cause block updates, matching `flippinCactus`.
 - `mcdrCommandBridge` depends on MCDR's default `vanilla` handler and the `!!` prefix; without
   MCDR the rule does nothing useful.
-- `chatHeldItem` renders the item through vanilla `show_item`, so clients need no mod but also do
-  not see an item icon — vanilla chat text can only draw font glyphs, so an inline icon has to be
-  drawn by a client mod.
+- `chatHeldItem` has the server write the item name into the message with the vanilla `show_item`
+  hover; a client with this mod swaps that text for the 16×16 icon (drawn by the client, the
+  server only sends text), while a client without the mod keeps the light purple item name. The
+  icon uses a font shipped by the mod, so a client without Fabric API falls back to the text.
 - Singleplayer works too: put this mod and fabric-carpet in the client's `mods` folder and the
   integrated server runs the same logic. `mcdrCommandBridge` is the exception, since there is no
   MCDR in singleplayer.

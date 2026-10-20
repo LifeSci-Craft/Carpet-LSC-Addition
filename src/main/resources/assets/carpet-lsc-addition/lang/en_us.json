@@ -38,7 +38,7 @@
 
   "carpet.rule.mcdrCommandBridge.desc": "Enables /!! so MCDR commands are run as a command instead of being typed into chat.",
 
-  "carpet.rule.chatHeldItem.desc": "A # in chat is replaced by your held item; hover it for the full tooltip.",
+  "carpet.rule.chatHeldItem.desc": "A # in chat is replaced by your held item: its icon when the mod is also on the client, its name otherwise.",
 
   "carpet.rule.skipCommandConfirm.desc": "Commands that need elevated permissions run without the client-side confirmation dialog.",
 

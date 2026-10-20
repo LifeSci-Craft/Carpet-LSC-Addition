@@ -2,6 +2,7 @@ package lifescicraft.carpetlsc.mixins;
 
 import carpet.utils.Translations;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -21,8 +22,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Correcting the lookup is the remaining option.
  *
  * <p>The handler is defensive: {@code require = 0} means an unexpected Carpet refactor turns this
- * into a no-op instead of a crash, and only the exact offending key is touched.
+ * into a no-op instead of a crash, and only the exact offending key is touched. {@link Pseudo}
+ * lets the mixin be skipped entirely when the class is installed on a client without Carpet.
  */
+@Pseudo
 @Mixin(value = Translations.class, remap = false)
 public class CarpetTranslationColonFixMixin
 {

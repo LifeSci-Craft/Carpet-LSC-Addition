@@ -1,6 +1,6 @@
 # Carpet LSC Addition
 
-> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 11 条规则。
+> Fabric Carpet 拓展模组：不死图腾扳手、精准放置协议、树叶快速腐烂等 15 条规则。
 
 [![Minecraft](https://img.shields.io/badge/minecraft-26.1--26.3-blue)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/fabric-%3E%3D0.19.5-blue)](https://fabricmc.net/)
@@ -9,8 +9,8 @@
 
 **简体中文**（本页） | [English](README_en.md)
 
-服务端模组，玩家无需安装。11 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
-在 `/carpet` 里归入 `LSC` 分类。
+服务端模组，玩家无需安装。15 条规则默认全部关闭，用 `/carpet <规则> <true|false>` 逐个开启，
+在 `/carpet` 里归入 `LSC` 分类。客户端可选安装本模组，用于在聊天中显示物品图标。
 
 ## 基本信息
 
@@ -20,7 +20,7 @@
 | Fabric Loader | >= 0.19.5 |
 | fabric-carpet | >= 26.1 |
 | Java | >= 25 |
-| 运行环境 | 服务端 |
+| 运行环境 | 服务端（客户端可选） |
 | 语言 | 简体中文 / English，跟随 `/carpet language` 切换 |
 
 ## 规则
@@ -36,7 +36,7 @@
 | `daytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
 | `quickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
 | `mcdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
-| `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品。 |
+| `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品；客户端也安装时显示物品图标。 |
 | `skipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
 | `rightClickHarvest` | `false` | 空手右键成熟作物即收获并补种。 |
 | `noFarmlandTrample` | `false` | 玩家不再把耕地踩成泥土。 |
@@ -130,13 +130,13 @@
 
 ### `chatHeldItem`
 
-聊天内容中的 `#` 会替换成当前手持物品，悬停可查看完整物品信息。
+聊天内容中的 `#` 会替换成当前手持物品。
 
 | 项目 | 行为 |
 | --- | --- |
 | 触发字符 | `#`，一条消息可出现多次。 |
-| 显示 | `[物品名]`，整体使用亮紫色以区别于普通聊天。 |
-| 悬停 | 原版 `show_item`，显示完整物品提示框。 |
+| 服务端 + 客户端都安装 | 在原物品名的位置绘制 16×16 物品图标，悬停显示完整物品提示框（数量、耐久等）。 |
+| 仅服务端安装 | 显示 `[物品名]`，整体使用亮紫色，悬停显示原版物品提示框。 |
 | 空手 | 显示 `[空手]`，同样为亮紫色。 |
 | 取值 | 优先主手，主手为空时取副手。 |
 
@@ -153,7 +153,8 @@
 ## 安装
 
 1. 安装 Fabric Loader 0.19.5 或更高版本，以及与 Minecraft 版本对应的 Fabric API。
-2. 把 `fabric-carpet` 与本模组放入服务端的 `mods` 目录。
+2. 服务端：把 `fabric-carpet` 与本模组放入服务端的 `mods` 目录。
+3. 客户端（可选）：把本模组放入客户端的 `mods` 目录即可显示物品图标，需要 Fabric API（模组资源由它加载），不需要 `fabric-carpet`。
 
 ## 命令
 
@@ -168,11 +169,11 @@
 
 ## 注意
 
-- 本模组只在服务端生效，玩家客户端无需安装，原版客户端可正常进入服务器。
+- 规则本身只在服务端生效，原版客户端可正常进入服务器；客户端安装本模组后额外获得 `chatHeldItem` 的物品图标，不需要 `fabric-carpet`。
 - `accurateBlockPlacement` 需要客户端安装 Litematica 或 Tweakeroo 并开启对应功能；其他规则无客户端要求。
 - `totemWrench` 的方块转动不触发方块更新，与 `flippinCactus` 一致。
 - `mcdrCommandBridge` 依赖 MCDR 的默认 `vanilla` 处理器与 `!!` 前缀；未装 MCDR 时该规则无实际作用。
-- `chatHeldItem` 用原版 `show_item` 呈现物品，客户端无需安装模组，但不会显示物品图标——原版聊天文本只能渲染字体里的字形，内联物品图标必须由客户端模组绘制。
+- `chatHeldItem` 的物品名由服务端写入消息并带原版 `show_item` 悬停；客户端装有本模组时把这段文本换成 16×16 图标（图标由客户端绘制，服务端只发文本），未安装时仍是亮紫色物品名。图标依赖本模组自带的字体资源，客户端缺少 Fabric API 时会自动退回到文字显示。
 - 单机游戏中同样生效：把本模组与 fabric-carpet 放进客户端 `mods` 目录即可，集成服务端会执行相同的逻辑。`mcdrCommandBridge` 例外，单机没有 MCDR，该规则无作用。
 - 单机未开启作弊时指令不会下发给客户端，`skipCommandConfirm` 无法消除「无法识别指令」提示。
 

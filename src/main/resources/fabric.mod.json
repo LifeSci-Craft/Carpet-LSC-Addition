@@ -20,13 +20,20 @@
     ]
   },
   "mixins": [
-    "carpet-lsc-addition.mixins.json"
+    "carpet-lsc-addition.mixins.json",
+    {
+      "config": "carpet-lsc-addition.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
     "fabricloader": ">=0.19.5",
     "minecraft": "${minecraft_dependency}",
-    "java": ">=25",
-    "carpet": "${carpet_dependency}"
+    "java": ">=25"
+  },
+  "recommends": {
+    "carpet": "${carpet_dependency}",
+    "fabric-api": "*"
   },
   "custom": {
     "modmenu": {

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "lifescicraft.carpetlsc.mixins.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "ChatComponentItemIconMixin",
+    "ChatComponentItemTokenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
