@@ -72,7 +72,7 @@
 
   "carpet.rule.FletchingTable.desc": "右键制箭台打开制箭界面，两格只收箭与制箭材料，产物按原版配方计算。需要客户端与服务端都安装本模组。",
 
-  "carpet.rule.VillagerBackpack.desc": "被命名牌改过名的村民，蹲下右键可打开它的背包界面，取出或放入物品；只接受村民会主动拾取的物品。",
+  "carpet.rule.VillagerBackpack.desc": "被命名牌改过名的村民，蹲下右键打开它的背包界面：9×6 的箱子里，左上箱子列是村民的 8 格背包，右上末影箱列是当前交易项（可翻页、重复合并），中间一列是职业、交易等级与价格情况，底部屏障可关闭。",
 
   "carpet.rule.VehicleFireworkBoost.desc": "乘坐矿车或船时使用烟花火箭，会朝视线方向获得一次加速，档位越高推力越大。",
 

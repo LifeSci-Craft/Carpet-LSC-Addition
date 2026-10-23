@@ -223,7 +223,7 @@ the client does not need Fabric API.
 | Item | Behaviour |
 | --- | --- |
 | Title | Craft Arrows |
-| The two input slots | Arrows, potions (regular / splash / lingering), feathers, flint, sticks |
+| The two input slots | Arrows, potions (regular / splash / lingering) and glowstone dust - the materials that put an effect on arrows; plain arrows cannot be made here |
 | Result slot | Follows the vanilla recipes, e.g. 8 arrows + 1 lingering potion -> 8 tipped arrows |
 | Rename row | Display only, not editable |
 
@@ -243,8 +243,10 @@ plain vanilla chest screen, so a client without this mod still sees it.
 
 | Row | Contents |
 | --- | --- |
-| First | Profession (workstation icon), trade level (bottle o' enchanting), discount (barrier / totem of undying), each with a hover tooltip; the rest are dark panes as separators |
-| Second | The villager's own eight slots, which can be taken from and put into |
+| Chest column (from column 2) | The villager's own eight slots, which can be taken from and put into |
+| Ender chest column (columns 7-8) | The current trades, eight per page, paged, duplicates merged |
+| Middle column | Profession (workstation), trade level (bottle o' enchanting), price situation (emerald / totem / ominous bottle) |
+| Bottom | A barrier closes the screen; page arrows appear only when the trades need more than one page |
 
 Only items that villager would pick up on its own can go in (vanilla `wantsToPickUp`); the three icon
 slots are read-only.

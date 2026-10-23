@@ -77,7 +77,9 @@ public final class ChatItemIcons
      */
     private static boolean isMarkerAvailable()
     {
-        if (markerAvailable == null)
+        // Only a positive answer is cached: a probe that runs before the resource reload would
+        // otherwise keep the text fallback for the whole session (singleplayer hits that window).
+        if (markerAvailable == null || !markerAvailable)
         {
             int width = Minecraft.getInstance().font.width(markerGlyph());
             markerAvailable = width == ICON_SIZE;

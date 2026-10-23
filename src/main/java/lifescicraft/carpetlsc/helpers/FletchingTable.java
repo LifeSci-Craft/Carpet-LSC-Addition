@@ -90,7 +90,12 @@ public final class FletchingTable
         return true;
     }
 
-    /** Arrows and everything a vanilla arrow recipe consumes. */
+    /**
+     * Arrows and the few things that put an effect on them.
+     *
+     * <p>Flint, feathers and sticks are deliberately absent: this bench exists to give arrows an
+     * effect, not to build plain arrows.
+     */
     public static boolean isArrowMaterial(ItemStack stack)
     {
         return stack.is(Items.ARROW)
@@ -99,9 +104,7 @@ public final class FletchingTable
                 || stack.is(Items.POTION)
                 || stack.is(Items.LINGERING_POTION)
                 || stack.is(Items.SPLASH_POTION)
-                || stack.is(Items.FEATHER)
-                || stack.is(Items.FLINT)
-                || stack.is(Items.STICK);
+                || stack.is(Items.GLOWSTONE_DUST);
     }
 
     /**
