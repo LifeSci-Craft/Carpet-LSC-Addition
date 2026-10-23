@@ -73,7 +73,7 @@ public abstract class AnvilMenuFletchingMixin
 
             if (!first.isEmpty() && !second.isEmpty())
             {
-                result = FletchingTable.craft(carpetLsc$level, FletchingTable.grid(first, second));
+                result = FletchingTable.craft(carpetLsc$level, first, second);
             }
 
             menu.slots.get(2).set(result);

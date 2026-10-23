@@ -109,19 +109,47 @@ public final class FletchingTable
      *
      * @return the crafted stack, or empty when the pair is not a recipe.
      */
-    public static ItemStack craft(Level level, List<ItemStack> gridItems)
+    public static ItemStack craft(Level level, ItemStack first, ItemStack second)
     {
         if (!(level instanceof ServerLevel serverLevel))
         {
             return ItemStack.EMPTY;
         }
 
+        // Vanilla's tipped arrow recipe wants the potion in the centre and arrows in all eight
+        // cells around it, so that layout has to be tried before the plain two-slot one.
+        ItemStack result = lookup(serverLevel, level, ring(first, second));
+
+        return result.isEmpty() ? lookup(serverLevel, level, simple(first, second)) : result;
+    }
+
+    private static ItemStack lookup(ServerLevel serverLevel, Level level, List<ItemStack> gridItems)
+    {
         CraftingInput input = CraftingInput.of(3, 3, gridItems);
 
         return serverLevel.getServer().getRecipeManager()
                 .getRecipeFor(RecipeType.CRAFTING, input, level)
                 .map(holder -> holder.value().assemble(input))
                 .orElse(ItemStack.EMPTY);
+    }
+
+    /** Second input in the centre, first input in every other cell. */
+    private static List<ItemStack> ring(ItemStack first, ItemStack second)
+    {
+        java.util.List<ItemStack> grid = new java.util.ArrayList<>(9);
+
+        for (int cell = 0; cell < 9; cell++)
+        {
+            grid.add(cell == 4 ? second : first);
+        }
+
+        return grid;
+    }
+
+    /** The plain layout: the two inputs in the first two cells. */
+    private static List<ItemStack> simple(ItemStack first, ItemStack second)
+    {
+        return grid(first, second);
     }
 
     /** Nine cells: our two inputs first, the rest empty. */

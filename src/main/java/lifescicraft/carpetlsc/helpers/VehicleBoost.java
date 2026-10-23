@@ -29,12 +29,12 @@ public final class VehicleBoost
     private static final int BOOST_TICKS = 100;
 
     /** Per-tick starting thrust, indexed by level 1..3. */
-    private static final double[] BOAT = {0.060, 0.090, 0.120};
+    private static final double[] BOAT = {0.300, 0.450, 0.600};
 
     /** Lower than boats: a minecart already runs on rails and the push adds on top. */
-    private static final double[] MINECART = {0.040, 0.060, 0.080};
+    private static final double[] MINECART = {0.160, 0.240, 0.320};
 
-    private static final double[] GHAST = {0.090, 0.130, 0.170};
+    private static final double[] GHAST = {0.450, 0.650, 0.850};
 
     private static final Map<UUID, Burst> BURSTS = new HashMap<>();
 
@@ -126,7 +126,7 @@ public final class VehicleBoost
 
         if (power > 0.0)
         {
-            Vec3 direction = direction(vehicle, player);
+            Vec3 direction = direction(vehicle, burst, player);
             Vec3 motion = vehicle.getDeltaMovement();
 
             // Boats and ghasts recompute their own motion, so the impulse has to be written into
@@ -143,20 +143,28 @@ public final class VehicleBoost
         }
     }
 
-    /** The ghast dashes where it is already going; riding vehicles follow the rider's aim. */
-    private static Vec3 direction(Entity vehicle, ServerPlayer player)
+    /**
+     * Where the push goes: a minecart is pushed along the rails it is already running on, a happy
+     * ghast where it is already flying, and a boat where its rider is looking. The first tick's
+     * direction is remembered, so a minecart on a straight keeps its heading while the burst runs.
+     */
+    private static Vec3 direction(Entity vehicle, Burst burst, ServerPlayer player)
     {
-        if (vehicle instanceof HappyGhast)
+        if (vehicle instanceof AbstractMinecart || vehicle instanceof HappyGhast)
         {
             Vec3 motion = vehicle.getDeltaMovement();
 
             if (motion.lengthSqr() > 1.0E-4)
             {
-                return motion.normalize();
+                burst.direction = motion.normalize();
             }
         }
+        else
+        {
+            burst.direction = player.getLookAngle();
+        }
 
-        return player.getLookAngle();
+        return burst.direction;
     }
 
     private static final class Burst
@@ -165,6 +173,7 @@ public final class VehicleBoost
         private final int total;
         private final double initial;
         private int ticksLeft;
+        private Vec3 direction = Vec3.ZERO;
 
         private Burst(int vehicleId, int total, double initial)
         {
