@@ -29,7 +29,8 @@
     "ItemStackFastEatingMixin",
     "VillagerBackpackMixin",
     "FireworkRocketVehicleBoostMixin",
-    "EntityVehicleInstantStopMixin"
+    "EntityVehicleInstantStopMixin",
+    "ServerPlayerVehicleBoostMixin"
   ],
   "injectors": {
     "defaultRequire": 1
