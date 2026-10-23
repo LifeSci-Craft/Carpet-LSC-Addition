@@ -61,4 +61,13 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, FEATURE})
     public static boolean afkMarker = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean alwaysUnlockedRecipes = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean bundleAutoEat = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"saturation", "slot"})
+    public static String bundleAutoEatOrder = "saturation";
 }

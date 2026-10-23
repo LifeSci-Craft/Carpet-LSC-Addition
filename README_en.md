@@ -43,6 +43,9 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `noFarmlandTrample` | `false` | Players no longer turn farmland into dirt. |
 | `deathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
 | `afkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
+| `alwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
+| `bundleAutoEat` | `false` | Eats one item from a bundle of food when that single item fills the hunger bar. |
+| `bundleAutoEatOrder` | `saturation` | Pick order for auto-eating; `slot` is the alternative. |
 
 ### `totemWrench`
 
@@ -160,6 +163,28 @@ Execution" window.
 | Applies to | Commands that require additional permissions, such as admin commands. |
 | Unchanged | The permissions themselves; a player without the level is still rejected by the server. |
 | Does not affect | The "unrecognised command" prompt shown for a typo. |
+
+### `alwaysUnlockedRecipes`
+
+Unlocks every recipe when a player joins. Recipes already unlocked are kept as they are, and turning
+the rule off does not take anything back.
+
+### `bundleAutoEat`
+
+Eats one item out of a bundle when everything in that bundle is food and a single item is enough to
+fill the hunger bar. No eating sound or animation is played; the food's own effects still apply.
+
+| Condition | Requirement |
+| --- | --- |
+| The bundle | Every item in it is food; a mixed bundle is left alone. |
+| Hunger | Not full, and adding that food's nutrition reaches the full bar. |
+
+### `bundleAutoEatOrder`
+
+| Value | Effect |
+| --- | --- |
+| `saturation` | Eats the lowest-saturation food first. |
+| `slot` | Follows the bundle's storage order. |
 
 ## Installation
 

@@ -18,6 +18,9 @@
   "carpet.rule.noFarmlandTrample.name": "No Farmland Trample",
   "carpet.rule.deathCoordinates.name": "Death Coordinates",
   "carpet.rule.afkMarker.name": "AFK Marker",
+  "carpet.rule.alwaysUnlockedRecipes.name": "Always Unlocked Recipes",
+  "carpet.rule.bundleAutoEat.name": "Bundle Auto Eat",
+  "carpet.rule.bundleAutoEatOrder.name": "Bundle Eat Order",
 
   // Rule descriptions
   "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -49,6 +52,12 @@
   "carpet.rule.deathCoordinates.desc": "Announces where a player died, either to that player only or to everyone.",
 
   "carpet.rule.afkMarker.desc": "Players who have neither moved nor turned for five minutes get an [AFK] name prefix.",
+
+  "carpet.rule.alwaysUnlockedRecipes.desc": "Unlocks every recipe when a player joins; recipes already unlocked are kept as they are.",
+
+  "carpet.rule.bundleAutoEat.desc": "Eats one food item from a bundle of food when hunger is low and that single item fills the bar.",
+
+  "carpet.rule.bundleAutoEatOrder.desc": "Pick order: saturation eats the lowest saturation first, slot follows the bundle's storage order.",
 
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",

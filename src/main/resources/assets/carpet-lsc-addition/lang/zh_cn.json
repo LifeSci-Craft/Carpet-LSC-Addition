@@ -18,6 +18,9 @@
   "carpet.rule.noFarmlandTrample.name": "耕地防踩踏",
   "carpet.rule.deathCoordinates.name": "死亡坐标播报",
   "carpet.rule.afkMarker.name": "AFK 标记",
+  "carpet.rule.alwaysUnlockedRecipes.name": "配方书始终解锁",
+  "carpet.rule.bundleAutoEat.name": "收纳袋自动进食",
+  "carpet.rule.bundleAutoEatOrder.name": "收纳袋进食顺序",
 
   // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -49,6 +52,12 @@
   "carpet.rule.deathCoordinates.desc": "玩家死亡时播报死亡坐标，可选仅告知本人或全服。",
 
   "carpet.rule.afkMarker.desc": "玩家 5 分钟未移动也未转向时，名字前会加上 [AFK] 前缀。",
+
+  "carpet.rule.alwaysUnlockedRecipes.desc": "玩家进入服务器时解锁全部配方，已解锁的配方数据原样保留。",
+
+  "carpet.rule.bundleAutoEat.desc": "收纳袋里全是食物时，饥饿值不足会自动静默吃掉一件，条件是一件就能回满。",
+
+  "carpet.rule.bundleAutoEatOrder.desc": "自动进食的挑选顺序：saturation 按饱和度从低到高，slot 按收纳袋内的存放顺序。",
 
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",

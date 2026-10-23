@@ -23,7 +23,9 @@
     "ServerPlayerGameModeHarvestMixin",
     "FarmlandTrampleMixin",
     "ServerPlayerDeathCoordinatesMixin",
-    "PlayerAfkMarkerMixin"
+    "PlayerAfkMarkerMixin",
+    "ServerRecipeBookUnlockAllMixin",
+    "FoodDataBundleAutoEatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
