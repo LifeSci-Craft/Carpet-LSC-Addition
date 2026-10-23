@@ -85,6 +85,10 @@ public class CarpetLscSettings
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean FletchingTable = false;
 
+    /** Show every trade the villager could ever offer, not just the unlocked ones. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean TradePreview = false;
+
     /** Firework rockets shove the boat or minecart the player rides; the number is the strength. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"off", "1", "2", "3"})
     public static String VehicleFireworkBoost = "off";

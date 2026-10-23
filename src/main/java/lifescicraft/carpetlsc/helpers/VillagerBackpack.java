@@ -23,6 +23,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.TradeSet;
+import net.minecraft.world.item.trading.VillagerTrade;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Unit;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -138,35 +148,94 @@ public final class VillagerBackpack
         BackpackContainer(Villager villager)
         {
             this.villager = villager;
-            this.trades = collectTrades(villager);
+            this.trades = CarpetLscSettings.TradePreview
+                    ? futureTrades(villager)
+                    : collectTrades(villager);
         }
 
-        private List<ItemStack> collectTrades(Villager source)
+        /**
+         * Every item the villager could ever sell, levels one through five.
+         *
+         * <p>Vanilla keeps trades in the datapack registry: the profession names a trade set per
+         * level ({@code VillagerProfession#getTrades}), and every {@code VillagerTrade} in that set
+         * turns into an offer through a loot context built the same way {@code updateTrades} builds
+         * it.
+         */
+        private static List<ItemStack> futureTrades(Villager villager)
+        {
+            List<ItemStack> merged = new ArrayList<>();
+
+            if (!(villager.level() instanceof ServerLevel serverLevel))
+            {
+                return merged;
+            }
+
+            Registry<TradeSet> registry = serverLevel.registryAccess().lookupOrThrow(Registries.TRADE_SET);
+            VillagerData data = villager.getVillagerData();
+            var profession = data.profession().value();
+
+            for (int level = 1; level <= 5; level++)
+            {
+                ResourceKey<TradeSet> key = profession.getTrades(level);
+
+                if (key == null)
+                {
+                    continue;
+                }
+
+                TradeSet set = registry.getOptional(key).orElse(null);
+
+                if (set == null)
+                {
+                    continue;
+                }
+
+                LootContext context = new LootContext.Builder(new LootParams.Builder(serverLevel)
+                        .withParameter(LootContextParams.ORIGIN, villager.position())
+                        .withParameter(LootContextParams.THIS_ENTITY, villager)
+                        .withParameter(LootContextParams.ADDITIONAL_COST_COMPONENT_ALLOWED, Unit.INSTANCE)
+                        .create(LootContextParamSets.VILLAGER_TRADE))
+                        .create(set.randomSequence());
+
+                for (net.minecraft.core.Holder<VillagerTrade> trade : set.trades())
+                {
+                    MerchantOffer offer = trade.value().getOffer(context);
+
+                    if (offer != null)
+                    {
+                        mergeInto(merged, offer.getResult());
+                    }
+                }
+            }
+
+            return merged;
+        }
+
+        private static List<ItemStack> collectTrades(Villager source)
         {
             List<ItemStack> merged = new ArrayList<>();
 
             for (MerchantOffer offer : source.getOffers())
             {
-                ItemStack result = offer.getResult();
-                boolean seen = false;
-
-                for (ItemStack existing : merged)
-                {
-                    if (ItemStack.isSameItemSameComponents(existing, result))
-                    {
-                        existing.grow(result.getCount());
-                        seen = true;
-                        break;
-                    }
-                }
-
-                if (!seen)
-                {
-                    merged.add(result.copy());
-                }
+                mergeInto(merged, offer.getResult());
             }
 
             return merged;
+        }
+
+        /** Same item and same components show up once, with the counts added together. */
+        private static void mergeInto(List<ItemStack> merged, ItemStack result)
+        {
+            for (ItemStack existing : merged)
+            {
+                if (ItemStack.isSameItemSameComponents(existing, result))
+                {
+                    existing.grow(result.getCount());
+                    return;
+                }
+            }
+
+            merged.add(result.copy());
         }
 
         private int pageCount()
@@ -228,7 +297,9 @@ public final class VillagerBackpack
                         Component.translatable("carpet-lsc-addition.villager.backpack"),
                         ChatFormatting.GOLD);
                 case ICON_TRADES -> bold(new ItemStack(Items.ENDER_CHEST),
-                        Component.translatable("carpet-lsc-addition.villager.trades"),
+                        Component.translatable(CarpetLscSettings.TradePreview
+                                ? "carpet-lsc-addition.villager.tradesAll"
+                                : "carpet-lsc-addition.villager.trades"),
                         ChatFormatting.LIGHT_PURPLE);
                 case ICON_PROFESSION -> professionIcon();
                 case ICON_LEVEL -> levelIcon();
