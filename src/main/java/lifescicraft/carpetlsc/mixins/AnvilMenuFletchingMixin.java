@@ -27,7 +27,7 @@ public abstract class AnvilMenuFletchingMixin
     private boolean carpetLsc$fletching;
 
     @Unique
-    private ContainerLevelAccess carpetLsc$access;
+    private net.minecraft.world.level.Level carpetLsc$level;
 
     @Unique
     private boolean carpetLsc$computing;
@@ -42,7 +42,7 @@ public abstract class AnvilMenuFletchingMixin
         }
 
         carpetLsc$fletching = true;
-        carpetLsc$access = access;
+        carpetLsc$level = FletchingTable.openingLevel();
 
         AnvilMenu menu = (AnvilMenu) (Object) this;
 
@@ -73,9 +73,7 @@ public abstract class AnvilMenuFletchingMixin
 
             if (!first.isEmpty() && !second.isEmpty())
             {
-                result = carpetLsc$access
-                        .evaluate((level, pos) -> FletchingTable.craft(level, FletchingTable.grid(first, second)))
-                        .orElse(ItemStack.EMPTY);
+                result = FletchingTable.craft(carpetLsc$level, FletchingTable.grid(first, second));
             }
 
             menu.slots.get(2).set(result);

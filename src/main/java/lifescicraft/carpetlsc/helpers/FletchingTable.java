@@ -31,6 +31,9 @@ public final class FletchingTable
     /** Set while our own anvil menu is being constructed, so the mixins know that menu is ours. */
     private static final ThreadLocal<Boolean> OURS = ThreadLocal.withInitial(() -> Boolean.FALSE);
 
+    /** Level captured while our menu is built, because the menu cannot look it up later. */
+    private static final ThreadLocal<Level> OPENING_LEVEL = new ThreadLocal<>();
+
     private FletchingTable()
     {
     }
@@ -50,6 +53,11 @@ public final class FletchingTable
         OURS.remove();
     }
 
+    public static Level openingLevel()
+    {
+        return OPENING_LEVEL.get();
+    }
+
     public static boolean isOurs()
     {
         return OURS.get();
@@ -64,14 +72,18 @@ public final class FletchingTable
 
         player.openMenu(new SimpleMenuProvider((id, inventory, p) -> {
             mark();
+            OPENING_LEVEL.set(player.level());
 
             try
             {
-                return new AnvilMenu(id, inventory, access);
+                // No container-level access on purpose: vanilla would keep checking for an anvil
+                // near the player and close the screen on the very next tick.
+                return new AnvilMenu(id, inventory);
             }
             finally
             {
                 unmark();
+                OPENING_LEVEL.remove();
             }
         }, title()));
 

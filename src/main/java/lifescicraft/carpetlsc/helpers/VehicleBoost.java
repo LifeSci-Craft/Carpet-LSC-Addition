@@ -29,12 +29,12 @@ public final class VehicleBoost
     private static final int BOOST_TICKS = 100;
 
     /** Per-tick starting thrust, indexed by level 1..3. */
-    private static final double[] BOAT = {0.045, 0.065, 0.085};
+    private static final double[] BOAT = {0.060, 0.090, 0.120};
 
     /** Lower than boats: a minecart already runs on rails and the push adds on top. */
-    private static final double[] MINECART = {0.015, 0.022, 0.030};
+    private static final double[] MINECART = {0.040, 0.060, 0.080};
 
-    private static final double[] GHAST = {0.055, 0.080, 0.105};
+    private static final double[] GHAST = {0.090, 0.130, 0.170};
 
     private static final Map<UUID, Burst> BURSTS = new HashMap<>();
 
@@ -127,7 +127,14 @@ public final class VehicleBoost
         if (power > 0.0)
         {
             Vec3 direction = direction(vehicle, player);
-            vehicle.push(direction.x * power, Math.max(direction.y * power, 0.0), direction.z * power);
+            Vec3 motion = vehicle.getDeltaMovement();
+
+            // Boats and ghasts recompute their own motion, so the impulse has to be written into
+            // the velocity rather than added through push(), which they immediately overwrite.
+            vehicle.setDeltaMovement(
+                    motion.x + direction.x * power,
+                    motion.y + Math.max(direction.y * power, 0.0),
+                    motion.z + direction.z * power);
         }
 
         if (--burst.ticksLeft <= 0)

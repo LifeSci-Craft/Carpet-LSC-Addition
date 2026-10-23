@@ -308,8 +308,11 @@ public final class VillagerBackpack
         @Override
         public boolean canPlaceItem(int slot, ItemStack stack)
         {
+            // Food is always accepted: that is what a villager actually collects, while
+            // wantsToPickUp also says no while the villager is busy or full.
             return contains(VILLAGER_SLOTS, slot)
-                    && villager.wantsToPickUp((ServerLevel) villager.level(), stack);
+                    && (stack.has(DataComponents.FOOD)
+                            || villager.wantsToPickUp((ServerLevel) villager.level(), stack));
         }
 
         @Override
@@ -377,7 +380,7 @@ public final class VillagerBackpack
         {
             return bold(new ItemStack(Items.STAINED_GLASS_PANE.gray()),
                     Component.translatable("carpet-lsc-addition.villager.separator"),
-                    ChatFormatting.BLACK);
+                    ChatFormatting.DARK_GRAY);
         }
 
         private static ItemStack bold(ItemStack stack, Component name, ChatFormatting colour)
