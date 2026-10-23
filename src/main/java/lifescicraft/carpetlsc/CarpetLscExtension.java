@@ -6,6 +6,7 @@ import carpet.api.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import lifescicraft.carpetlsc.commands.McdrBridgeCommand;
 import lifescicraft.carpetlsc.commands.PingCommand;
+import lifescicraft.carpetlsc.commands.WaypointCommand;
 import lifescicraft.carpetlsc.helpers.RecipeUnlocker;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -61,6 +62,7 @@ final class CarpetLscExtension implements CarpetExtension
     {
         PingCommand.register(dispatcher);
         McdrBridgeCommand.register(dispatcher);
+        WaypointCommand.register(dispatcher);
     }
 
     @Override

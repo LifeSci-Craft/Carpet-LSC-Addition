@@ -33,6 +33,10 @@ public final class DeathCoordinates
 
     private static final String WAYPOINT_SYMBOL = "D";
 
+    /** Where each player died last, so the button can resend the waypoint later. */
+    private static final java.util.Map<java.util.UUID, BlockPos> LAST_DEATH =
+            new java.util.concurrent.ConcurrentHashMap<>();
+
     private DeathCoordinates()
     {
     }
@@ -56,17 +60,15 @@ public final class DeathCoordinates
                 dimension(level),
                 waypointButton(pos, level));
 
-        Component share = shareLine(pos, level);
+        LAST_DEATH.put(player.getUUID(), pos.immutable());
 
         if (SELF.equals(mode))
         {
             player.sendSystemMessage(message);
-            player.sendSystemMessage(share);
         }
         else
         {
             level.getServer().getPlayerList().broadcastSystemMessage(message, false);
-            level.getServer().getPlayerList().broadcastSystemMessage(share, false);
         }
     }
 
@@ -114,6 +116,23 @@ public final class DeathCoordinates
      * route does not work: a {@code run_command} click is sent to the server, which has no such
      * command, so Xaero never sees it.
      */
+    /**
+     * Sends the share line for the player's last death.
+     *
+     * <p>Runs from the {@code [add waypoint]} button. The client cannot trigger Xaero's own add
+     * prompt directly, so the click asks the server for the share message and Xaero turns that into
+     * its clickable prompt.
+     */
+    public static void resend(ServerPlayer player)
+    {
+        BlockPos pos = LAST_DEATH.get(player.getUUID());
+
+        if (pos != null)
+        {
+            player.sendSystemMessage(shareLine(pos, player.level()));
+        }
+    }
+
     private static Component shareLine(BlockPos pos, Level level)
     {
         String name = "Death(" + pos.getX() + "," + pos.getY() + "," + pos.getZ() + ")";
@@ -133,7 +152,8 @@ public final class DeathCoordinates
         // the container marker: the bare word "Internal" means "whatever world the client is in",
         // which is the only marker that is correct on a multiplayer server (the per-world set id is
         // the client's own business).
-        String command = "/xaero_waypoint_add:"
+        String command = "/lscwaypoint";
+        String unused = "/xaero_waypoint_add:"
                 + name + ":" + WAYPOINT_SYMBOL
                 + ":" + pos.getX() + ":" + pos.getY() + ":" + pos.getZ()
                 + ":" + WAYPOINT_COLOR + ":false:0:Internal";

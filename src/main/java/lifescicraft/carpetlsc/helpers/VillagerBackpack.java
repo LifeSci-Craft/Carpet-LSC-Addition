@@ -54,7 +54,7 @@ public final class VillagerBackpack
     private static final int ICON_NEXT = 52;
 
     private static final int[] VILLAGER_SLOTS = {10, 11, 19, 20, 28, 29, 37, 38};
-    private static final int[] TRADE_SLOTS = {16, 17, 25, 26, 34, 35, 43, 44};
+    private static final int[] TRADE_SLOTS = {15, 16, 24, 25, 33, 34, 42, 43};
 
     private static final double MAX_DISTANCE_SQR = 64.0;
 

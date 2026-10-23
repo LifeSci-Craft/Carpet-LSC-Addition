@@ -116,11 +116,42 @@ public final class FletchingTable
             return ItemStack.EMPTY;
         }
 
-        // Vanilla's tipped arrow recipe wants the potion in the centre and arrows in all eight
-        // cells around it, so that layout has to be tried before the plain two-slot one.
+        // Eight arrows and one lingering potion make eight tipped arrows, whichever slot each one
+        // landed in. Vanilla keeps that recipe as a special 3x3 ring, which two slots cannot
+        // express, so the pair is recognised here and the arrows are built the same way vanilla does.
+        ItemStack tipped = tippedArrows(first, second);
+
+        if (!tipped.isEmpty())
+        {
+            return tipped;
+        }
+
         ItemStack result = lookup(serverLevel, level, ring(first, second));
 
         return result.isEmpty() ? lookup(serverLevel, level, simple(first, second)) : result;
+    }
+
+    private static ItemStack tippedArrows(ItemStack first, ItemStack second)
+    {
+        ItemStack potion = first.is(Items.LINGERING_POTION) ? first
+                : second.is(Items.LINGERING_POTION) ? second : ItemStack.EMPTY;
+
+        if (potion.isEmpty())
+        {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack arrows = first == potion ? second : first;
+
+        if (!arrows.is(Items.ARROW) || arrows.getCount() < 8)
+        {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack result = new ItemStack(Items.TIPPED_ARROW, 8);
+        result.set(net.minecraft.core.component.DataComponents.POTION_CONTENTS,
+                potion.get(net.minecraft.core.component.DataComponents.POTION_CONTENTS));
+        return result;
     }
 
     private static ItemStack lookup(ServerLevel serverLevel, Level level, List<ItemStack> gridItems)
