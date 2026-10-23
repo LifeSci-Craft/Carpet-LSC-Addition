@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_25",
   "client": [
     "ChatComponentItemIconMixin",
-    "ChatComponentItemTokenMixin"
+    "ChatComponentItemTokenMixin",
+    "AnvilScreenFletchingMixin"
   ],
   "injectors": {
     "defaultRequire": 1
