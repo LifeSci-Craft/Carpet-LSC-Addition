@@ -153,10 +153,6 @@ public final class DeathCoordinates
         // which is the only marker that is correct on a multiplayer server (the per-world set id is
         // the client's own business).
         String command = "/lscwaypoint";
-        String unused = "/xaero_waypoint_add:"
-                + name + ":" + WAYPOINT_SYMBOL
-                + ":" + pos.getX() + ":" + pos.getY() + ":" + pos.getZ()
-                + ":" + WAYPOINT_COLOR + ":false:0:Internal";
 
         Style style = Style.EMPTY
                 .withColor(ChatFormatting.AQUA)
