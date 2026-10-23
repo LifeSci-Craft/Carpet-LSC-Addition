@@ -21,6 +21,8 @@
   "carpet.rule.alwaysUnlockedRecipes.name": "Always Unlocked Recipes",
   "carpet.rule.bundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.bundleAutoEatOrder.name": "Bundle Eat Order",
+  "carpet.rule.fastEating.name": "Fast Eating",
+  "carpet.rule.fastEatingTicks.name": "Fast Eating Ticks",
 
   // Rule descriptions
   "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -57,7 +59,11 @@
 
   "carpet.rule.bundleAutoEat.desc": "Eats one food item from a bundle of food when hunger is low and that single item fills the bar.",
 
-  "carpet.rule.bundleAutoEatOrder.desc": "Pick order: saturation eats the lowest saturation first, slot follows the bundle's storage order.",
+  "carpet.rule.bundleAutoEatOrder.desc": "Pick order: saturation eats the lowest saturation first, slot follows the bundle's storage order. Food with its own effects always comes after plain food.",
+
+  "carpet.rule.fastEating.desc": "Caps eating and drinking at fastEatingTicks; items that are already faster keep their own time. The hunger check and item effects are unchanged.",
+
+  "carpet.rule.fastEatingTicks.desc": "Upper limit in ticks for eating or drinking, 8 by default. Items that are already faster keep their own time.",
 
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",

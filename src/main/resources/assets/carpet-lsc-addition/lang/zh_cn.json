@@ -21,6 +21,8 @@
   "carpet.rule.alwaysUnlockedRecipes.name": "配方书始终解锁",
   "carpet.rule.bundleAutoEat.name": "收纳袋自动进食",
   "carpet.rule.bundleAutoEatOrder.name": "收纳袋进食顺序",
+  "carpet.rule.fastEating.name": "快速进食",
+  "carpet.rule.fastEatingTicks.name": "快速进食上限",
 
   // 规则说明
   "carpet.rule.totemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -57,7 +59,11 @@
 
   "carpet.rule.bundleAutoEat.desc": "收纳袋里全是食物时，饥饿值不足会自动静默吃掉一件，条件是一件就能回满。",
 
-  "carpet.rule.bundleAutoEatOrder.desc": "自动进食的挑选顺序：saturation 按饱和度从低到高，slot 按收纳袋内的存放顺序。",
+  "carpet.rule.bundleAutoEatOrder.desc": "自动进食的挑选顺序：saturation 按饱和度从低到高，slot 按收纳袋内的存放顺序。带额外效果的食物始终排在无效果食物之后。",
+
+  "carpet.rule.fastEating.desc": "开启后进食与饮用的时间按 fastEatingTicks 封顶，原本更快的物品不受影响；饥饿限制与物品效果照常。",
+
+  "carpet.rule.fastEatingTicks.desc": "进食与饮用的时间上限（tick），默认 8；原本更快的物品保持原速。",
 
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",

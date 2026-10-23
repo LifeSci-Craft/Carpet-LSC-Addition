@@ -45,6 +45,8 @@
 | `alwaysUnlockedRecipes` | `false` | 玩家进入服务器时解锁全部配方，已解锁的数据原样保留。 |
 | `bundleAutoEat` | `false` | 收纳袋里全是食物、且一件就能回满饥饿值时，自动静默吃掉一件。 |
 | `bundleAutoEatOrder` | `saturation` | 自动进食的挑选顺序，可选 `slot`。 |
+| `fastEating` | `false` | 进食与饮用的时间按 `fastEatingTicks` 封顶。 |
+| `fastEatingTicks` | `8` | 进食与饮用的时间上限（tick）。 |
 
 ### `totemWrench`
 

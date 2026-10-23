@@ -70,4 +70,10 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"saturation", "slot"})
     public static String bundleAutoEatOrder = "saturation";
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean fastEating = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static int fastEatingTicks = 8;
 }

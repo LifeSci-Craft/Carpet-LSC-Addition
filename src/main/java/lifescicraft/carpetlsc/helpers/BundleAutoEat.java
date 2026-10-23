@@ -8,6 +8,9 @@ import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
+import net.minecraft.world.item.consume_effects.PlaySoundConsumeEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,10 +93,12 @@ public final class BundleAutoEat
 
         int chosen = -1;
         FoodProperties chosenFood = null;
+        boolean chosenSpecial = false;
 
         for (int i = 0; i < items.size(); i++)
         {
-            FoodProperties candidate = items.get(i).get(DataComponents.FOOD);
+            ItemStack item = items.get(i);
+            FoodProperties candidate = item.get(DataComponents.FOOD);
 
             if (hunger + candidate.nutrition() < FULL_FOOD)
             {
@@ -101,10 +106,13 @@ public final class BundleAutoEat
                 continue;
             }
 
-            if (chosen < 0 || prefers(candidate, chosenFood))
+            boolean special = hasExtraEffects(item);
+
+            if (chosen < 0 || prefers(candidate, special, chosenFood, chosenSpecial))
             {
                 chosen = i;
                 chosenFood = candidate;
+                chosenSpecial = special;
             }
         }
 
@@ -119,8 +127,16 @@ public final class BundleAutoEat
         return true;
     }
 
-    private static boolean prefers(FoodProperties candidate, FoodProperties current)
+    private static boolean prefers(FoodProperties candidate, boolean candidateSpecial,
+                                   FoodProperties current, boolean currentSpecial)
     {
+        if (candidateSpecial != currentSpecial)
+        {
+            // Food that carries its own effects (golden apple, rotten flesh, chorus fruit...) is
+            // kept for last, so a plain meal is never traded for one with side effects.
+            return !candidateSpecial;
+        }
+
         if (!ORDER_SATURATION.equals(CarpetLscSettings.bundleAutoEatOrder))
         {
             // Bundle order: keep whichever came first.
@@ -128,6 +144,32 @@ public final class BundleAutoEat
         }
 
         return saturationValue(candidate) < saturationValue(current);
+    }
+
+    /**
+     * Whether eating this item also applies something beyond nutrition.
+     *
+     * <p>Every consumable carries a {@code PlaySoundConsumeEffect}; anything else in that list
+     * (status effects, effect removal, teleport) counts as an extra effect, positive or negative.
+     */
+    private static boolean hasExtraEffects(ItemStack stack)
+    {
+        Consumable consumable = stack.get(DataComponents.CONSUMABLE);
+
+        if (consumable == null)
+        {
+            return false;
+        }
+
+        for (ConsumeEffect effect : consumable.onConsumeEffects())
+        {
+            if (!(effect instanceof PlaySoundConsumeEffect))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /** The saturation a single item actually grants. */

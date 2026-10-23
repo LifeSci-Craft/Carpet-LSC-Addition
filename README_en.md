@@ -46,6 +46,8 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `alwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
 | `bundleAutoEat` | `false` | Eats one item from a bundle of food when that single item fills the hunger bar. |
 | `bundleAutoEatOrder` | `saturation` | Pick order for auto-eating; `slot` is the alternative. |
+| `fastEating` | `false` | Caps eating and drinking at `fastEatingTicks`. |
+| `fastEatingTicks` | `8` | Upper limit in ticks for eating or drinking. |
 
 ### `totemWrench`
 

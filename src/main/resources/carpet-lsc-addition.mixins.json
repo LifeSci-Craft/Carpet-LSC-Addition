@@ -25,7 +25,8 @@
     "ServerPlayerDeathCoordinatesMixin",
     "PlayerAfkMarkerMixin",
     "ServerRecipeBookUnlockAllMixin",
-    "FoodDataBundleAutoEatMixin"
+    "FoodDataBundleAutoEatMixin",
+    "ItemStackFastEatingMixin"
   ],
   "injectors": {
     "defaultRequire": 1
