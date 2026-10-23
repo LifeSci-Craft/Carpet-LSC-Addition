@@ -65,6 +65,10 @@ public class CarpetLscSettings
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"false", "true", "1", "3", "5", "10"})
     public static String NoFarmlandTrample = "false";
 
+    /** Who the trample rule protects; only meaningful while {@code NoFarmlandTrample} is on. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"players", "all"})
+    public static String NoFarmlandTrampleScope = "players";
+
     @Rule(categories = {LSC, FEATURE}, options = {"off", "self", "broadcast"})
     public static String DeathCoordinates = "off";
 

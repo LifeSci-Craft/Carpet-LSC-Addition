@@ -29,7 +29,7 @@ public abstract class FarmlandTrampleMixin
     private void carpetLsc$noFarmlandTrample(Level level, BlockState state, BlockPos pos, Entity entity,
                                              double fallDistance, CallbackInfo ci)
     {
-        if (entity instanceof Player && !FarmlandTrample.shouldTrample(level, pos))
+        if (!FarmlandTrample.shouldTrample(level, pos, entity))
         {
             ci.cancel();
         }

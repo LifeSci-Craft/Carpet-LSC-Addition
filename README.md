@@ -40,6 +40,7 @@
 | `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
 | `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
 | `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
+| `NoFarmlandTrampleScope` | `players` | 防踩踏生效对象：`players` 只保护玩家踩踏，`all` 连生物一起保护。 |
 | `DeathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
 | `AfkMarker` | `false` | 挂机 5 分钟自动加 `[AFK]` 前缀。 |
 | `AlwaysUnlockedRecipes` | `false` | 玩家进入服务器时解锁全部配方，已解锁的数据原样保留。 |

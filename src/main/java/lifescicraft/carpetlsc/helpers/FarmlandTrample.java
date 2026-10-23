@@ -2,6 +2,8 @@ package lifescicraft.carpetlsc.helpers;
 
 import lifescicraft.carpetlsc.CarpetLscSettings;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.HashMap;
@@ -22,6 +24,8 @@ public final class FarmlandTrample
     /** 60 seconds: long enough for repeated jumping, short enough not to remember yesterday. */
     private static final int STREAK_TICKS = 1200;
 
+    private static final String SCOPE_ALL = "all";
+
     private static final Map<Level, Map<BlockPos, Streak>> STREAKS = new WeakHashMap<>();
 
     private FarmlandTrample()
@@ -31,8 +35,14 @@ public final class FarmlandTrample
     /**
      * @return true when vanilla should break the farmland, false when the landing is absorbed.
      */
-    public static boolean shouldTrample(Level level, BlockPos pos)
+    public static boolean shouldTrample(Level level, BlockPos pos, Entity entity)
     {
+        // The scope only narrows down who is protected; on its own it decides nothing.
+        if (!SCOPE_ALL.equals(CarpetLscSettings.NoFarmlandTrampleScope) && !(entity instanceof Player))
+        {
+            return true;
+        }
+
         String mode = CarpetLscSettings.NoFarmlandTrample;
 
         if ("true".equals(mode))

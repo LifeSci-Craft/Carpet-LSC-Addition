@@ -41,6 +41,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `SkipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
 | `RightClickHarvest` | `false` | Empty-hand or crops/seeds in hand: right-click harvests and replants a grown crop. |
 | `NoFarmlandTrample` | `false` | `true` never breaks farmland; a number allows that many tramples before it breaks. |
+| `NoFarmlandTrampleScope` | `players` | Who the trample rule protects; `all` includes mobs. |
 | `DeathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
 | `AfkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
 | `AlwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |

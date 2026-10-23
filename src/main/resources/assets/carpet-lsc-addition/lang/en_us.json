@@ -16,6 +16,7 @@
   "carpet.rule.SkipCommandConfirm.name": "Skip Command Confirmation",
   "carpet.rule.RightClickHarvest.name": "Right-Click Harvest",
   "carpet.rule.NoFarmlandTrample.name": "No Farmland Trample",
+  "carpet.rule.NoFarmlandTrampleScope.name": "Farmland Trample Scope",
   "carpet.rule.DeathCoordinates.name": "Death Coordinates",
   "carpet.rule.AfkMarker.name": "AFK Marker",
   "carpet.rule.AlwaysUnlockedRecipes.name": "Always Unlocked Recipes",
@@ -50,6 +51,8 @@
 
   "carpet.rule.NoFarmlandTrample.desc": "Players no longer turn farmland into dirt by falling on it. false turns it off, true never breaks it, and a number allows that many tramples of one block before it breaks.",
 
+  "carpet.rule.NoFarmlandTrampleScope.desc": "Who is protected: players keeps only player landings from breaking farmland, all protects every entity. Only meaningful while the trample rule is on.",
+
   "carpet.rule.DeathCoordinates.desc": "Announces where a player died, either to that player only or to everyone.",
 
   "carpet.rule.AfkMarker.desc": "Players who have neither moved nor turned for five minutes get an [AFK] name prefix.",
@@ -75,14 +78,16 @@
   "carpet-lsc-addition.dimension.the_end": "End",
 
   // Villager backpack
-  "carpet-lsc-addition.villager.profession.hover": "The villager's current profession (the icon is its workstation)",
+  "carpet-lsc-addition.villager.title": "Villager %s's Backpack",
+  "carpet-lsc-addition.villager.backpack": "Villager Backpack",
+  "carpet-lsc-addition.villager.trades": "Current Trades",
+  "carpet-lsc-addition.villager.close": "Close",
   "carpet-lsc-addition.villager.level.1": "Novice",
   "carpet-lsc-addition.villager.level.2": "Apprentice",
   "carpet-lsc-addition.villager.level.3": "Journeyman",
   "carpet-lsc-addition.villager.level.4": "Expert",
   "carpet-lsc-addition.villager.level.5": "Master",
-  "carpet-lsc-addition.villager.level.hover": "The villager's current trade level",
-  "carpet-lsc-addition.villager.discount.yes": "Trades are discounted",
-  "carpet-lsc-addition.villager.discount.no": "No discount right now",
-  "carpet-lsc-addition.villager.discount.hover": "Whether the villager's trades cost less than their base price"
+  "carpet-lsc-addition.villager.discount.yes": "Discounted",
+  "carpet-lsc-addition.villager.discount.no": "No discount",
+  "carpet-lsc-addition.villager.discount.markup": "Marked up (hostile)"
 }

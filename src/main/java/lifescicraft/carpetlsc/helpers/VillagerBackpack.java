@@ -4,23 +4,26 @@ import lifescicraft.carpetlsc.CarpetLscSettings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.npc.villager.VillagerData;
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.Container;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,27 +31,28 @@ import java.util.List;
 /**
  * Opens a chest-like view of a named villager's inventory (rule {@code VillagerBackpack}).
  *
- * <p>The screen is a plain vanilla chest menu, so a client without this mod still sees it. The first
- * row carries three read-only icons — profession, level and whether the trades are discounted — and
- * dark panes as separators; the second row is the villager's own eight slots.
- *
- * <p>Insertion is gated on {@code Villager#wantsToPickUp}, the same check vanilla uses when a villager
- * decides whether to walk over and pick something up, so only food and the other items that villager
- * would actually collect can go in.
+ * <p>The screen is a vanilla large chest menu, so a client without this mod still sees it. Two
+ * locked icons label the columns, the middle column carries the villager's profession, level and
+ * price situation, the left block is the villager's own eight slots and the right block lists what
+ * it currently sells. The barrier at the bottom is a close button.
  */
 public final class VillagerBackpack
 {
-    static final int ROWS = 2;
-    static final int SIZE = ROWS * 9;
+    private static final int SIZE = 54;
 
-    /** Villager inventory size; the second row maps onto it one to one. */
-    static final int VILLAGER_SLOTS = 8;
+    private static final int ICON_BACKPACK = 1;
+    private static final int ICON_TRADES = 7;
 
-    static final int SLOT_FIRST = 9;
+    private static final int ICON_PROFESSION = 13;
+    private static final int ICON_LEVEL = 22;
+    private static final int ICON_DISCOUNT = 31;
+    private static final int ICON_CLOSE = 49;
 
-    private static final int ICON_PROFESSION = 0;
-    private static final int ICON_LEVEL = 1;
-    private static final int ICON_DISCOUNT = 2;
+    /** Left block: two columns of four, right under the backpack icon. */
+    private static final int[] VILLAGER_SLOTS = {10, 11, 19, 20, 28, 29, 37, 38};
+
+    /** Right block: what the villager sells, display only. */
+    private static final int[] TRADE_SLOTS = {16, 17, 25, 26, 34, 35, 43, 44};
 
     private static final double MAX_DISTANCE_SQR = 64.0;
 
@@ -56,9 +60,6 @@ public final class VillagerBackpack
     {
     }
 
-    /**
-     * @return true when the interaction was turned into an opened backpack.
-     */
     public static boolean tryOpen(ServerPlayer player, Villager villager)
     {
         if (!CarpetLscSettings.VillagerBackpack || !player.isShiftKeyDown() || !villager.hasCustomName())
@@ -70,7 +71,33 @@ public final class VillagerBackpack
         return true;
     }
 
-    /** The data source behind the menu: icons for the first row, the villager inventory below. */
+    private static boolean isVillagerSlot(int slot)
+    {
+        for (int candidate : VILLAGER_SLOTS)
+        {
+            if (candidate == slot)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean isTradeSlot(int slot)
+    {
+        for (int candidate : TRADE_SLOTS)
+        {
+            if (candidate == slot)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /** The data source behind the menu. */
     static final class BackpackContainer implements Container
     {
         private final Villager villager;
@@ -78,11 +105,6 @@ public final class VillagerBackpack
         BackpackContainer(Villager villager)
         {
             this.villager = villager;
-        }
-
-        private SimpleContainer inventory()
-        {
-            return villager.getInventory();
         }
 
         @Override
@@ -94,9 +116,9 @@ public final class VillagerBackpack
         @Override
         public boolean isEmpty()
         {
-            for (int i = SLOT_FIRST; i < SLOT_FIRST + VILLAGER_SLOTS; i++)
+            for (int i = 0; i < VILLAGER_SLOTS.length; i++)
             {
-                if (!getItem(i).isEmpty())
+                if (!getItem(VILLAGER_SLOTS[i]).isEmpty())
                 {
                     return false;
                 }
@@ -105,36 +127,92 @@ public final class VillagerBackpack
             return true;
         }
 
+        private int villagerIndex(int slot)
+        {
+            for (int i = 0; i < VILLAGER_SLOTS.length; i++)
+            {
+                if (VILLAGER_SLOTS[i] == slot)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         @Override
         public ItemStack getItem(int slot)
         {
+            int index = villagerIndex(slot);
+
+            if (index >= 0)
+            {
+                return villager.getInventory().getItem(index);
+            }
+
             return switch (slot)
             {
+                case ICON_BACKPACK -> labelled(new ItemStack(Items.CHEST),
+                        "carpet-lsc-addition.villager.backpack", ChatFormatting.GOLD);
+                case ICON_TRADES -> labelled(new ItemStack(Items.ENDER_CHEST),
+                        "carpet-lsc-addition.villager.trades", ChatFormatting.LIGHT_PURPLE);
                 case ICON_PROFESSION -> professionIcon();
                 case ICON_LEVEL -> levelIcon();
                 case ICON_DISCOUNT -> discountIcon();
-                default -> isVillagerSlot(slot) ? inventory().getItem(slot - SLOT_FIRST) : separator();
+                case ICON_CLOSE -> labelled(new ItemStack(Items.BARRIER),
+                        "carpet-lsc-addition.villager.close", ChatFormatting.RED);
+                default -> tradeOrSeparator(slot);
             };
+        }
+
+        private ItemStack tradeOrSeparator(int slot)
+        {
+            if (!isTradeSlot(slot))
+            {
+                return separator();
+            }
+
+            int index = indexOf(TRADE_SLOTS, slot);
+            List<MerchantOffer> offers = villager.getOffers();
+
+            return index < offers.size() ? offers.get(index).getResult().copy() : separator();
+        }
+
+        private static int indexOf(int[] slots, int slot)
+        {
+            for (int i = 0; i < slots.length; i++)
+            {
+                if (slots[i] == slot)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         @Override
         public ItemStack removeItem(int slot, int amount)
         {
-            return isVillagerSlot(slot) ? inventory().removeItem(slot - SLOT_FIRST, amount) : ItemStack.EMPTY;
+            int index = villagerIndex(slot);
+            return index >= 0 ? villager.getInventory().removeItem(index, amount) : ItemStack.EMPTY;
         }
 
         @Override
         public ItemStack removeItemNoUpdate(int slot)
         {
-            return isVillagerSlot(slot) ? inventory().removeItemNoUpdate(slot - SLOT_FIRST) : ItemStack.EMPTY;
+            int index = villagerIndex(slot);
+            return index >= 0 ? villager.getInventory().removeItemNoUpdate(index) : ItemStack.EMPTY;
         }
 
         @Override
         public void setItem(int slot, ItemStack stack)
         {
-            if (isVillagerSlot(slot))
+            int index = villagerIndex(slot);
+
+            if (index >= 0)
             {
-                inventory().setItem(slot - SLOT_FIRST, stack);
+                villager.getInventory().setItem(index, stack);
             }
         }
 
@@ -147,7 +225,7 @@ public final class VillagerBackpack
         @Override
         public void setChanged()
         {
-            inventory().setChanged();
+            villager.getInventory().setChanged();
         }
 
         @Override
@@ -174,75 +252,92 @@ public final class VillagerBackpack
         {
         }
 
-        private static boolean isVillagerSlot(int slot)
-        {
-            return slot >= SLOT_FIRST && slot < SLOT_FIRST + VILLAGER_SLOTS;
-        }
-
         private ItemStack professionIcon()
         {
             VillagerData data = villager.getVillagerData();
             ItemStack stack = new ItemStack(professionBlock(data.profession()));
 
-            return labelled(stack,
-                    data.profession().value().name().copy().withStyle(ChatFormatting.GOLD),
-                    Component.translatable("carpet-lsc-addition.villager.profession.hover"));
+            return bold(stack, data.profession().value().name(), ChatFormatting.GOLD);
         }
 
         private ItemStack levelIcon()
         {
-            VillagerData data = villager.getVillagerData();
-            int level = data.level();
-            ItemStack stack = new ItemStack(Items.EXPERIENCE_BOTTLE);
+            int level = villager.getVillagerData().level();
 
-            return labelled(stack,
-                    Component.translatable("carpet-lsc-addition.villager.level." + level)
-                            .withStyle(ChatFormatting.AQUA),
-                    Component.translatable("carpet-lsc-addition.villager.level.hover"));
+            return bold(new ItemStack(Items.EXPERIENCE_BOTTLE),
+                    Component.translatable("carpet-lsc-addition.villager.level." + level),
+                    ChatFormatting.AQUA);
         }
 
+        /**
+         * Totem when prices are below base, ominous bottle when this player is marked up, emerald
+         * otherwise.
+         */
         private ItemStack discountIcon()
         {
-            boolean discounted = isDiscounted();
-            ItemStack stack = new ItemStack(discounted ? Items.TOTEM_OF_UNDYING : Items.BARRIER);
+            PriceSituation situation = priceSituation();
 
-            return labelled(stack,
-                    Component.translatable(discounted
-                                    ? "carpet-lsc-addition.villager.discount.yes"
-                                    : "carpet-lsc-addition.villager.discount.no")
-                            .withStyle(discounted ? ChatFormatting.GREEN : ChatFormatting.RED),
-                    Component.translatable("carpet-lsc-addition.villager.discount.hover"));
+            return switch (situation)
+            {
+                case DISCOUNT -> bold(new ItemStack(Items.TOTEM_OF_UNDYING),
+                        Component.translatable("carpet-lsc-addition.villager.discount.yes"),
+                        ChatFormatting.GREEN);
+                case MARKUP -> bold(new ItemStack(Items.OMINOUS_BOTTLE),
+                        Component.translatable("carpet-lsc-addition.villager.discount.markup"),
+                        ChatFormatting.DARK_RED);
+                case NONE -> bold(new ItemStack(Items.EMERALD),
+                        Component.translatable("carpet-lsc-addition.villager.discount.no"),
+                        ChatFormatting.GRAY);
+            };
         }
 
-        /** A trade counts as discounted when it costs less than the villager's base price. */
-        private boolean isDiscounted()
+        private PriceSituation priceSituation()
         {
+            boolean discounted = false;
+            boolean markedUp = false;
+
             for (MerchantOffer offer : villager.getOffers())
             {
-                if (offer.getCostA().getCount() < offer.getBaseCostA().getCount())
-                {
-                    return true;
-                }
+                int base = offer.getBaseCostA().getCount();
+                int now = offer.getCostA().getCount();
+
+                discounted |= now < base;
+                markedUp |= now > base;
             }
 
-            return false;
+            if (discounted)
+            {
+                return PriceSituation.DISCOUNT;
+            }
+
+            return markedUp ? PriceSituation.MARKUP : PriceSituation.NONE;
         }
 
+        /** Separator slots must not show a tooltip at all. */
         private static ItemStack separator()
         {
-            return new ItemStack(Items.STAINED_GLASS_PANE.gray());
-        }
-
-        private static ItemStack labelled(ItemStack stack, Component name, Component lore)
-        {
-            stack.set(DataComponents.CUSTOM_NAME, name);
-            stack.set(DataComponents.LORE, new ItemLore(List.of(lore)));
+            ItemStack stack = new ItemStack(Items.STAINED_GLASS_PANE.gray());
+            stack.set(DataComponents.TOOLTIP_DISPLAY,
+                    new TooltipDisplay(true, new java.util.LinkedHashSet<>()));
             return stack;
         }
 
-        /** The workstation the profession is known for, used as the icon. */
-        private static net.minecraft.world.item.Item professionBlock(
-                net.minecraft.core.Holder<VillagerProfession> profession)
+        private static ItemStack labelled(ItemStack stack, String key, ChatFormatting colour)
+        {
+            return bold(stack, Component.translatable(key), colour);
+        }
+
+        /** Bold name only: no extra lore, so no dark purple explanation line in the tooltip. */
+        private static ItemStack bold(ItemStack stack, Component name, ChatFormatting colour)
+        {
+            stack.set(DataComponents.CUSTOM_NAME, name.copy().withStyle(Style.EMPTY
+                    .withColor(colour)
+                    .withBold(true)
+                    .withItalic(false)));
+            return stack;
+        }
+
+        private static Item professionBlock(net.minecraft.core.Holder<VillagerProfession> profession)
         {
             String path = profession.unwrapKey()
                     .map(key -> key.identifier().getPath())
@@ -267,13 +362,19 @@ public final class VillagerBackpack
         }
     }
 
-    /** Builds the menu; only the server ever calls this, the client rebuilds a plain chest menu. */
+    private enum PriceSituation
+    {
+        DISCOUNT,
+        MARKUP,
+        NONE
+    }
+
     private record BackpackMenuProvider(Villager villager) implements net.minecraft.world.MenuProvider
     {
         @Override
         public Component getDisplayName()
         {
-            return villager.getDisplayName();
+            return Component.translatable("carpet-lsc-addition.villager.title", villager.getDisplayName());
         }
 
         @Override
@@ -284,20 +385,20 @@ public final class VillagerBackpack
     }
 
     /**
-     * A chest menu whose icon slots are read-only.
+     * A chest menu whose decorative slots are read-only and whose barrier closes the screen.
      *
-     * <p>The slot layout is the one {@link ChestMenu} builds, because the client reconstructs exactly
-     * that from {@code MenuType.GENERIC_9x2}; only the slot behaviour for the first row is replaced.
+     * <p>The slot layout stays the one {@link ChestMenu} builds, because the client reconstructs
+     * exactly that from {@code MenuType.GENERIC_9x6}; only slot behaviour is replaced.
      */
     static final class BackpackMenu extends ChestMenu
     {
         BackpackMenu(int id, Inventory playerInventory, BackpackContainer container)
         {
-            super(MenuType.GENERIC_9x2, id, playerInventory, container, ROWS);
-            lockIcons();
+            super(MenuType.GENERIC_9x6, id, playerInventory, container, 6);
+            lockDecorativeSlots();
         }
 
-        private void lockIcons()
+        private void lockDecorativeSlots()
         {
             List<Slot> vanilla = new ArrayList<>(slots);
             List<Slot> rebuilt = new ArrayList<>(vanilla.size());
@@ -305,7 +406,7 @@ public final class VillagerBackpack
             for (Slot slot : vanilla)
             {
                 rebuilt.add(slot.index < SIZE && !isVillagerSlot(slot.index)
-                        ? new IconSlot(slot.container, slot.index, slot.x, slot.y)
+                        ? new LockedSlot(slot.container, slot.index, slot.x, slot.y)
                         : slot);
             }
 
@@ -313,15 +414,25 @@ public final class VillagerBackpack
             slots.addAll(rebuilt);
         }
 
-        private static boolean isVillagerSlot(int index)
+        @Override
+        public void clicked(int slotId, int button, ContainerInput input, Player player)
         {
-            return index >= SLOT_FIRST && index < SLOT_FIRST + VILLAGER_SLOTS;
+            if (slotId == ICON_CLOSE)
+            {
+                if (player instanceof ServerPlayer serverPlayer)
+                {
+                    serverPlayer.closeContainer();
+                }
+
+                return;
+            }
+
+            super.clicked(slotId, button, input, player);
         }
 
-        /** Read-only: cannot be picked up and cannot be replaced. */
-        private static final class IconSlot extends Slot
+        private static final class LockedSlot extends Slot
         {
-            IconSlot(Container container, int index, int x, int y)
+            LockedSlot(Container container, int index, int x, int y)
             {
                 super(container, index, x, y);
             }

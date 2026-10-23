@@ -16,6 +16,7 @@
   "carpet.rule.SkipCommandConfirm.name": "禁用指令确认",
   "carpet.rule.RightClickHarvest.name": "右键收获",
   "carpet.rule.NoFarmlandTrample.name": "耕地防踩踏",
+  "carpet.rule.NoFarmlandTrampleScope.name": "耕地防踩踏范围",
   "carpet.rule.DeathCoordinates.name": "死亡坐标播报",
   "carpet.rule.AfkMarker.name": "AFK 标记",
   "carpet.rule.AlwaysUnlockedRecipes.name": "配方书始终解锁",
@@ -50,6 +51,8 @@
 
   "carpet.rule.NoFarmlandTrample.desc": "玩家跳跃或坠落不再把耕地踩成泥土。false 关闭；true 永不破坏；填数字则同一块耕地被连续踩踏超过该次数后才变回泥土。",
 
+  "carpet.rule.NoFarmlandTrampleScope.desc": "防踩踏的生效对象：players 只保护耕地不受玩家踩踏，all 连生物一起保护。仅在防踩踏规则开启时有效。",
+
   "carpet.rule.DeathCoordinates.desc": "玩家死亡时播报死亡坐标，可选仅告知本人或全服。",
 
   "carpet.rule.AfkMarker.desc": "玩家 5 分钟未移动也未转向时，名字前会加上 [AFK] 前缀。",
@@ -75,14 +78,16 @@
   "carpet-lsc-addition.dimension.the_end": "末地",
 
   // 村民背包
-  "carpet-lsc-addition.villager.profession.hover": "村民当前职业（图标为对应工作方块）",
+  "carpet-lsc-addition.villager.title": "村民 %s 的背包",
+  "carpet-lsc-addition.villager.backpack": "村民背包",
+  "carpet-lsc-addition.villager.trades": "当前交易项",
+  "carpet-lsc-addition.villager.close": "关闭",
   "carpet-lsc-addition.villager.level.1": "新手",
   "carpet-lsc-addition.villager.level.2": "学徒",
   "carpet-lsc-addition.villager.level.3": "老手",
   "carpet-lsc-addition.villager.level.4": "专家",
   "carpet-lsc-addition.villager.level.5": "大师",
-  "carpet-lsc-addition.villager.level.hover": "村民当前交易等级",
-  "carpet-lsc-addition.villager.discount.yes": "当前有打折",
-  "carpet-lsc-addition.villager.discount.no": "当前没有打折",
-  "carpet-lsc-addition.villager.discount.hover": "村民的交易是否比原价便宜"
+  "carpet-lsc-addition.villager.discount.yes": "有打折",
+  "carpet-lsc-addition.villager.discount.no": "没有打折",
+  "carpet-lsc-addition.villager.discount.markup": "因仇恨加价"
 }

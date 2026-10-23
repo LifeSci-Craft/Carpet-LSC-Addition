@@ -104,17 +104,18 @@ public final class DeathCoordinates
 
     private static Component waypointButton(BlockPos pos, Level level)
     {
-        String dimension = level.dimension().identifier().getPath();
+        // The name is server-built, so it stays language-neutral and free of ':' (Xaero splits on it)
+        // and of spaces, which the command parser would treat as separate arguments.
+        String name = "Death(" + pos.getX() + "," + pos.getY() + "," + pos.getZ() + ")";
 
-        // The waypoint name is server-built, so it has to stay language-neutral and colon-free:
-        // Xaero splits the command on ':'.
-        String name = "Death " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
-
+        // Xaero splits the waypoint string on ':' and wants at least nine fields. The last field is
+        // the container marker: the bare word "Internal" means "whatever world the client is in",
+        // which is the only marker that is correct on a multiplayer server (the per-world set id is
+        // the client's own business).
         String command = "/xaero_waypoint_add:"
                 + name + ":" + WAYPOINT_SYMBOL
                 + ":" + pos.getX() + ":" + pos.getY() + ":" + pos.getZ()
-                + ":" + WAYPOINT_COLOR + ":false:0"
-                + ":Internal_" + dimension + "_waypoints";
+                + ":" + WAYPOINT_COLOR + ":false:0:Internal";
 
         Style style = Style.EMPTY
                 .withColor(ChatFormatting.AQUA)
