@@ -27,30 +27,31 @@
 
 | 选项 | 默认值 | 说明 |
 | --- | --- | --- |
-| `TotemWrench` | `false` | 把不死图腾当作扳手使用。 |
-| `InventoryTotem` | `false` | 放在背包里的不死图腾也能防止死亡。 |
 | `AccurateBlockPlacement` | `false` | 精准放置协议，移植自 Carpet Extra。 |
-| `CommandPing` | `false` | 启用 `/ping` 指令。 |
-| `FastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
-| `EmeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
-| `DaytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
-| `QuickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
-| `McdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
-| `ChatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品；客户端也安装时显示物品图标。 |
-| `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
-| `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
-| `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
-| `NoFarmlandTrampleScope` | `players` | 防踩踏生效对象：`players` 只保护玩家踩踏，`all` 连生物一起保护。 |
-| `DeathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
 | `AfkMarker` | `false` | 挂机 5 分钟自动加 `[AFK]` 前缀。 |
 | `AlwaysUnlockedRecipes` | `false` | 玩家进入服务器时解锁全部配方，已解锁的数据原样保留。 |
 | `BundleAutoEat` | `off` | 收纳袋自动进食：`off` 关闭，`saturation` / `slot` 为挑选顺序。 |
+| `ChatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品；客户端也安装时显示物品图标。 |
+| `CommandPing` | `false` | 启用 `/ping` 指令。 |
+| `DaytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
+| `DeathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
+| `EmeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
 | `FastEating` | `false` | 进食与饮用时间上限：`true` 为 8 tick，或直接选 `4` / `8` / `16`。 |
-| `VillagerBackpack` | `false` | 被命名牌改过名的村民，蹲下右键可打开它的背包界面。 |
+| `FastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
 | `FletchingTable` | `false` | 右键制箭台打开制箭界面，两格只收箭与制箭材料，产物按原版配方计算。 |
+| `HappyGhastBoost` | `off` | 乘坐快乐恶魂时用烟花火箭冲刺，可选档位 `1` / `2` / `3`。 |
+| `InventoryTotem` | `false` | 放在背包里的不死图腾也能防止死亡。 |
+| `McdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
+| `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
+| `NoFarmlandTrampleScope` | `players` | 防踩踏生效对象：`players` 只保护玩家踩踏，`all` 连生物一起保护。 |
+| `QuickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
+| `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
+| `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
+| `TotemWrench` | `false` | 把不死图腾当作扳手使用。 |
+| `TradePreview` | `false` | 交易预知：村民背包显示该村民各等级会卖的全部物品，交易列标题改为「所有交易项」。 |
 | `VehicleFireworkBoost` | `off` | 乘坐矿车或船时用烟花火箭朝视线方向加速，可选档位 `1` / `2` / `3`。 |
 | `VehicleInstantStop` | `off` | 离开载具时立刻停下，可选 `all` / `minecart` / `boat`。 |
-| `HappyGhastBoost` | `off` | 乘坐快乐恶魂时用烟花火箭冲刺，可选档位 `1` / `2` / `3`。 |
+| `VillagerBackpack` | `false` | 被命名牌改过名的村民，蹲下右键可打开它的背包界面。 |
 
 ### `TotemWrench`
 

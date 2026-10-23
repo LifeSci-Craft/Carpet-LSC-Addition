@@ -28,30 +28,31 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `TotemWrench` | `false` | Use a totem of undying as a wrench. |
-| `InventoryTotem` | `false` | A totem of undying in the inventory prevents death. |
 | `AccurateBlockPlacement` | `false` | Accurate block placement protocol, from Carpet Extra. |
-| `CommandPing` | `false` | Enables the `/ping` command. |
-| `FastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
-| `EmeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
-| `DaytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
-| `QuickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
-| `McdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
-| `ChatHeldItem` | `false` | A `#` in chat is replaced by the held item; the client mod draws its icon. |
-| `SkipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
-| `RightClickHarvest` | `false` | Empty-hand or crops/seeds in hand: right-click harvests and replants a grown crop. |
-| `NoFarmlandTrample` | `false` | `true` never breaks farmland; a number allows that many tramples before it breaks. |
-| `NoFarmlandTrampleScope` | `players` | Who the trample rule protects; `all` includes mobs. |
-| `DeathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
 | `AfkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
 | `AlwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
 | `BundleAutoEat` | `off` | Silent eating from a bundle: `off` disables it, `saturation` / `slot` pick the order. |
+| `ChatHeldItem` | `false` | A `#` in chat is replaced by the held item; the client mod draws its icon. |
+| `CommandPing` | `false` | Enables the `/ping` command. |
+| `DaytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
+| `DeathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
+| `EmeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
 | `FastEating` | `false` | Cap for eating and drinking: `true` means 8 ticks, or pick `4` / `8` / `16`. |
-| `VillagerBackpack` | `false` | Sneak and right-click a villager renamed with a name tag to open its backpack. |
+| `FastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
 | `FletchingTable` | `false` | Right-click a fletching table to craft arrows; the slots only take arrows and arrow materials. |
+| `HappyGhastBoost` | `off` | A firework rocket dashes the happy ghast you ride; levels `1` / `2` / `3`. |
+| `InventoryTotem` | `false` | A totem of undying in the inventory prevents death. |
+| `McdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
+| `NoFarmlandTrample` | `false` | `true` never breaks farmland; a number allows that many tramples before it breaks. |
+| `NoFarmlandTrampleScope` | `players` | Who the trample rule protects; `all` includes mobs. |
+| `QuickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
+| `RightClickHarvest` | `false` | Empty-hand or crops/seeds in hand: right-click harvests and replants a grown crop. |
+| `SkipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
+| `TotemWrench` | `false` | Use a totem of undying as a wrench. |
+| `TradePreview` | `false` | Trade preview: the backpack lists every item the villager will ever sell, and the header becomes All trades. |
 | `VehicleFireworkBoost` | `off` | A firework rocket pushes the boat or minecart you ride along your look direction; levels `1` / `2` / `3`. |
 | `VehicleInstantStop` | `off` | The vehicle stops when you get off; `all` / `minecart` / `boat`. |
-| `HappyGhastBoost` | `off` | A firework rocket dashes the happy ghast you ride; levels `1` / `2` / `3`. |
+| `VillagerBackpack` | `false` | Sneak and right-click a villager renamed with a name tag to open its backpack. |
 
 ### `TotemWrench`
 
