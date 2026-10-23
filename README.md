@@ -47,6 +47,9 @@
 | `BundleAutoEat` | `off` | 收纳袋自动进食：`off` 关闭，`saturation` / `slot` 为挑选顺序。 |
 | `FastEating` | `false` | 进食与饮用时间上限：`true` 为 8 tick，或直接选 `4` / `8` / `16`。 |
 | `VillagerBackpack` | `false` | 被命名牌改过名的村民，蹲下右键可打开它的背包界面。 |
+| `VehicleFireworkBoost` | `off` | 乘坐矿车或船时用烟花火箭朝视线方向加速，可选档位 `1` / `2` / `3`。 |
+| `VehicleInstantStop` | `off` | 离开载具时立刻停下，可选 `all` / `minecart` / `boat`。 |
+| `HappyGhastBoost` | `off` | 乘坐快乐恶魂时用烟花火箭冲刺，可选档位 `1` / `2` / `3`。 |
 
 ### `TotemWrench`
 

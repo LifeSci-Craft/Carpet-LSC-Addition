@@ -48,6 +48,9 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `BundleAutoEat` | `off` | Silent eating from a bundle: `off` disables it, `saturation` / `slot` pick the order. |
 | `FastEating` | `false` | Cap for eating and drinking: `true` means 8 ticks, or pick `4` / `8` / `16`. |
 | `VillagerBackpack` | `false` | Sneak and right-click a villager renamed with a name tag to open its backpack. |
+| `VehicleFireworkBoost` | `off` | A firework rocket pushes the boat or minecart you ride along your look direction; levels `1` / `2` / `3`. |
+| `VehicleInstantStop` | `off` | The vehicle stops when you get off; `all` / `minecart` / `boat`. |
+| `HappyGhastBoost` | `off` | A firework rocket dashes the happy ghast you ride; levels `1` / `2` / `3`. |
 
 ### `TotemWrench`
 

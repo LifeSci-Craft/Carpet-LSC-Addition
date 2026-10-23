@@ -23,6 +23,9 @@
   "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.FastEating.name": "Fast Eating",
   "carpet.rule.VillagerBackpack.name": "Villager Backpack",
+  "carpet.rule.VehicleFireworkBoost.name": "Vehicle Firework Boost",
+  "carpet.rule.VehicleInstantStop.name": "Vehicle Instant Stop",
+  "carpet.rule.HappyGhastBoost.name": "Happy Ghast Boost",
 
   // Rule descriptions
   "carpet.rule.TotemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -64,6 +67,12 @@
   "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
 
   "carpet.rule.VillagerBackpack.desc": "Sneak and right-click a villager that has been renamed with a name tag to open its backpack and move items in or out; only items that villager would pick up can go in.",
+
+  "carpet.rule.VehicleFireworkBoost.desc": "Using a firework rocket while riding a boat or minecart pushes it along your look direction; higher levels push harder.",
+
+  "carpet.rule.VehicleInstantStop.desc": "A boat or minecart stops as soon as its rider leaves. all covers both, or pick minecart / boat only.",
+
+  "carpet.rule.HappyGhastBoost.desc": "Using a firework rocket while riding a happy ghast dashes it along its current direction; higher levels dash further.",
 
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",

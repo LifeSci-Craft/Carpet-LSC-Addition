@@ -27,7 +27,9 @@
     "ServerRecipeBookUnlockAllMixin",
     "FoodDataBundleAutoEatMixin",
     "ItemStackFastEatingMixin",
-    "VillagerBackpackMixin"
+    "VillagerBackpackMixin",
+    "FireworkRocketVehicleBoostMixin",
+    "EntityVehicleInstantStopMixin"
   ],
   "injectors": {
     "defaultRequire": 1
