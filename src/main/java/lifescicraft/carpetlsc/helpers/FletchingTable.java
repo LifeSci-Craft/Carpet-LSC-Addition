@@ -129,9 +129,44 @@ public final class FletchingTable
             return tipped;
         }
 
+        ItemStack spectral = spectralArrows(first, second);
+
+        if (!spectral.isEmpty())
+        {
+            return spectral;
+        }
+
         ItemStack result = lookup(serverLevel, level, ring(first, second));
 
         return result.isEmpty() ? lookup(serverLevel, level, simple(first, second)) : result;
+    }
+
+    /**
+     * One arrow plus four glowstone dust make one spectral arrow, in either slot order.
+     *
+     * <p>The batch follows the same ratio: nine arrows with thirty six dust give nine arrows, and a
+     * pair that cannot cover a whole arrow gives nothing.
+     */
+    private static ItemStack spectralArrows(ItemStack first, ItemStack second)
+    {
+        ItemStack dust = first.is(Items.GLOWSTONE_DUST) ? first
+                : second.is(Items.GLOWSTONE_DUST) ? second : ItemStack.EMPTY;
+
+        if (dust.isEmpty())
+        {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack arrows = first == dust ? second : first;
+
+        if (!arrows.is(Items.ARROW))
+        {
+            return ItemStack.EMPTY;
+        }
+
+        int count = Math.min(arrows.getCount(), dust.getCount() / 4);
+
+        return count <= 0 ? ItemStack.EMPTY : new ItemStack(Items.SPECTRAL_ARROW, count);
     }
 
     private static ItemStack tippedArrows(ItemStack first, ItemStack second)
