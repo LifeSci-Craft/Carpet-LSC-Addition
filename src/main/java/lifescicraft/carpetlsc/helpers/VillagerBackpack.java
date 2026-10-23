@@ -49,14 +49,27 @@ public final class VillagerBackpack
     private static final int ICON_LEVEL = 22;
     private static final int ICON_DISCOUNT = 31;
 
-    private static final int ICON_PREVIOUS = 48;
+    private static final int ICON_PREVIOUS = 51;
     private static final int ICON_CLOSE = 49;
-    private static final int ICON_NEXT = 50;
+    private static final int ICON_NEXT = 52;
 
     private static final int[] VILLAGER_SLOTS = {10, 11, 19, 20, 28, 29, 37, 38};
     private static final int[] TRADE_SLOTS = {16, 17, 25, 26, 34, 35, 43, 44};
 
     private static final double MAX_DISTANCE_SQR = 64.0;
+
+    /** What a vanilla villager walks over and picks up, from Villager's own food points table. */
+    private static final java.util.Set<Item> COLLECTABLE = java.util.Set.of(
+            Items.BREAD,
+            Items.POTATO,
+            Items.BAKED_POTATO,
+            Items.CARROT,
+            Items.BEETROOT,
+            Items.WHEAT,
+            Items.WHEAT_SEEDS,
+            Items.BEETROOT_SEEDS,
+            Items.MELON_SEEDS,
+            Items.PUMPKIN_SEEDS);
 
     private VillagerBackpack()
     {
@@ -308,10 +321,11 @@ public final class VillagerBackpack
         @Override
         public boolean canPlaceItem(int slot, ItemStack stack)
         {
-            // Food is always accepted: that is what a villager actually collects, while
-            // wantsToPickUp also says no while the villager is busy or full.
+            // Vanilla villagers collect food and seeds, plus whatever their profession asks for.
+            // wantsToPickUp alone is stricter than that (it only looks at requestedItems), so the
+            // collectable set is spelled out here.
             return contains(VILLAGER_SLOTS, slot)
-                    && (stack.has(DataComponents.FOOD)
+                    && (COLLECTABLE.contains(stack.getItem())
                             || villager.wantsToPickUp((ServerLevel) villager.level(), stack));
         }
 

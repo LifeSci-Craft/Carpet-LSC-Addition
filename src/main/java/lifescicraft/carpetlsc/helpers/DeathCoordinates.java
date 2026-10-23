@@ -56,13 +56,17 @@ public final class DeathCoordinates
                 dimension(level),
                 waypointButton(pos, level));
 
+        Component share = shareLine(pos, level);
+
         if (SELF.equals(mode))
         {
             player.sendSystemMessage(message);
+            player.sendSystemMessage(share);
         }
         else
         {
             level.getServer().getPlayerList().broadcastSystemMessage(message, false);
+            level.getServer().getPlayerList().broadcastSystemMessage(share, false);
         }
     }
 
@@ -100,6 +104,23 @@ public final class DeathCoordinates
             case "the_end" -> ChatFormatting.LIGHT_PURPLE;
             default -> ChatFormatting.GREEN;
         };
+    }
+
+    /**
+     * The waypoint in Xero's own chat-share format.
+     *
+     * <p>This is the string Xaero's client intercepts when a player shares a waypoint; it turns it
+     * into a clickable "add" prompt using the world the client is currently in. The click-command
+     * route does not work: a {@code run_command} click is sent to the server, which has no such
+     * command, so Xaero never sees it.
+     */
+    private static Component shareLine(BlockPos pos, Level level)
+    {
+        String name = "Death(" + pos.getX() + "," + pos.getY() + "," + pos.getZ() + ")";
+
+        return Component.literal("xaero-waypoint:" + name + ":" + WAYPOINT_SYMBOL
+                + ":" + pos.getX() + ":" + pos.getY() + ":" + pos.getZ()
+                + ":" + WAYPOINT_COLOR + ":false:0:Internal");
     }
 
     private static Component waypointButton(BlockPos pos, Level level)
