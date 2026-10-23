@@ -23,6 +23,7 @@
   "carpet.rule.BundleAutoEat.name": "收纳袋自动进食",
   "carpet.rule.FastEating.name": "快速进食",
   "carpet.rule.VillagerBackpack.name": "村民背包",
+  "carpet.rule.FletchingTable.name": "制箭台活化",
   "carpet.rule.VehicleFireworkBoost.name": "载具烟花加速",
   "carpet.rule.VehicleInstantStop.name": "载具急停",
   "carpet.rule.HappyGhastBoost.name": "乐魂烟花加速",
@@ -66,6 +67,8 @@
 
   "carpet.rule.FastEating.desc": "限制进食与饮用的时间：false 关闭，true 为 8 tick，也可直接选 4 / 8 / 16 tick。原本更快的物品保持原速，饥饿限制与物品效果照常。",
 
+  "carpet.rule.FletchingTable.desc": "右键制箭台打开制箭界面，两格只收箭与制箭材料，产物按原版配方计算。需要客户端与服务端都安装本模组。",
+
   "carpet.rule.VillagerBackpack.desc": "被命名牌改过名的村民，蹲下右键可打开它的背包界面，取出或放入物品；只接受村民会主动拾取的物品。",
 
   "carpet.rule.VehicleFireworkBoost.desc": "乘坐矿车或船时使用烟花火箭，会朝视线方向获得一次加速，档位越高推力越大。",
@@ -87,6 +90,7 @@
   "carpet-lsc-addition.dimension.the_end": "末地",
 
   // 村民背包
+  "carpet-lsc-addition.fletching.title": "制造弓箭",
   "carpet-lsc-addition.villager.title": "村民 %s 的背包",
   "carpet-lsc-addition.villager.backpack": "村民背包",
   "carpet-lsc-addition.villager.trades": "当前交易项",

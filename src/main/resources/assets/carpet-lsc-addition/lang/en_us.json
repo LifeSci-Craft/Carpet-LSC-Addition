@@ -23,6 +23,7 @@
   "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.FastEating.name": "Fast Eating",
   "carpet.rule.VillagerBackpack.name": "Villager Backpack",
+  "carpet.rule.FletchingTable.name": "Fletching Table",
   "carpet.rule.VehicleFireworkBoost.name": "Vehicle Firework Boost",
   "carpet.rule.VehicleInstantStop.name": "Vehicle Instant Stop",
   "carpet.rule.HappyGhastBoost.name": "Happy Ghast Boost",
@@ -66,6 +67,8 @@
 
   "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
 
+  "carpet.rule.FletchingTable.desc": "Right-click a fletching table to craft arrows; the two slots only take arrows and arrow materials, and the result follows the vanilla recipes. Needs the mod on both sides.",
+
   "carpet.rule.VillagerBackpack.desc": "Sneak and right-click a villager that has been renamed with a name tag to open its backpack and move items in or out; only items that villager would pick up can go in.",
 
   "carpet.rule.VehicleFireworkBoost.desc": "Using a firework rocket while riding a boat or minecart pushes it along your look direction; higher levels push harder.",
@@ -87,6 +90,7 @@
   "carpet-lsc-addition.dimension.the_end": "End",
 
   // Villager backpack
+  "carpet-lsc-addition.fletching.title": "Craft Arrows",
   "carpet-lsc-addition.villager.title": "Villager %s's Backpack",
   "carpet-lsc-addition.villager.backpack": "Villager Backpack",
   "carpet-lsc-addition.villager.trades": "Current Trades",

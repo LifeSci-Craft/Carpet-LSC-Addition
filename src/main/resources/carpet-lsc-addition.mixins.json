@@ -29,6 +29,8 @@
     "ItemStackFastEatingMixin",
     "VillagerBackpackMixin",
     "VillagerSoftFreezeMixin",
+    "FletchingTableUseMixin",
+    "AnvilMenuFletchingMixin",
     "FireworkRocketVehicleBoostMixin",
     "EntityVehicleInstantStopMixin",
     "ServerPlayerVehicleBoostMixin"
