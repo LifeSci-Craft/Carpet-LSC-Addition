@@ -42,7 +42,7 @@ public abstract class ServerLevelDaytimeSleepMixin
     )
     private ResourceKey<ClockTimeMarker> carpetLsc$skipToNightfall()
     {
-        if (CarpetLscSettings.daytimeSleep)
+        if (CarpetLscSettings.DaytimeSleep)
         {
             ServerLevel self = (ServerLevel) (Object) this;
 

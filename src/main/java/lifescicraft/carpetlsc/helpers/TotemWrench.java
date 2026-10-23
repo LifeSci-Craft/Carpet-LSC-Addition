@@ -36,7 +36,7 @@ public final class TotemWrench
      */
     public static boolean isActiveWrench(Player player, InteractionHand hand)
     {
-        return CarpetLscSettings.totemWrench && player.getAbilities().mayBuild && holdsTotem(player, hand);
+        return CarpetLscSettings.TotemWrench && player.getAbilities().mayBuild && holdsTotem(player, hand);
     }
 
     /**
@@ -69,7 +69,7 @@ public final class TotemWrench
      */
     public static boolean isOffhandTotem(Entity entity)
     {
-        return CarpetLscSettings.totemWrench
+        return CarpetLscSettings.TotemWrench
                 && entity instanceof Player player
                 && player.getOffhandItem().getItem() == Items.TOTEM_OF_UNDYING;
     }

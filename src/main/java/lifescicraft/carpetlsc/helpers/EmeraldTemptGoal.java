@@ -43,13 +43,13 @@ public class EmeraldTemptGoal extends TemptGoal
     @Override
     public boolean canUse()
     {
-        return CarpetLscSettings.emeraldTemptsVillagers && !carpetLsc$isFleeing() && super.canUse();
+        return CarpetLscSettings.EmeraldTemptsVillagers && !carpetLsc$isFleeing() && super.canUse();
     }
 
     @Override
     public boolean canContinueToUse()
     {
-        return CarpetLscSettings.emeraldTemptsVillagers && !carpetLsc$isFleeing() && super.canContinueToUse();
+        return CarpetLscSettings.EmeraldTemptsVillagers && !carpetLsc$isFleeing() && super.canContinueToUse();
     }
 
     private boolean carpetLsc$isFleeing()

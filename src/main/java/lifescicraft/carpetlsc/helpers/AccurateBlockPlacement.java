@@ -36,7 +36,7 @@ public final class AccurateBlockPlacement
 
     public static BlockState alternativeBlockPlacement(Block block, BlockPlaceContext context)
     {
-        if (!CarpetLscSettings.accurateBlockPlacement)
+        if (!CarpetLscSettings.AccurateBlockPlacement)
         {
             return null;
         }

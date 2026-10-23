@@ -34,7 +34,7 @@ public abstract class ServerPlayerDaytimeSleepMixin
     )
     private boolean carpetLsc$allowDaytimeSleep(BedRule bedRule, Level level)
     {
-        if (CarpetLscSettings.daytimeSleep && SleepRules.isRelaxableDayRule(bedRule, level))
+        if (CarpetLscSettings.DaytimeSleep && SleepRules.isRelaxableDayRule(bedRule, level))
         {
             return true;
         }

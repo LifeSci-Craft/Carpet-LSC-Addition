@@ -30,7 +30,7 @@ public abstract class PlayerDaytimeSleepMixin
     )
     private boolean carpetLsc$keepSleepingByDay(BedRule bedRule, Level level)
     {
-        if (CarpetLscSettings.daytimeSleep && SleepRules.isRelaxableDayRule(bedRule, level))
+        if (CarpetLscSettings.DaytimeSleep && SleepRules.isRelaxableDayRule(bedRule, level))
         {
             return true;
         }

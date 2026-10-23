@@ -11,6 +11,7 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.item.consume_effects.PlaySoundConsumeEffect;
+import net.minecraft.world.level.GameType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +46,20 @@ public final class BundleAutoEat
     /** Eat the item with the lowest saturation value first. */
     public static final String ORDER_SATURATION = "saturation";
 
+    private static final String OFF = "off";
+
     private BundleAutoEat()
     {
     }
 
     public static void tick(ServerPlayer player)
     {
-        if (!CarpetLscSettings.bundleAutoEat || player.tickCount % CHECK_INTERVAL != 0)
+        if (OFF.equals(CarpetLscSettings.BundleAutoEat) || player.tickCount % CHECK_INTERVAL != 0)
+        {
+            return;
+        }
+
+        if (player.gameMode.getGameModeForPlayer() != GameType.SURVIVAL)
         {
             return;
         }
@@ -137,7 +145,7 @@ public final class BundleAutoEat
             return !candidateSpecial;
         }
 
-        if (!ORDER_SATURATION.equals(CarpetLscSettings.bundleAutoEatOrder))
+        if (!ORDER_SATURATION.equals(CarpetLscSettings.BundleAutoEat))
         {
             // Bundle order: keep whichever came first.
             return false;

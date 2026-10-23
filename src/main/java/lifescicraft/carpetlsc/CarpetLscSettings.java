@@ -18,62 +18,59 @@ public class CarpetLscSettings
     public static final String LSC = "lsc";
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean totemWrench = false;
+    public static boolean TotemWrench = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean inventoryTotem = false;
+    public static boolean InventoryTotem = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean accurateBlockPlacement = false;
+    public static boolean AccurateBlockPlacement = false;
 
     @Rule(categories = {LSC, COMMAND, FEATURE})
-    public static boolean commandPing = false;
+    public static boolean CommandPing = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean fastLeafDecay = false;
+    public static boolean FastLeafDecay = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean emeraldTemptsVillagers = false;
+    public static boolean EmeraldTemptsVillagers = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean daytimeSleep = false;
+    public static boolean DaytimeSleep = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean quickPaintingSwap = false;
+    public static boolean QuickPaintingSwap = false;
 
     @Rule(categories = {LSC, COMMAND, FEATURE})
-    public static boolean mcdrCommandBridge = false;
+    public static boolean McdrCommandBridge = false;
 
     @Rule(categories = {LSC, FEATURE})
-    public static boolean chatHeldItem = false;
+    public static boolean ChatHeldItem = false;
 
     @Rule(categories = {LSC, COMMAND, FEATURE})
-    public static boolean skipCommandConfirm = false;
+    public static boolean SkipCommandConfirm = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean rightClickHarvest = false;
+    public static boolean RightClickHarvest = false;
 
-    @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean noFarmlandTrample = false;
+    /** {@code off}, or the pick order for silent eating from a bundle. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"off", "saturation", "slot"})
+    public static String BundleAutoEat = "off";
+
+    /** {@code true} means the default 8 ticks; a bare number sets the cap directly. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"false", "true", "4", "8", "16"})
+    public static String FastEating = "false";
+
+    /** {@code true} never tramples; a number allows that many tramples of one block before it breaks. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"false", "true", "1", "3", "5", "10"})
+    public static String NoFarmlandTrample = "false";
 
     @Rule(categories = {LSC, FEATURE}, options = {"off", "self", "broadcast"})
-    public static String deathCoordinates = "off";
+    public static String DeathCoordinates = "off";
 
     @Rule(categories = {LSC, FEATURE})
-    public static boolean afkMarker = false;
+    public static boolean AfkMarker = false;
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean alwaysUnlockedRecipes = false;
-
-    @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean bundleAutoEat = false;
-
-    @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"saturation", "slot"})
-    public static String bundleAutoEatOrder = "saturation";
-
-    @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean fastEating = false;
-
-    @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static int fastEatingTicks = 8;
+    public static boolean AlwaysUnlockedRecipes = false;
 }

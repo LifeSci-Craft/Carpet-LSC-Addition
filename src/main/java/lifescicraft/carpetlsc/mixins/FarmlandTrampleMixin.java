@@ -1,6 +1,6 @@
 package lifescicraft.carpetlsc.mixins;
 
-import lifescicraft.carpetlsc.CarpetLscSettings;
+import lifescicraft.carpetlsc.helpers.FarmlandTrample;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * <p>Vanilla does that in {@code FarmlandBlock.fallOn}, which is also where mobs trample crops.
  * Cancelling only for {@link Player} keeps mob behaviour untouched, so {@code mobGriefing} still
  * means what it says.
+ *
+ * <p>Whether this landing is absorbed is decided by {@link FarmlandTrample}, which also implements
+ * the optional "this many tramples are fine, the next one breaks it" mode.
  */
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandTrampleMixin
@@ -26,7 +29,7 @@ public abstract class FarmlandTrampleMixin
     private void carpetLsc$noFarmlandTrample(Level level, BlockState state, BlockPos pos, Entity entity,
                                              double fallDistance, CallbackInfo ci)
     {
-        if (CarpetLscSettings.noFarmlandTrample && entity instanceof Player)
+        if (entity instanceof Player && !FarmlandTrample.shouldTrample(level, pos))
         {
             ci.cancel();
         }

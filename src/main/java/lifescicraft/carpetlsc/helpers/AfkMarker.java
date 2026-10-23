@@ -33,7 +33,7 @@ public final class AfkMarker
 
     public static void tick(ServerPlayer player)
     {
-        if (!CarpetLscSettings.afkMarker)
+        if (!CarpetLscSettings.AfkMarker)
         {
             clear(player);
             return;

@@ -89,7 +89,7 @@ public final class FastLeafDecay
 
     public static void onLogBroken(ServerLevel level, BlockPos logPos)
     {
-        if (!CarpetLscSettings.fastLeafDecay)
+        if (!CarpetLscSettings.FastLeafDecay)
         {
             return;
         }
@@ -235,7 +235,7 @@ public final class FastLeafDecay
             return;
         }
 
-        if (!CarpetLscSettings.fastLeafDecay)
+        if (!CarpetLscSettings.FastLeafDecay)
         {
             // The rule was switched off mid-flight: drop the remaining work.
             PENDING.remove(level);

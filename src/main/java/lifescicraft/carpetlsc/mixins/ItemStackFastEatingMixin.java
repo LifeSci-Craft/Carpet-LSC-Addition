@@ -22,12 +22,13 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ItemStack.class)
 public abstract class ItemStackFastEatingMixin
 {
+    private static final int DEFAULT_TICKS = 8;
     @ModifyReturnValue(method = "getUseDuration(Lnet/minecraft/world/entity/LivingEntity;)I", at = @At("RETURN"))
     private int carpetLsc$fastEating(int original, LivingEntity user)
     {
-        int cap = CarpetLscSettings.fastEatingTicks;
+        int cap = capTicks();
 
-        if (!CarpetLscSettings.fastEating || cap <= 0)
+        if (cap <= 0)
         {
             return original;
         }
@@ -40,5 +41,18 @@ public abstract class ItemStackFastEatingMixin
         }
 
         return Math.min(original, cap);
+    }
+
+    /** {@code true} selects the default cap; a bare number is used as-is. */
+    private static int capTicks()
+    {
+        return switch (CarpetLscSettings.FastEating)
+        {
+            case "true" -> DEFAULT_TICKS;
+            case "4" -> 4;
+            case "8" -> 8;
+            case "16" -> 16;
+            default -> 0;
+        };
     }
 }

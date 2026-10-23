@@ -35,7 +35,7 @@ public final class InventoryTotem
      */
     public static ItemStack findTotem(LivingEntity entity, InteractionHand hand, ItemStack held)
     {
-        if (!CarpetLscSettings.inventoryTotem || !(entity instanceof Player player))
+        if (!CarpetLscSettings.InventoryTotem || !(entity instanceof Player player))
         {
             return held;
         }

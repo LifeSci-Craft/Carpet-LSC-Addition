@@ -27,28 +27,26 @@
 
 | 选项 | 默认值 | 说明 |
 | --- | --- | --- |
-| `totemWrench` | `false` | 把不死图腾当作扳手使用。 |
-| `inventoryTotem` | `false` | 放在背包里的不死图腾也能防止死亡。 |
-| `accurateBlockPlacement` | `false` | 精准放置协议，移植自 Carpet Extra。 |
-| `commandPing` | `false` | 启用 `/ping` 指令。 |
-| `fastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
-| `emeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
-| `daytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
-| `quickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
-| `mcdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
-| `chatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品；客户端也安装时显示物品图标。 |
-| `skipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
-| `rightClickHarvest` | `false` | 空手右键成熟作物即收获并补种。 |
-| `noFarmlandTrample` | `false` | 玩家不再把耕地踩成泥土。 |
-| `deathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
-| `afkMarker` | `false` | 挂机 5 分钟自动加 `[AFK]` 前缀。 |
-| `alwaysUnlockedRecipes` | `false` | 玩家进入服务器时解锁全部配方，已解锁的数据原样保留。 |
-| `bundleAutoEat` | `false` | 收纳袋里全是食物、且一件就能回满饥饿值时，自动静默吃掉一件。 |
-| `bundleAutoEatOrder` | `saturation` | 自动进食的挑选顺序，可选 `slot`。 |
-| `fastEating` | `false` | 进食与饮用的时间按 `fastEatingTicks` 封顶。 |
-| `fastEatingTicks` | `8` | 进食与饮用的时间上限（tick）。 |
+| `TotemWrench` | `false` | 把不死图腾当作扳手使用。 |
+| `InventoryTotem` | `false` | 放在背包里的不死图腾也能防止死亡。 |
+| `AccurateBlockPlacement` | `false` | 精准放置协议，移植自 Carpet Extra。 |
+| `CommandPing` | `false` | 启用 `/ping` 指令。 |
+| `FastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
+| `EmeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
+| `DaytimeSleep` | `false` | 玩家可以在白天睡觉，时间跳到夜晚。 |
+| `QuickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
+| `McdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
+| `ChatHeldItem` | `false` | 聊天中的 `#` 替换成手持物品；客户端也安装时显示物品图标。 |
+| `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
+| `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
+| `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
+| `DeathCoordinates` | `off` | 死亡坐标播报，可选 `self` / `broadcast`。 |
+| `AfkMarker` | `false` | 挂机 5 分钟自动加 `[AFK]` 前缀。 |
+| `AlwaysUnlockedRecipes` | `false` | 玩家进入服务器时解锁全部配方，已解锁的数据原样保留。 |
+| `BundleAutoEat` | `off` | 收纳袋自动进食：`off` 关闭，`saturation` / `slot` 为挑选顺序。 |
+| `FastEating` | `false` | 进食与饮用时间上限：`true` 为 8 tick，或直接选 `4` / `8` / `16`。 |
 
-### `totemWrench`
+### `TotemWrench`
 
 手持不死图腾操作方块，作用范围与 Carpet 的 `flippinCactus` 相同（活塞、观察者、发射器、
 中继器、楼梯、台阶、带釉陶瓦、原木柱、铁轨、漏斗等带朝向的方块）。
@@ -60,14 +58,14 @@
 
 与 `flippinCactus` 相互独立。
 
-### `inventoryTotem`
+### `InventoryTotem`
 
 | 图腾位置 | 效果 |
 | --- | --- |
 | 背包任意位置 | 玩家即将死亡时消耗该图腾。 |
 | 主手 / 副手 | 与原版一致。 |
 
-### `accurateBlockPlacement`
+### `AccurateBlockPlacement`
 
 客户端（Litematica 简易放置、Tweakeroo 灵活放置）把目标方块状态编码进命中向量，服务端按编码结果放置。
 
@@ -80,7 +78,7 @@
 | 中继器延迟 | `1` – `4` |
 | 比较器模式 | `compare`、`subtract` |
 
-### `fastLeafDecay`
+### `FastLeafDecay`
 
 破坏原木后，该树的树叶会在数秒内腐烂，而不是一瞬间整片消失。
 
@@ -93,7 +91,7 @@
 
 其他树木的树叶不受影响，玩家放置的持久树叶不会被清除。规则中途关闭会立即停止尚未处理的腐烂。
 
-### `emeraldTemptsVillagers`
+### `EmeraldTemptsVillagers`
 
 村民会被手持绿宝石的玩家吸引，类似手持小麦吸引牛羊。规则可随时切换，立即生效。
 
@@ -101,7 +99,7 @@
 
 村民被攻击后会优先逃跑，受伤后 5 秒内不再被绿宝石吸引。
 
-### `daytimeSleep`
+### `DaytimeSleep`
 
 玩家可以在白天上床睡觉，时间跳到夜晚（`night` 时间标记，13000 刻）。
 
@@ -111,7 +109,7 @@
 | 夜晚睡觉 | 与原版一致，所有人醒于次日清晨。 |
 | 无昼夜循环的维度 | 不受影响。 |
 
-### `quickPaintingSwap`
+### `QuickPaintingSwap`
 
 潜行时右键已放置的画，按画作 ID 顺序切换到下一幅**同尺寸**的画。
 
@@ -122,7 +120,7 @@
 | 顺序 | 按画作 ID 排序后循环。 |
 | 未潜行 | 不潜行时右键不会改变画作。 |
 
-### `mcdrCommandBridge`
+### `McdrCommandBridge`
 
 启用 `/!!` 指令，把参数交给 MCDReforged 处理，避免以聊天方式输入 `!!` 指令时指令内容出现在聊天栏。
 
@@ -133,7 +131,7 @@
 | 前置 | MCDR 使用默认 `vanilla` 处理器，且 `command_prefix` 为 `!!`。 |
 | 未装 MCDR | 指令能执行，但不会有任何响应。 |
 
-### `chatHeldItem`
+### `ChatHeldItem`
 
 聊天内容中的 `#` 会替换成当前手持物品。
 
@@ -145,7 +143,7 @@
 | 空手 | 显示 `[空手]`，同样为亮紫色。 |
 | 取值 | 优先主手，主手为空时取副手。 |
 
-### `skipCommandConfirm`
+### `SkipCommandConfirm`
 
 执行需要更高权限的指令时，客户端不再弹出「确认执行指令」窗口，直接执行。
 
@@ -155,25 +153,45 @@
 | 不改变的 | 权限本身；无权限时仍会被服务端拒绝。 |
 | 不影响 | 指令拼写错误时的「无法识别指令」提示。 |
 
-### `alwaysUnlockedRecipes`
+### `AlwaysUnlockedRecipes`
 
 玩家进入服务器时解锁全部配方。已解锁的配方数据原样保留；关闭该规则后，此前解锁的配方不会收回。
 
-### `bundleAutoEat`
+### `BundleAutoEat`
 
-收纳袋里的物品全部是食物、且其中一件就足以回满饥饿值时，自动吃掉一件。不播放进食音效与动画，食物本身的效果照常生效。
+收纳袋里的物品全部是食物、且其中一件就足以回满饥饿值时，自动吃掉一件。仅在生存模式下生效，不播放进食音效与动画，食物本身的效果照常生效。
 
 | 条件 | 要求 |
 | --- | --- |
+| 游戏模式 | 生存模式；创造与观察者不触发。 |
 | 收纳袋 | 袋内物品全部是食物，混有其他物品时不生效。 |
 | 饥饿值 | 未满，且加上该食物的饥饿值回复量后能达到满值。 |
 
-### `bundleAutoEatOrder`
+| 取值 | 效果 |
+| --- | --- |
+| `off` | 关闭。 |
+| `saturation` | 优先吃饱和度最低的食物。 |
+| `slot` | 按收纳袋内的存放顺序。 |
+
+带额外效果的食物（金苹果、腐肉、紫颂果等，无论正负）在任何取值下都排在无效果食物之后。
+
+### `FastEating`
 
 | 取值 | 效果 |
 | --- | --- |
-| `saturation` | 优先吃饱和度最低的食物。 |
-| `slot` | 按收纳袋内的存放顺序。 |
+| `false` | 关闭。 |
+| `true` | 上限 8 tick。 |
+| `4` / `8` / `16` | 以该 tick 数作为上限。 |
+
+只影响带 `CONSUMABLE` 组件的物品（食物、药水、牛奶等），弓、盾等使用动作不受影响；原本更快的物品保持原速。
+
+### `NoFarmlandTrample`
+
+| 取值 | 效果 |
+| --- | --- |
+| `false` | 关闭，与原版一致。 |
+| `true` | 永不把耕地踩成泥土。 |
+| `1` / `3` / `5` / `10` | 同一块耕地被连续踩踏超过该次数后才变回泥土。连续踩踏的计数在 60 秒无踩踏后清零。 |
 
 ## 安装
 

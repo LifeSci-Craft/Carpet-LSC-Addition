@@ -31,7 +31,7 @@ public abstract class ServerGamePacketListenerImplAccuratePlacementMixin
     )
     private Vec3 carpetLsc$skipHitPosCheck(Vec3 hitVec, Vec3 blockCenter)
     {
-        if (CarpetLscSettings.accurateBlockPlacement)
+        if (CarpetLscSettings.AccurateBlockPlacement)
         {
             return Vec3.ZERO;
         }

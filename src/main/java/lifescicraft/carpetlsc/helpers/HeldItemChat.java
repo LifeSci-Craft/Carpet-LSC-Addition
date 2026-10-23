@@ -55,7 +55,7 @@ public final class HeldItemChat
      */
     public static Component decorate(ServerPlayer sender, PlayerChatMessage message)
     {
-        if (!CarpetLscSettings.chatHeldItem)
+        if (!CarpetLscSettings.ChatHeldItem)
         {
             return null;
         }

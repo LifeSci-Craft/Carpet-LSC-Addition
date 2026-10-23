@@ -3,72 +3,71 @@
   "carpet.category.lsc": "LSC",
 
   // Rule display names (shown in the /carpet list)
-  "carpet.rule.totemWrench.name": "Totem Wrench",
-  "carpet.rule.inventoryTotem.name": "Inventory Totem",
-  "carpet.rule.accurateBlockPlacement.name": "Accurate Block Placement",
-  "carpet.rule.commandPing.name": "Ping Command",
-  "carpet.rule.fastLeafDecay.name": "Fast Leaf Decay",
-  "carpet.rule.emeraldTemptsVillagers.name": "Emerald Tempts Villagers",
-  "carpet.rule.daytimeSleep.name": "Daytime Sleep",
-  "carpet.rule.quickPaintingSwap.name": "Quick Painting Swap",
-  "carpet.rule.mcdrCommandBridge.name": "MCDR Command Bridge",
-  "carpet.rule.chatHeldItem.name": "Chat Held Item",
-  "carpet.rule.skipCommandConfirm.name": "Skip Command Confirmation",
-  "carpet.rule.rightClickHarvest.name": "Right-Click Harvest",
-  "carpet.rule.noFarmlandTrample.name": "No Farmland Trample",
-  "carpet.rule.deathCoordinates.name": "Death Coordinates",
-  "carpet.rule.afkMarker.name": "AFK Marker",
-  "carpet.rule.alwaysUnlockedRecipes.name": "Always Unlocked Recipes",
-  "carpet.rule.bundleAutoEat.name": "Bundle Auto Eat",
-  "carpet.rule.bundleAutoEatOrder.name": "Bundle Eat Order",
-  "carpet.rule.fastEating.name": "Fast Eating",
-  "carpet.rule.fastEatingTicks.name": "Fast Eating Ticks",
+  "carpet.rule.TotemWrench.name": "Totem Wrench",
+  "carpet.rule.InventoryTotem.name": "Inventory Totem",
+  "carpet.rule.AccurateBlockPlacement.name": "Accurate Block Placement",
+  "carpet.rule.CommandPing.name": "Ping Command",
+  "carpet.rule.FastLeafDecay.name": "Fast Leaf Decay",
+  "carpet.rule.EmeraldTemptsVillagers.name": "Emerald Tempts Villagers",
+  "carpet.rule.DaytimeSleep.name": "Daytime Sleep",
+  "carpet.rule.QuickPaintingSwap.name": "Quick Painting Swap",
+  "carpet.rule.McdrCommandBridge.name": "MCDR Command Bridge",
+  "carpet.rule.ChatHeldItem.name": "Chat Held Item",
+  "carpet.rule.SkipCommandConfirm.name": "Skip Command Confirmation",
+  "carpet.rule.RightClickHarvest.name": "Right-Click Harvest",
+  "carpet.rule.NoFarmlandTrample.name": "No Farmland Trample",
+  "carpet.rule.DeathCoordinates.name": "Death Coordinates",
+  "carpet.rule.AfkMarker.name": "AFK Marker",
+  "carpet.rule.AlwaysUnlockedRecipes.name": "Always Unlocked Recipes",
+  "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
+  "carpet.rule.FastEating.name": "Fast Eating",
 
   // Rule descriptions
-  "carpet.rule.totemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
+  "carpet.rule.TotemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
 
-  "carpet.rule.inventoryTotem.desc": "A totem of undying in your inventory still protects you from death.",
+  "carpet.rule.InventoryTotem.desc": "A totem of undying in your inventory still protects you from death.",
 
-  "carpet.rule.accurateBlockPlacement.desc": "Client can provide alternative block placement.",
+  "carpet.rule.AccurateBlockPlacement.desc": "Client can provide alternative block placement.",
 
-  "carpet.rule.commandPing.desc": "Enables /ping command to check your latency.",
+  "carpet.rule.CommandPing.desc": "Enables /ping command to check your latency.",
 
-  "carpet.rule.fastLeafDecay.desc": "Leaves of a tree decay layer by layer within a few seconds once its log is broken.",
+  "carpet.rule.FastLeafDecay.desc": "Leaves of a tree decay layer by layer within a few seconds once its log is broken.",
 
-  "carpet.rule.emeraldTemptsVillagers.desc": "Villagers are attracted to players holding an emerald.",
+  "carpet.rule.EmeraldTemptsVillagers.desc": "Villagers are attracted to players holding an emerald.",
 
-  "carpet.rule.daytimeSleep.desc": "Players can sleep during the day, skipping time to nightfall.",
+  "carpet.rule.DaytimeSleep.desc": "Players can sleep during the day, skipping time to nightfall.",
 
-  "carpet.rule.quickPaintingSwap.desc": "Sneak and right-click a placed painting to cycle it to another painting of the same size.",
+  "carpet.rule.QuickPaintingSwap.desc": "Sneak and right-click a placed painting to cycle it to another painting of the same size.",
 
-  "carpet.rule.mcdrCommandBridge.desc": "Enables /!! so MCDR commands are run as a command instead of being typed into chat.",
+  "carpet.rule.McdrCommandBridge.desc": "Enables /!! so MCDR commands are run as a command instead of being typed into chat.",
 
-  "carpet.rule.chatHeldItem.desc": "A # in chat is replaced by your held item: its icon when the mod is also on the client, its name otherwise.",
+  "carpet.rule.ChatHeldItem.desc": "A # in chat is replaced by your held item: its icon when the mod is also on the client, its name otherwise.",
 
-  "carpet.rule.skipCommandConfirm.desc": "Commands that need elevated permissions run without the client-side confirmation dialog.",
+  "carpet.rule.SkipCommandConfirm.desc": "Commands that need elevated permissions run without the client-side confirmation dialog.",
 
-  "carpet.rule.rightClickHarvest.desc": "An empty-hand right-click on a grown crop harvests it and replants.",
+  "carpet.rule.RightClickHarvest.desc": "Right-click a grown crop with an empty hand or with crops or seeds to harvest it and replant.",
 
-  "carpet.rule.noFarmlandTrample.desc": "Players no longer turn farmland into dirt by falling on it.",
+  "carpet.rule.NoFarmlandTrample.desc": "Players no longer turn farmland into dirt by falling on it. false turns it off, true never breaks it, and a number allows that many tramples of one block before it breaks.",
 
-  "carpet.rule.deathCoordinates.desc": "Announces where a player died, either to that player only or to everyone.",
+  "carpet.rule.DeathCoordinates.desc": "Announces where a player died, either to that player only or to everyone.",
 
-  "carpet.rule.afkMarker.desc": "Players who have neither moved nor turned for five minutes get an [AFK] name prefix.",
+  "carpet.rule.AfkMarker.desc": "Players who have neither moved nor turned for five minutes get an [AFK] name prefix.",
 
-  "carpet.rule.alwaysUnlockedRecipes.desc": "Unlocks every recipe when a player joins; recipes already unlocked are kept as they are.",
+  "carpet.rule.AlwaysUnlockedRecipes.desc": "Unlocks every recipe when a player joins; recipes already unlocked are kept as they are.",
 
-  "carpet.rule.bundleAutoEat.desc": "Eats one food item from a bundle of food when hunger is low and that single item fills the bar.",
+  "carpet.rule.BundleAutoEat.desc": "Eats one item from a bundle of food when hunger is low and that single item fills the bar (survival only). off disables it, saturation eats the lowest saturation first, slot follows the bundle order; food with its own effects always comes last.",
 
-  "carpet.rule.bundleAutoEatOrder.desc": "Pick order: saturation eats the lowest saturation first, slot follows the bundle's storage order. Food with its own effects always comes after plain food.",
-
-  "carpet.rule.fastEating.desc": "Caps eating and drinking at fastEatingTicks; items that are already faster keep their own time. The hunger check and item effects are unchanged.",
-
-  "carpet.rule.fastEatingTicks.desc": "Upper limit in ticks for eating or drinking, 8 by default. Items that are already faster keep their own time.",
+  "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
 
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",
   "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping.",
   "carpet-lsc-addition.mcdr.notPlayer": "Only a player can use /!!.",
   "carpet-lsc-addition.chat.emptyHand": "[Empty hand]",
-  "carpet-lsc-addition.death.coordinates": "%s died at %s, %s, %s (%s)"
+  "carpet-lsc-addition.death.coordinates": "%s died at %s (%s) %s",
+  "carpet-lsc-addition.death.addWaypoint": "[Add waypoint]",
+  "carpet-lsc-addition.death.addWaypoint.hover": "Click to add this death coordinate to Xaero's minimap (Xaero's minimap must be installed on the client)",
+  "carpet-lsc-addition.dimension.overworld": "Overworld",
+  "carpet-lsc-addition.dimension.the_nether": "Nether",
+  "carpet-lsc-addition.dimension.the_end": "End"
 }

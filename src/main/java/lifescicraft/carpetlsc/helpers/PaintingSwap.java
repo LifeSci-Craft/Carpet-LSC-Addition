@@ -38,7 +38,7 @@ public final class PaintingSwap
      */
     public static boolean tryCycle(Player player, Entity target)
     {
-        if (!CarpetLscSettings.quickPaintingSwap)
+        if (!CarpetLscSettings.QuickPaintingSwap)
         {
             return false;
         }

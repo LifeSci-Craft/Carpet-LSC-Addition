@@ -28,7 +28,7 @@ public final class McdrBridgeCommand
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher)
     {
         dispatcher.register(Commands.literal(McdrBridge.COMMAND_PREFIX)
-                .requires(source -> CarpetLscSettings.mcdrCommandBridge)
+                .requires(source -> CarpetLscSettings.McdrCommandBridge)
                 .then(Commands.argument("command", StringArgumentType.greedyString())
                         .executes(context ->
                         {

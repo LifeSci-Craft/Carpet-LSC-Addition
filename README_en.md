@@ -28,28 +28,26 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `totemWrench` | `false` | Use a totem of undying as a wrench. |
-| `inventoryTotem` | `false` | A totem of undying in the inventory prevents death. |
-| `accurateBlockPlacement` | `false` | Accurate block placement protocol, from Carpet Extra. |
-| `commandPing` | `false` | Enables the `/ping` command. |
-| `fastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
-| `emeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
-| `daytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
-| `quickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
-| `mcdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
-| `chatHeldItem` | `false` | A `#` in chat is replaced by the held item; the client mod draws its icon. |
-| `skipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
-| `rightClickHarvest` | `false` | Empty-hand right-click harvests and replants a grown crop. |
-| `noFarmlandTrample` | `false` | Players no longer turn farmland into dirt. |
-| `deathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
-| `afkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
-| `alwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
-| `bundleAutoEat` | `false` | Eats one item from a bundle of food when that single item fills the hunger bar. |
-| `bundleAutoEatOrder` | `saturation` | Pick order for auto-eating; `slot` is the alternative. |
-| `fastEating` | `false` | Caps eating and drinking at `fastEatingTicks`. |
-| `fastEatingTicks` | `8` | Upper limit in ticks for eating or drinking. |
+| `TotemWrench` | `false` | Use a totem of undying as a wrench. |
+| `InventoryTotem` | `false` | A totem of undying in the inventory prevents death. |
+| `AccurateBlockPlacement` | `false` | Accurate block placement protocol, from Carpet Extra. |
+| `CommandPing` | `false` | Enables the `/ping` command. |
+| `FastLeafDecay` | `false` | Leaves decay layer by layer within a few seconds once their tree is chopped down. |
+| `EmeraldTemptsVillagers` | `false` | Villagers follow players holding an emerald. |
+| `DaytimeSleep` | `false` | Players can sleep during the day, skipping to nightfall. |
+| `QuickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
+| `McdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
+| `ChatHeldItem` | `false` | A `#` in chat is replaced by the held item; the client mod draws its icon. |
+| `SkipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |
+| `RightClickHarvest` | `false` | Empty-hand or crops/seeds in hand: right-click harvests and replants a grown crop. |
+| `NoFarmlandTrample` | `false` | `true` never breaks farmland; a number allows that many tramples before it breaks. |
+| `DeathCoordinates` | `off` | Announces death coordinates; `self` or `broadcast`. |
+| `AfkMarker` | `false` | Adds an `[AFK]` prefix after five idle minutes. |
+| `AlwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
+| `BundleAutoEat` | `off` | Silent eating from a bundle: `off` disables it, `saturation` / `slot` pick the order. |
+| `FastEating` | `false` | Cap for eating and drinking: `true` means 8 ticks, or pick `4` / `8` / `16`. |
 
-### `totemWrench`
+### `TotemWrench`
 
 Hold a totem of undying to operate on blocks. It applies to the same blocks as Carpet's
 `flippinCactus` (pistons, observers, dispensers, repeaters, stairs, slabs, glazed terracotta,
@@ -62,14 +60,14 @@ pillars, rails, hoppers and other directional blocks).
 
 Independent of `flippinCactus`.
 
-### `inventoryTotem`
+### `InventoryTotem`
 
 | Totem position | Effect |
 | --- | --- |
 | Anywhere in the inventory | Consumed when the player would die. |
 | Main hand / off hand | Same as vanilla. |
 
-### `accurateBlockPlacement`
+### `AccurateBlockPlacement`
 
 The client (Litematica easy place, Tweakeroo flexible placement) encodes the desired block state
 into the hit vector and the server honours it.
@@ -83,7 +81,7 @@ into the hit vector and the server honours it.
 | Repeater delay | `1` – `4` |
 | Comparator mode | `compare`, `subtract` |
 
-### `fastLeafDecay`
+### `FastLeafDecay`
 
 Breaking a log decays the leaves of that tree over a few seconds instead of wiping the whole
 canopy in a single tick.
@@ -98,7 +96,7 @@ canopy in a single tick.
 Leaves of other trees are unaffected, and player-placed persistent leaves are never destroyed.
 Switching the rule off stops any decay that is still pending.
 
-### `emeraldTemptsVillagers`
+### `EmeraldTemptsVillagers`
 
 Villagers follow a player holding an emerald, in the same way cows and sheep follow wheat. The
 rule can be toggled at any time and takes effect immediately.
@@ -108,7 +106,7 @@ The follow speed is about 1.2× that of a wheat-tempted cow (measured: 3.2 block
 A villager that gets attacked runs away instead, and ignores emeralds for five seconds after being
 hurt.
 
-### `daytimeSleep`
+### `DaytimeSleep`
 
 Players can get into a bed during the day and skip time to nightfall (the `night` time marker,
 13000 ticks).
@@ -119,7 +117,7 @@ Players can get into a bed during the day and skip time to nightfall (the `night
 | Sleeping at night | Unchanged; everyone wakes up in the morning. |
 | Dimensions without a day/night cycle | Unaffected. |
 
-### `quickPaintingSwap`
+### `QuickPaintingSwap`
 
 Sneaking while right-clicking a placed painting cycles it to the next painting of the **same
 size**, ordered by variant id.
@@ -131,7 +129,7 @@ size**, ordered by variant id.
 | Order | Sorted by painting id, wrapping around. |
 | Not sneaking | A plain right-click leaves the painting alone. |
 
-### `mcdrCommandBridge`
+### `McdrCommandBridge`
 
 Enables `/!!` so an MCDReforged command is run as a command instead of being typed into chat,
 which keeps the command text out of the chat box.
@@ -143,7 +141,7 @@ which keeps the command text out of the chat box.
 | Requires | MCDR's default `vanilla` handler and `command_prefix` still set to `!!`. |
 | Without MCDR | The command runs but nothing answers it. |
 
-### `chatHeldItem`
+### `ChatHeldItem`
 
 A `#` in chat is replaced by the held item.
 
@@ -155,7 +153,7 @@ A `#` in chat is replaced by the held item.
 | Empty hand | Shows `[Empty hand]`, also light purple. |
 | Source | Main hand first, off hand when the main hand is empty. |
 
-### `skipCommandConfirm`
+### `SkipCommandConfirm`
 
 Commands that need elevated permissions run straight away, without the client's "Confirm Command
 Execution" window.
@@ -166,27 +164,50 @@ Execution" window.
 | Unchanged | The permissions themselves; a player without the level is still rejected by the server. |
 | Does not affect | The "unrecognised command" prompt shown for a typo. |
 
-### `alwaysUnlockedRecipes`
+### `AlwaysUnlockedRecipes`
 
 Unlocks every recipe when a player joins. Recipes already unlocked are kept as they are, and turning
 the rule off does not take anything back.
 
-### `bundleAutoEat`
+### `BundleAutoEat`
 
 Eats one item out of a bundle when everything in that bundle is food and a single item is enough to
-fill the hunger bar. No eating sound or animation is played; the food's own effects still apply.
+fill the hunger bar. Survival only; no eating sound or animation is played, and the food's own
+effects still apply.
 
 | Condition | Requirement |
 | --- | --- |
+| Game mode | Survival; creative and spectator never trigger it. |
 | The bundle | Every item in it is food; a mixed bundle is left alone. |
 | Hunger | Not full, and adding that food's nutrition reaches the full bar. |
 
-### `bundleAutoEatOrder`
+| Value | Effect |
+| --- | --- |
+| `off` | Disabled. |
+| `saturation` | Eats the lowest-saturation food first. |
+| `slot` | Follows the bundle's storage order. |
+
+Food with its own effects (golden apple, rotten flesh, chorus fruit, good or bad) always comes after
+plain food, whatever the value.
+
+### `FastEating`
 
 | Value | Effect |
 | --- | --- |
-| `saturation` | Eats the lowest-saturation food first. |
-| `slot` | Follows the bundle's storage order. |
+| `false` | Disabled. |
+| `true` | Cap of 8 ticks. |
+| `4` / `8` / `16` | Use that many ticks as the cap. |
+
+Only items with a `CONSUMABLE` component are affected (food, potions, milk); bows, shields and other
+use actions are untouched, and items that are already faster keep their own time.
+
+### `NoFarmlandTrample`
+
+| Value | Effect |
+| --- | --- |
+| `false` | Disabled, vanilla behaviour. |
+| `true` | Farmland never turns into dirt. |
+| `1` / `3` / `5` / `10` | The block breaks once it has been trampled more than that many times in a row. The streak resets after 60 seconds without a trample. |
 
 ## Installation
 

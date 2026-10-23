@@ -23,7 +23,7 @@ public final class PingCommand
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher)
     {
         dispatcher.register(Commands.literal("ping")
-                .requires(source -> CarpetLscSettings.commandPing)
+                .requires(source -> CarpetLscSettings.CommandPing)
                 .executes(context ->
                 {
                     CommandSourceStack source = context.getSource();

@@ -46,7 +46,7 @@ public final class BlockPlacement
             return accelerated;
         }
 
-        if (vanilla != null && CarpetLscSettings.totemWrench && holdsOffhandTotem(context))
+        if (vanilla != null && CarpetLscSettings.TotemWrench && holdsOffhandTotem(context))
         {
             return invertFacing(vanilla);
         }

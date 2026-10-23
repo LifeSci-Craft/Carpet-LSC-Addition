@@ -42,6 +42,6 @@ public class CommandEntryRestrictedMixin
                     target = "Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeInspector;isRestricted(Lcom/mojang/brigadier/tree/CommandNode;)Z"))
     private static boolean carpetLsc$skipRestrictedFlag(boolean original)
     {
-        return CarpetLscSettings.skipCommandConfirm ? false : original;
+        return CarpetLscSettings.SkipCommandConfirm ? false : original;
     }
 }
