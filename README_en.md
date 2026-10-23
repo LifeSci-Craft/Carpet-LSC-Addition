@@ -46,6 +46,7 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `AlwaysUnlockedRecipes` | `false` | Unlocks every recipe when a player joins; existing unlocks are kept. |
 | `BundleAutoEat` | `off` | Silent eating from a bundle: `off` disables it, `saturation` / `slot` pick the order. |
 | `FastEating` | `false` | Cap for eating and drinking: `true` means 8 ticks, or pick `4` / `8` / `16`. |
+| `VillagerBackpack` | `false` | Sneak and right-click a villager renamed with a name tag to open its backpack. |
 
 ### `TotemWrench`
 
@@ -215,6 +216,19 @@ use actions are untouched, and items that are already faster keep their own time
 2. Server: put `fabric-carpet` and this mod in the server's `mods` directory.
 3. Client (optional): put this mod in the client's `mods` directory to get the item icons; it needs
    Fabric API (which loads mod resources) but not `fabric-carpet`.
+
+### `VillagerBackpack`
+
+Sneak and right-click a villager that has been renamed with a name tag to open its backpack. It is a
+plain vanilla chest screen, so a client without this mod still sees it.
+
+| Row | Contents |
+| --- | --- |
+| First | Profession (workstation icon), trade level (bottle o' enchanting), discount (barrier / totem of undying), each with a hover tooltip; the rest are dark panes as separators |
+| Second | The villager's own eight slots, which can be taken from and put into |
+
+Only items that villager would pick up on its own can go in (vanilla `wantsToPickUp`); the three icon
+slots are read-only.
 
 ## Commands
 

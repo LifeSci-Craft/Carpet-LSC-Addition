@@ -26,7 +26,8 @@
     "PlayerAfkMarkerMixin",
     "ServerRecipeBookUnlockAllMixin",
     "FoodDataBundleAutoEatMixin",
-    "ItemStackFastEatingMixin"
+    "ItemStackFastEatingMixin",
+    "VillagerBackpackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

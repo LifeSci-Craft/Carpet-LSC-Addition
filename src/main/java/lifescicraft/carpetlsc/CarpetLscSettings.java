@@ -73,4 +73,7 @@ public class CarpetLscSettings
 
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean AlwaysUnlockedRecipes = false;
+
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean VillagerBackpack = false;
 }

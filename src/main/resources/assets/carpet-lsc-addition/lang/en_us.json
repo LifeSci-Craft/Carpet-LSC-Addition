@@ -21,6 +21,7 @@
   "carpet.rule.AlwaysUnlockedRecipes.name": "Always Unlocked Recipes",
   "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.FastEating.name": "Fast Eating",
+  "carpet.rule.VillagerBackpack.name": "Villager Backpack",
 
   // Rule descriptions
   "carpet.rule.TotemWrench.desc": "Hold a totem of undying to rotate blocks: right-click with it in the main hand to rotate the targeted block, or keep it in the off hand to invert block placement.",
@@ -59,6 +60,8 @@
 
   "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
 
+  "carpet.rule.VillagerBackpack.desc": "Sneak and right-click a villager that has been renamed with a name tag to open its backpack and move items in or out; only items that villager would pick up can go in.",
+
   // Command feedback
   "carpet-lsc-addition.ping.result": "Your ping is: %s ms",
   "carpet-lsc-addition.ping.notPlayer": "Only a player can check their own ping.",
@@ -69,5 +72,17 @@
   "carpet-lsc-addition.death.addWaypoint.hover": "Click to add this death coordinate to Xaero's minimap (Xaero's minimap must be installed on the client)",
   "carpet-lsc-addition.dimension.overworld": "Overworld",
   "carpet-lsc-addition.dimension.the_nether": "Nether",
-  "carpet-lsc-addition.dimension.the_end": "End"
+  "carpet-lsc-addition.dimension.the_end": "End",
+
+  // Villager backpack
+  "carpet-lsc-addition.villager.profession.hover": "The villager's current profession (the icon is its workstation)",
+  "carpet-lsc-addition.villager.level.1": "Novice",
+  "carpet-lsc-addition.villager.level.2": "Apprentice",
+  "carpet-lsc-addition.villager.level.3": "Journeyman",
+  "carpet-lsc-addition.villager.level.4": "Expert",
+  "carpet-lsc-addition.villager.level.5": "Master",
+  "carpet-lsc-addition.villager.level.hover": "The villager's current trade level",
+  "carpet-lsc-addition.villager.discount.yes": "Trades are discounted",
+  "carpet-lsc-addition.villager.discount.no": "No discount right now",
+  "carpet-lsc-addition.villager.discount.hover": "Whether the villager's trades cost less than their base price"
 }

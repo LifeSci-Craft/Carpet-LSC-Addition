@@ -21,6 +21,7 @@
   "carpet.rule.AlwaysUnlockedRecipes.name": "配方书始终解锁",
   "carpet.rule.BundleAutoEat.name": "收纳袋自动进食",
   "carpet.rule.FastEating.name": "快速进食",
+  "carpet.rule.VillagerBackpack.name": "村民背包",
 
   // 规则说明
   "carpet.rule.TotemWrench.desc": "手持不死图腾可转置方块：主手右键点击方块会转动该方块，副手持有时则反转方块放置朝向。",
@@ -59,6 +60,8 @@
 
   "carpet.rule.FastEating.desc": "限制进食与饮用的时间：false 关闭，true 为 8 tick，也可直接选 4 / 8 / 16 tick。原本更快的物品保持原速，饥饿限制与物品效果照常。",
 
+  "carpet.rule.VillagerBackpack.desc": "被命名牌改过名的村民，蹲下右键可打开它的背包界面，取出或放入物品；只接受村民会主动拾取的物品。",
+
   // 指令回显
   "carpet-lsc-addition.ping.result": "你的延迟为：%s 毫秒",
   "carpet-lsc-addition.ping.notPlayer": "只有玩家才能查询自己的延迟。",
@@ -69,5 +72,17 @@
   "carpet-lsc-addition.death.addWaypoint.hover": "点击后把这个死亡坐标添加到 Xaero 小地图（需要客户端安装 Xaero 小地图）",
   "carpet-lsc-addition.dimension.overworld": "主世界",
   "carpet-lsc-addition.dimension.the_nether": "下界",
-  "carpet-lsc-addition.dimension.the_end": "末地"
+  "carpet-lsc-addition.dimension.the_end": "末地",
+
+  // 村民背包
+  "carpet-lsc-addition.villager.profession.hover": "村民当前职业（图标为对应工作方块）",
+  "carpet-lsc-addition.villager.level.1": "新手",
+  "carpet-lsc-addition.villager.level.2": "学徒",
+  "carpet-lsc-addition.villager.level.3": "老手",
+  "carpet-lsc-addition.villager.level.4": "专家",
+  "carpet-lsc-addition.villager.level.5": "大师",
+  "carpet-lsc-addition.villager.level.hover": "村民当前交易等级",
+  "carpet-lsc-addition.villager.discount.yes": "当前有打折",
+  "carpet-lsc-addition.villager.discount.no": "当前没有打折",
+  "carpet-lsc-addition.villager.discount.hover": "村民的交易是否比原价便宜"
 }
