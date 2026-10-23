@@ -28,6 +28,7 @@
     "FoodDataBundleAutoEatMixin",
     "ItemStackFastEatingMixin",
     "VillagerBackpackMixin",
+    "VillagerSoftFreezeMixin",
     "FireworkRocketVehicleBoostMixin",
     "EntityVehicleInstantStopMixin",
     "ServerPlayerVehicleBoostMixin"

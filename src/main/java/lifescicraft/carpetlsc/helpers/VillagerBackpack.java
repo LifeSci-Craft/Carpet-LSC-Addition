@@ -70,9 +70,34 @@ public final class VillagerBackpack
         }
 
         // Stay put while the player is shopping, so the menu does not close by itself.
-        villager.setNoAi(true);
+        freeze(villager);
         player.openMenu(new BackpackMenuProvider(villager));
         return true;
+    }
+
+    /** Villagers whose backpack screen is open; kept out of NBT so a crash cannot leave them stuck. */
+    private static final java.util.Set<java.util.UUID> FROZEN = java.util.concurrent.ConcurrentHashMap.newKeySet();
+
+    private static void freeze(Villager villager)
+    {
+        FROZEN.add(villager.getUUID());
+    }
+
+    private static void unfreeze(Villager villager)
+    {
+        FROZEN.remove(villager.getUUID());
+    }
+
+    /** Called from the villager's own tick: hold it in place without touching its AI state. */
+    public static void tick(Villager villager)
+    {
+        if (!FROZEN.contains(villager.getUUID()))
+        {
+            return;
+        }
+
+        villager.getNavigation().stop();
+        villager.setDeltaMovement(0.0, Math.min(villager.getDeltaMovement().y, 0.0), 0.0);
     }
 
     private static boolean contains(int[] slots, int slot)
@@ -474,11 +499,7 @@ public final class VillagerBackpack
         public void removed(Player player)
         {
             super.removed(player);
-
-            if (!villager.isRemoved())
-            {
-                villager.setNoAi(false);
-            }
+            unfreeze(villager);
         }
 
         /** The villager's own slots: take freely, put back only what it would pick up itself. */
