@@ -2,6 +2,8 @@ package lifescicraft.carpetlsc.helpers;
 
 import lifescicraft.carpetlsc.CarpetLscSettings;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -22,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.TradeSet;
 import net.minecraft.world.item.trading.VillagerTrade;
@@ -87,7 +90,14 @@ public final class VillagerBackpack
 
     public static boolean tryOpen(ServerPlayer player, Villager villager)
     {
-        if (!CarpetLscSettings.VillagerBackpack || !player.isShiftKeyDown() || !villager.hasCustomName())
+        if (!CarpetLscSettings.VillagerBackpack || !player.isShiftKeyDown())
+        {
+            return false;
+        }
+
+        // A name tag always works; a villager boxed into a single block is also fair game, which is
+        // what makes trading posts usable without naming every villager.
+        if (!villager.hasCustomName() && !isConfined(villager))
         {
             return false;
         }
@@ -96,6 +106,36 @@ public final class VillagerBackpack
         freeze(villager);
         player.openMenu(new BackpackMenuProvider(villager));
         return true;
+    }
+
+    /**
+     * Whether the villager is boxed into a single block: standing on something solid with all four
+     * sides blocked at both foot and head height, so it has nowhere to walk.
+     */
+    private static boolean isConfined(Villager villager)
+    {
+        Level level = villager.level();
+        BlockPos feet = villager.blockPosition();
+
+        if (!blocked(level, feet.below()))
+        {
+            return false;
+        }
+
+        for (Direction direction : Direction.Plane.HORIZONTAL)
+        {
+            if (!blocked(level, feet.relative(direction)) || !blocked(level, feet.above().relative(direction)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean blocked(Level level, BlockPos pos)
+    {
+        return !level.getBlockState(pos).getCollisionShape(level, pos).isEmpty();
     }
 
     /** Villagers whose backpack screen is open; kept out of NBT so a crash cannot leave them stuck. */
@@ -557,7 +597,13 @@ public final class VillagerBackpack
             }
 
             slots.clear();
-            slots.addAll(rebuilt);
+
+            // addSlot assigns Slot.index; writing into the list directly would leave every slot
+            // reporting index 0, which the drag/quick-craft paths rely on.
+            for (Slot slot : rebuilt)
+            {
+                addSlot(slot);
+            }
         }
 
         @Override

@@ -79,17 +79,17 @@ public final class FarmlandTrample
         return false;
     }
 
+    /** How many landings the farmland survives; {@code false} means it breaks every time. */
     private static int allowedTramples(String mode)
     {
-        try
+        return switch (mode)
         {
-            return Integer.parseInt(mode);
-        }
-        catch (NumberFormatException ignored)
-        {
-            // "false" and anything unexpected mean "no protection".
-            return 0;
-        }
+            case "1" -> 1;
+            case "3" -> 3;
+            case "5" -> 5;
+            case "10" -> 10;
+            default -> 0;
+        };
     }
 
     private static final class Streak

@@ -63,7 +63,7 @@ public final class FletchingTable
         return OURS.get();
     }
 
-    public static boolean tryOpen(ServerPlayer player, ContainerLevelAccess access)
+    public static boolean tryOpen(ServerPlayer player)
     {
         if (!CarpetLscSettings.FletchingTable)
         {
@@ -138,7 +138,7 @@ public final class FletchingTable
 
         ItemStack result = lookup(serverLevel, level, ring(first, second));
 
-        return result.isEmpty() ? lookup(serverLevel, level, simple(first, second)) : result;
+        return result.isEmpty() ? lookup(serverLevel, level, grid(first, second)) : result;
     }
 
     /**
@@ -213,12 +213,6 @@ public final class FletchingTable
         }
 
         return grid;
-    }
-
-    /** The plain layout: the two inputs in the first two cells. */
-    private static List<ItemStack> simple(ItemStack first, ItemStack second)
-    {
-        return grid(first, second);
     }
 
     /** Nine cells: our two inputs first, the rest empty. */

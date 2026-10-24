@@ -29,7 +29,7 @@ public abstract class FletchingTableUseMixin
             return;
         }
 
-        if (FletchingTable.tryOpen(serverPlayer, ContainerLevelAccess.create(level, pos)))
+        if (FletchingTable.tryOpen(serverPlayer))
         {
             cir.setReturnValue(InteractionResult.SUCCESS);
         }

@@ -27,7 +27,7 @@ public abstract class ServerGamePacketListenerImplAccuratePlacementMixin
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/phys/Vec3;subtract(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;"
             ),
-            require = 0
+            require = 1
     )
     private Vec3 carpetLsc$skipHitPosCheck(Vec3 hitVec, Vec3 blockCenter)
     {

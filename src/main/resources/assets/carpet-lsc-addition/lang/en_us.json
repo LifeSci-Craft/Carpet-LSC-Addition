@@ -72,7 +72,7 @@
 
   "carpet.rule.FletchingTable.desc": "Right-click a fletching table to craft arrows; the two slots only take arrows and arrow materials, and the result follows the vanilla recipes. Needs the mod on both sides.",
 
-  "carpet.rule.VillagerBackpack.desc": "Sneak and right-click a villager renamed with a name tag to open its backpack: a 9x6 chest where the chest column holds the villager's eight slots, the ender chest column lists the current trades (paged, duplicates merged), the middle column shows profession, level and price situation, and the barrier closes the screen.",
+  "carpet.rule.VillagerBackpack.desc": "Sneak and right-click a villager to open its backpack: a named villager always works, and a villager boxed into a single block works too. In the 9x6 screen the chest column holds its eight slots, the ender chest column lists the trades (paged, duplicates merged), the middle column shows profession, level and price situation, and the barrier closes it.",
 
   "carpet.rule.VehicleFireworkBoost.desc": "Using a firework rocket while riding a boat or minecart pushes it along your look direction; higher levels push harder.",
 

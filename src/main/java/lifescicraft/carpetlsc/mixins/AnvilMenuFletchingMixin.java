@@ -3,6 +3,7 @@ package lifescicraft.carpetlsc.mixins;
 import lifescicraft.carpetlsc.helpers.FletchingTable;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
@@ -51,6 +52,11 @@ public abstract class AnvilMenuFletchingMixin
             Slot slot = menu.slots.get(i);
             menu.slots.set(i, new MaterialSlot(slot.container, slot.index, slot.x, slot.y));
         }
+
+        // The anvil only lets a result be taken while its repair cost is above zero, and it empties
+        // whole input stacks on take. Neither fits a crafting screen, so the result slot is ours.
+        Slot result = menu.slots.get(2);
+        menu.slots.set(2, new FletchingResultSlot(menu, result.container, result.index, result.x, result.y));
     }
 
     @Inject(method = "createResult", at = @At("TAIL"))
@@ -81,6 +87,65 @@ public abstract class AnvilMenuFletchingMixin
         finally
         {
             carpetLsc$computing = false;
+        }
+    }
+
+    /**
+     * Result slot: always takeable, and it consumes exactly what the craft used.
+     *
+     * <p>Eight arrows with one lingering potion make eight tipped arrows, and one arrow with four
+     * glowstone dust makes one spectral arrow, so taking a stack has to scale the inputs by the same
+     * ratio instead of emptying them.
+     */
+    private static final class FletchingResultSlot extends Slot
+    {
+        private final AnvilMenu menu;
+
+        private FletchingResultSlot(AnvilMenu menu, Container container, int index, int x, int y)
+        {
+            super(container, index, x, y);
+            this.menu = menu;
+        }
+
+        @Override
+        public boolean mayPickup(Player player)
+        {
+            return !getItem().isEmpty();
+        }
+
+        @Override
+        public void onTake(Player player, ItemStack taken)
+        {
+            ItemStack first = menu.slots.get(0).getItem();
+            ItemStack second = menu.slots.get(1).getItem();
+            int crafted = taken.getCount();
+
+            if (taken.is(net.minecraft.world.item.Items.SPECTRAL_ARROW))
+            {
+                consume(first, crafted);
+                consume(second, crafted * 4);
+            }
+            else if (taken.is(net.minecraft.world.item.Items.TIPPED_ARROW))
+            {
+                // One lingering potion covers a whole batch of eight arrows.
+                consume(first, crafted);
+                consume(second, 1);
+            }
+            else
+            {
+                consume(first, 1);
+                consume(second, 1);
+            }
+
+            set(ItemStack.EMPTY);
+        }
+
+        private static void consume(ItemStack stack, int amount)
+        {
+            if (!stack.isEmpty())
+            {
+                stack.shrink(amount);
+            }
         }
     }
 
