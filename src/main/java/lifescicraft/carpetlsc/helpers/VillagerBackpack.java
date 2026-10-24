@@ -124,7 +124,7 @@ public final class VillagerBackpack
 
         for (Direction direction : Direction.Plane.HORIZONTAL)
         {
-            if (!blocked(level, feet.relative(direction)) || !blocked(level, feet.above().relative(direction)))
+            if (!blocked(level, feet.relative(direction)))
             {
                 return false;
             }
@@ -243,7 +243,7 @@ public final class VillagerBackpack
 
                     if (offer != null)
                     {
-                        mergeInto(merged, offer.getResult());
+                        merged.add(offer.getResult().copy());
                     }
                 }
             }

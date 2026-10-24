@@ -18,24 +18,13 @@ import java.util.UUID;
 /**
  * Firework rockets as a sustained boost for boats, minecarts and happy ghasts.
  *
- * <p>Vanilla only lets a firework push an elytra flight. Here one rocket starts a five second burst:
- * the thrust is strongest in the first tick and fades to nothing, the same shape as an elytra
- * firework, and the level picks the starting thrust. The burst follows the vehicle it was started
- * on and ends early if the player gets off.
+ * <p>Vanilla only lets a firework push an elytra flight. Here one rocket starts a timed burst: the
+ * thrust is strongest on the first tick and fades to nothing, and its strength, length and fade are
+ * read from {@link BoostConfig}. The burst follows the vehicle it was started on and ends early if
+ * the player gets off.
  */
 public final class VehicleBoost
 {
-    /** Five seconds, in ticks. */
-    private static final int BOOST_TICKS = 100;
-
-    /** Per-tick starting thrust, indexed by level 1..3. */
-    private static final double[] BOAT = {0.300, 0.450, 0.600};
-
-    /** Lower than boats: a minecart already runs on rails and the push adds on top. */
-    private static final double[] MINECART = {0.160, 0.240, 0.320};
-
-    private static final double[] GHAST = {0.450, 0.650, 0.850};
-
     private static final Map<UUID, Burst> BURSTS = new HashMap<>();
 
     private VehicleBoost()
@@ -48,20 +37,16 @@ public final class VehicleBoost
     public static boolean tryBoost(ServerPlayer player, ItemStack stack)
     {
         Entity vehicle = player.getVehicle();
+        String kind = kindOf(vehicle);
 
-        if (vehicle == null)
+        if (kind == null || !enabled(kind))
         {
             return false;
         }
 
-        double initial = startingThrust(vehicle);
-
-        if (initial <= 0.0)
-        {
-            return false;
-        }
-
-        BURSTS.put(player.getUUID(), new Burst(vehicle.getId(), BOOST_TICKS, initial));
+        BURSTS.put(player.getUUID(),
+                new Burst(vehicle.getId(), BoostConfig.durationTicks(kind), BoostConfig.acceleration(kind),
+                        BoostConfig.decay(kind)));
         stack.shrink(1);
 
         player.level().playSound(null, player.blockPosition(), SoundEvents.FIREWORK_ROCKET_LAUNCH,
@@ -69,37 +54,31 @@ public final class VehicleBoost
         return true;
     }
 
-    private static double startingThrust(Entity vehicle)
+    private static String kindOf(Entity vehicle)
     {
         if (vehicle instanceof HappyGhast)
         {
-            return pick(GHAST, CarpetLscSettings.HappyGhastBoost);
+            return "ghast";
         }
 
         if (vehicle instanceof AbstractMinecart)
         {
-            return pick(MINECART, CarpetLscSettings.VehicleFireworkBoost);
+            return "minecart";
         }
 
         if (vehicle instanceof AbstractBoat)
         {
-            return pick(BOAT, CarpetLscSettings.VehicleFireworkBoost);
+            return "boat";
         }
 
-        return 0.0;
+        return null;
     }
 
-    private static double pick(double[] table, String setting)
+    private static boolean enabled(String kind)
     {
-        int level = switch (setting)
-        {
-            case "1" -> 1;
-            case "2" -> 2;
-            case "3" -> 3;
-            default -> 0;
-        };
-
-        return level == 0 ? 0.0 : table[level - 1];
+        return "ghast".equals(kind)
+                ? CarpetLscSettings.HappyGhastBoost
+                : CarpetLscSettings.VehicleFireworkBoost;
     }
 
     /** Runs every tick for every player; does nothing unless that player has a burst going. */
@@ -120,9 +99,9 @@ public final class VehicleBoost
             return;
         }
 
-        // 1.0 at the start, 0.0 at the end, squared so it falls away quickly at first.
+        // 1.0 at the start, 0.0 at the end, raised to the configured exponent.
         double remaining = (double) burst.ticksLeft / burst.total;
-        double power = burst.initial * remaining * remaining;
+        double power = burst.initial * Math.pow(remaining, burst.decay);
 
         if (power > 0.0)
         {
@@ -145,8 +124,7 @@ public final class VehicleBoost
 
     /**
      * Where the push goes: a minecart is pushed along the rails it is already running on, a happy
-     * ghast where it is already flying, and a boat where its rider is looking. The first tick's
-     * direction is remembered, so a minecart on a straight keeps its heading while the burst runs.
+     * ghast where it is already flying, and a boat where its rider is looking.
      */
     private static Vec3 direction(Entity vehicle, Burst burst, ServerPlayer player)
     {
@@ -178,15 +156,17 @@ public final class VehicleBoost
         private final int vehicleId;
         private final int total;
         private final double initial;
+        private final double decay;
         private int ticksLeft;
         private Vec3 direction = Vec3.ZERO;
 
-        private Burst(int vehicleId, int total, double initial)
+        private Burst(int vehicleId, int total, double initial, double decay)
         {
             this.vehicleId = vehicleId;
-            this.total = total;
+            this.total = Math.max(1, total);
             this.initial = initial;
-            this.ticksLeft = total;
+            this.decay = decay;
+            this.ticksLeft = this.total;
         }
     }
 }

@@ -93,6 +93,8 @@
   "carpet-lsc-addition.dimension.the_end": "末地",
 
   // 村民背包
+  "carpet-lsc-addition.lsc.lsc.set": "已设置 %s 的 %s 为 %s",
+  "carpet-lsc-addition.lsc.lsc.invalid": "无效的取值：%s 的 %s 不能是 %s",
   "carpet-lsc-addition.fletching.title": "制造弓箭",
   "carpet-lsc-addition.villager.title": "村民 %s 的背包",
   "carpet-lsc-addition.villager.backpack": "村民背包",

@@ -91,7 +91,7 @@ public class CarpetLscSettings
 
     /** Firework rockets shove the boat or minecart the player rides; the number is the strength. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"off", "1", "2", "3"})
-    public static String VehicleFireworkBoost = "off";
+    public static boolean VehicleFireworkBoost = false;
 
     /** Stops a vehicle when its rider gets off: {@code all}, {@code minecart} or {@code boat}. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"off", "all", "minecart", "boat"})
@@ -99,5 +99,5 @@ public class CarpetLscSettings
 
     /** The same firework boost, for the happy ghast only. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE}, options = {"off", "1", "2", "3"})
-    public static String HappyGhastBoost = "off";
+    public static boolean HappyGhastBoost = false;
 }

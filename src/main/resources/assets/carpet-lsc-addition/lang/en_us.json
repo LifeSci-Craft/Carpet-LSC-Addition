@@ -93,6 +93,8 @@
   "carpet-lsc-addition.dimension.the_end": "End",
 
   // Villager backpack
+  "carpet-lsc-addition.lsc.lsc.set": "Set %s %s to %s",
+  "carpet-lsc-addition.lsc.lsc.invalid": "Invalid value: %s %s cannot be %s",
   "carpet-lsc-addition.fletching.title": "Craft Arrows",
   "carpet-lsc-addition.villager.title": "Villager %s's Backpack",
   "carpet-lsc-addition.villager.backpack": "Villager Backpack",
