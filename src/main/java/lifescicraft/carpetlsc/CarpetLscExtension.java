@@ -6,6 +6,7 @@ import carpet.api.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import lifescicraft.carpetlsc.commands.McdrBridgeCommand;
 import lifescicraft.carpetlsc.commands.LscCommand;
+import lifescicraft.carpetlsc.helpers.PersistentRules;
 import lifescicraft.carpetlsc.commands.PingCommand;
 import lifescicraft.carpetlsc.commands.WaypointCommand;
 import lifescicraft.carpetlsc.helpers.RecipeUnlocker;
@@ -55,6 +56,10 @@ final class CarpetLscExtension implements CarpetExtension
             {
                 RecipeUnlocker.applyToOnline();
             }
+
+            // With PersistentRules on, every toggle is written to carpet.conf so it survives a
+            // restart without editing the file by hand.
+            PersistentRules.remember(rule.name(), newValue);
         });
     }
 

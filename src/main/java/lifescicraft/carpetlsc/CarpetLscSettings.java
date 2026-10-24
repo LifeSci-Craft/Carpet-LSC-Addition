@@ -104,4 +104,8 @@ public class CarpetLscSettings
     /** Freezes a trader boxed into one block so a large trading hall stops costing pathfinding. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean VillagerTradeOptimization = false;
+
+    /** Writes rule changes straight into carpet.conf so a toggle survives a restart. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean PersistentRules = false;
 }
