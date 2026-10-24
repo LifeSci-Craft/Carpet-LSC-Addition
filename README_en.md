@@ -46,7 +46,6 @@ enabled one at a time with `/carpet <rule> <true|false>`. In `/carpet` they are 
 | `McdrCommandBridge` | `false` | Enables `/!!` so MCDR commands run as a command instead of chat. |
 | `NoFarmlandTrample` | `false` | `true` never breaks farmland; a number allows that many tramples before it breaks. |
 | `NoFarmlandTrampleScope` | `players` | Who the trample rule protects; `all` includes mobs. |
-| `PersistentRules` | `false` | Rule changes made through /carpet are written into carpet.conf, so they survive a restart. |
 | `QuickPaintingSwap` | `false` | Sneak and right-click a painting to cycle to another painting of the same size. |
 | `RightClickHarvest` | `false` | Empty-hand or crops/seeds in hand: right-click harvests and replants a grown crop. |
 | `SkipCommandConfirm` | `false` | Privileged commands no longer ask for confirmation. |

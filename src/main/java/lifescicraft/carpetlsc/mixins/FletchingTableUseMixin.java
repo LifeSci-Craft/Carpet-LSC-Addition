@@ -20,6 +20,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BlockBehaviour.class)
 public abstract class FletchingTableUseMixin
 {
+    /**
+     * Runs before the held item is used, so a potion or a bow does not fire off while the player
+     * only wanted to open the bench. Without this the item is consumed first and the screen opens
+     * afterwards.
+     */
+    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
+    private void carpetLsc$openWithoutUsingItem(net.minecraft.world.item.ItemStack stack,
+                                                BlockState state, Level level, BlockPos pos, Player player,
+                                                net.minecraft.world.InteractionHand hand, BlockHitResult hit,
+                                                CallbackInfoReturnable<InteractionResult> cir)
+    {
+        if ((Object) this != Blocks.FLETCHING_TABLE || !(player instanceof ServerPlayer serverPlayer))
+        {
+            return;
+        }
+
+        if (FletchingTable.tryOpen(serverPlayer))
+        {
+            cir.setReturnValue(InteractionResult.SUCCESS);
+        }
+    }
+
     @Inject(method = "useWithoutItem", at = @At("HEAD"), cancellable = true)
     private void carpetLsc$openFletchingTable(BlockState state, Level level, BlockPos pos, Player player,
                                               BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir)

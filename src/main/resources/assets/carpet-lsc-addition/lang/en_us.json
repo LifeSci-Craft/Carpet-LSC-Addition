@@ -24,7 +24,6 @@
   "carpet.rule.FastEating.name": "Fast Eating",
   "carpet.rule.VillagerBackpack.name": "Villager Backpack",
   "carpet.rule.FastZombieCure.name": "Fast Zombie Cure",
-  "carpet.rule.PersistentRules.name": "Persistent Rule Changes",
   "carpet.rule.VillagerTradeOptimization.name": "Trading Hall Optimization",
   "carpet.rule.TradePreview.name": "Trade Preview",
   "carpet.rule.FletchingTable.name": "Fletching Table",
@@ -73,7 +72,6 @@
 
   "carpet.rule.FastZombieCure.desc": "A zombie villager cures in three seconds after weakness and a golden apple; while on, a weakness potion can also be used by right-clicking the villager, leaving an empty bottle.",
 
-  "carpet.rule.PersistentRules.desc": "When on, any rule toggled through /carpet is written into carpet.conf, so the change survives a restart instead of lasting one session.",
 
   "carpet.rule.VillagerTradeOptimization.desc": "Freezes the pathfinding of a boxed-in villager that has a profession and is past novice, so a large trading hall stops costing tick time.",
 

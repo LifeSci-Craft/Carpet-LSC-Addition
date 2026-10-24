@@ -45,7 +45,6 @@
 | `McdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
 | `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
 | `NoFarmlandTrampleScope` | `players` | 防踩踏生效对象：`players` 只保护玩家踩踏，`all` 连生物一起保护。 |
-| `PersistentRules` | `false` | 开启后 /carpet 改动的规则直接写入 carpet.conf，重启后仍生效。 |
 | `QuickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
 | `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
 | `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |

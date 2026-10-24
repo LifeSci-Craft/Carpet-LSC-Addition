@@ -24,7 +24,6 @@
   "carpet.rule.FastEating.name": "快速进食",
   "carpet.rule.VillagerBackpack.name": "村民背包",
   "carpet.rule.FastZombieCure.name": "僵尸村民快速转化",
-  "carpet.rule.PersistentRules.name": "规则永久调整",
   "carpet.rule.VillagerTradeOptimization.name": "村民交易所优化",
   "carpet.rule.TradePreview.name": "交易预知",
   "carpet.rule.FletchingTable.name": "制箭台活化",
@@ -73,7 +72,6 @@
 
   "carpet.rule.FastZombieCure.desc": "僵尸村民获得虚弱与金苹果后 3 秒完成转化；开启后还能直接用虚弱药水右键僵尸村民施加虚弱，药水消耗后留下空瓶。",
 
-  "carpet.rule.PersistentRules.desc": "开启后，通过 /carpet 改的任意规则都会直接写入 carpet.conf，重启后仍然生效，不再是一次性开关。",
 
   "carpet.rule.VillagerTradeOptimization.desc": "有职业且等级高于新手的村民被困在 1 格空间里时冻结它的寻路，减少大型交易所的性能开销。",
 

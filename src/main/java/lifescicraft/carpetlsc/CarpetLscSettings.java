@@ -105,10 +105,6 @@ public class CarpetLscSettings
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean VillagerTradeOptimization = false;
 
-    /** Writes rule changes straight into carpet.conf so a toggle survives a restart. */
-    @Rule(categories = {LSC, SURVIVAL, FEATURE})
-    public static boolean PersistentRules = false;
-
     /** A zombie villager cures in three seconds, and a weakness potion can be splashed by hand. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean FastZombieCure = false;
