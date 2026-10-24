@@ -50,13 +50,13 @@ public abstract class AnvilMenuFletchingMixin
         for (int i = 0; i < 2; i++)
         {
             Slot slot = menu.slots.get(i);
-            menu.slots.set(i, new MaterialSlot(slot.container, slot.index, slot.x, slot.y));
+            menu.slots.set(i, new MaterialSlot(slot.container, slot.getContainerSlot(), slot.x, slot.y));
         }
 
         // The anvil only lets a result be taken while its repair cost is above zero, and it empties
         // whole input stacks on take. Neither fits a crafting screen, so the result slot is ours.
         Slot result = menu.slots.get(2);
-        menu.slots.set(2, new FletchingResultSlot(menu, result.container, result.index, result.x, result.y));
+        menu.slots.set(2, new FletchingResultSlot(menu, result.container, result.getContainerSlot(), result.x, result.y));
     }
 
     @Inject(method = "createResult", at = @At("TAIL"))

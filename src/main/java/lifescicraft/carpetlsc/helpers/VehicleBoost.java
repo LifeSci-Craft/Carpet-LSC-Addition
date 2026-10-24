@@ -157,13 +157,19 @@ public final class VehicleBoost
             if (motion.lengthSqr() > 1.0E-4)
             {
                 burst.direction = motion.normalize();
+                return burst.direction;
             }
-        }
-        else
-        {
-            burst.direction = player.getLookAngle();
+
+            // A hovering ghast has no real motion yet, so the first pushes follow the rider.
+            if (burst.direction == Vec3.ZERO || vehicle instanceof HappyGhast)
+            {
+                burst.direction = player.getLookAngle();
+            }
+
+            return burst.direction;
         }
 
+        burst.direction = player.getLookAngle();
         return burst.direction;
     }
 
