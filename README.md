@@ -38,12 +38,14 @@
 | `EmeraldTemptsVillagers` | `false` | 手持绿宝石的玩家会吸引村民。 |
 | `FastEating` | `false` | 进食与饮用时间上限：`true` 为 8 tick，或直接选 `4` / `8` / `16`。 |
 | `FastLeafDecay` | `false` | 砍倒树木后，该树的树叶在数秒内逐层腐烂。 |
+| `FastZombieCure` | `false` | 僵尸村民获得虚弱与金苹果后 3 秒完成转化；开启后可直接用虚弱药水右键施加虚弱并留下空瓶。 |
 | `FletchingTable` | `false` | 右键制箭台打开制箭界面，两格只收箭与制箭材料，产物按原版配方计算。 |
 | `HappyGhastBoost` | `off` | 乘坐快乐恶魂时用烟花火箭冲刺，可选档位 `1` / `2` / `3`。 |
 | `InventoryTotem` | `false` | 放在背包里的不死图腾也能防止死亡。 |
 | `McdrCommandBridge` | `false` | 启用 `/!!` 把 MCDR 指令交给 MCDR 处理。 |
 | `NoFarmlandTrample` | `false` | 耕地防踩踏：`true` 永不破坏，填数字则连续踩踏超过该次数后才变回泥土。 |
 | `NoFarmlandTrampleScope` | `players` | 防踩踏生效对象：`players` 只保护玩家踩踏，`all` 连生物一起保护。 |
+| `PersistentRules` | `false` | 开启后 /carpet 改动的规则直接写入 carpet.conf，重启后仍生效。 |
 | `QuickPaintingSwap` | `false` | 潜行右键已放置的画，切换成同尺寸的其他画作。 |
 | `RightClickHarvest` | `false` | 空手或手持作物/种子右键成熟作物即收获并补种。 |
 | `SkipCommandConfirm` | `false` | 需要更高权限的指令不再弹确认窗。 |
@@ -52,6 +54,7 @@
 | `VehicleFireworkBoost` | `off` | 乘坐矿车或船时用烟花火箭朝视线方向加速，可选档位 `1` / `2` / `3`。 |
 | `VehicleInstantStop` | `off` | 离开载具时立刻停下，可选 `all` / `minecart` / `boat`。 |
 | `VillagerBackpack` | `false` | 被命名牌改过名的村民，蹲下右键可打开它的背包界面。 |
+| `VillagerTradeOptimization` | `false` | 有职业且等级高于新手的村民被困在 1 格空间时冻结其寻路，降低大型交易所开销。 |
 
 ### `TotemWrench`
 
