@@ -45,8 +45,11 @@ public final class ChatItemIcons
     private static final FontDescription MARKER_FONT =
             new FontDescription.Resource(Identifier.fromNamespaceAndPath("carpet-lsc-addition", "chat_icon"));
 
-    /** Cached answer of {@link #isMarkerAvailable()}; {@code null} until the first message. */
+    /** Cached answer of {@link #isMarkerAvailable()}; {@code null} until the next probe. */
     private static Boolean markerAvailable;
+
+    /** The world the probe belongs to; a different world (or none) forces a fresh probe. */
+    private static net.minecraft.world.level.Level probedLevel;
 
     private ChatItemIcons()
     {
@@ -60,6 +63,14 @@ public final class ChatItemIcons
      */
     public static Component decorate(Component message)
     {
+        // The marker font is a mod asset, so it only resolves once the client has loaded resources.
+        // Re-probing whenever the world changes keeps a probe that ran too early from sticking.
+        if (Minecraft.getInstance().level != probedLevel)
+        {
+            probedLevel = Minecraft.getInstance().level;
+            markerAvailable = null;
+        }
+
         if (!isMarkerAvailable() || !hasItemToken(message))
         {
             return message;
