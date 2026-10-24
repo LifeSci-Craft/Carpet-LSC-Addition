@@ -23,6 +23,7 @@
   "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.FastEating.name": "Fast Eating",
   "carpet.rule.VillagerBackpack.name": "Villager Backpack",
+  "carpet.rule.VillagerTradeOptimization.name": "Trading Hall Optimization",
   "carpet.rule.TradePreview.name": "Trade Preview",
   "carpet.rule.FletchingTable.name": "Fletching Table",
   "carpet.rule.VehicleFireworkBoost.name": "Vehicle Firework Boost",
@@ -67,6 +68,8 @@
   "carpet.rule.BundleAutoEat.desc": "Eats one item from a bundle of food when hunger is low and that single item fills the bar (survival only). off disables it, saturation eats the lowest saturation first, slot follows the bundle order; food with its own effects always comes last.",
 
   "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
+
+  "carpet.rule.VillagerTradeOptimization.desc": "Freezes the pathfinding of a boxed-in villager that has a profession and is past novice, so a large trading hall stops costing tick time.",
 
   "carpet.rule.TradePreview.desc": "Trade preview: the backpack lists every item the villager will ever sell, and the header becomes All trades.",
 

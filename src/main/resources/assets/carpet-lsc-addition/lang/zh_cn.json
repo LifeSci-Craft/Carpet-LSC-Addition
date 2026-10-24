@@ -23,6 +23,7 @@
   "carpet.rule.BundleAutoEat.name": "收纳袋自动进食",
   "carpet.rule.FastEating.name": "快速进食",
   "carpet.rule.VillagerBackpack.name": "村民背包",
+  "carpet.rule.VillagerTradeOptimization.name": "村民交易所优化",
   "carpet.rule.TradePreview.name": "交易预知",
   "carpet.rule.FletchingTable.name": "制箭台活化",
   "carpet.rule.VehicleFireworkBoost.name": "载具烟花加速",
@@ -67,6 +68,8 @@
   "carpet.rule.BundleAutoEat.desc": "收纳袋里全是食物时，饥饿值不足会自动静默吃掉一件（仅生存模式）。off 关闭；saturation 优先吃饱和度最低的，slot 按袋内存放顺序；带额外效果的食物始终排在最后。",
 
   "carpet.rule.FastEating.desc": "限制进食与饮用的时间：false 关闭，true 为 8 tick，也可直接选 4 / 8 / 16 tick。原本更快的物品保持原速，饥饿限制与物品效果照常。",
+
+  "carpet.rule.VillagerTradeOptimization.desc": "有职业且等级高于新手的村民被困在 1 格空间里时冻结它的寻路，减少大型交易所的性能开销。",
 
   "carpet.rule.TradePreview.desc": "交易预知：开启后村民背包显示该村民各等级会卖的全部物品，交易列标题改为「所有交易项」。",
 
