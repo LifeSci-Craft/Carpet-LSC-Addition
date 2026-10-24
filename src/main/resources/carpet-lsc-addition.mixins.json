@@ -31,6 +31,7 @@
     "VillagerSoftFreezeMixin",
     "FletchingTableUseMixin",
     "AnvilMenuFletchingMixin",
+    "ZombieVillagerCureMixin",
     "FireworkRocketVehicleBoostMixin",
     "EntityVehicleInstantStopMixin",
     "ServerPlayerVehicleBoostMixin"

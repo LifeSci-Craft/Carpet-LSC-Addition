@@ -23,6 +23,7 @@
   "carpet.rule.BundleAutoEat.name": "Bundle Auto Eat",
   "carpet.rule.FastEating.name": "Fast Eating",
   "carpet.rule.VillagerBackpack.name": "Villager Backpack",
+  "carpet.rule.FastZombieCure.name": "Fast Zombie Cure",
   "carpet.rule.PersistentRules.name": "Persistent Rule Changes",
   "carpet.rule.VillagerTradeOptimization.name": "Trading Hall Optimization",
   "carpet.rule.TradePreview.name": "Trade Preview",
@@ -69,6 +70,8 @@
   "carpet.rule.BundleAutoEat.desc": "Eats one item from a bundle of food when hunger is low and that single item fills the bar (survival only). off disables it, saturation eats the lowest saturation first, slot follows the bundle order; food with its own effects always comes last.",
 
   "carpet.rule.FastEating.desc": "Caps eating and drinking time: false turns it off, true means 8 ticks, or pick 4 / 8 / 16 ticks directly. Items that are already faster keep their own time; the hunger check and item effects are unchanged.",
+
+  "carpet.rule.FastZombieCure.desc": "A zombie villager cures in three seconds after weakness and a golden apple; while on, a weakness potion can also be used by right-clicking the villager, leaving an empty bottle.",
 
   "carpet.rule.PersistentRules.desc": "When on, any rule toggled through /carpet is written into carpet.conf, so the change survives a restart instead of lasting one session.",
 

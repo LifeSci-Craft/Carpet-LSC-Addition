@@ -29,6 +29,7 @@ public final class McdrBridgeCommand
     {
         dispatcher.register(Commands.literal(McdrBridge.COMMAND_PREFIX)
                 .requires(source -> CarpetLscSettings.McdrCommandBridge)
+                .requires(lifescicraft.carpetlsc.helpers.Permissions::isOp)
                 .then(Commands.argument("command", StringArgumentType.greedyString())
                         .executes(context ->
                         {
