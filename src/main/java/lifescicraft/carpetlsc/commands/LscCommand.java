@@ -28,6 +28,7 @@ public final class LscCommand
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher)
     {
         dispatcher.register(Commands.literal("lsc")
+                .requires(lifescicraft.carpetlsc.helpers.Permissions::isOp)
                 
                 .executes(context -> list(context.getSource()))
                 .then(Commands.argument("vehicle", StringArgumentType.word())

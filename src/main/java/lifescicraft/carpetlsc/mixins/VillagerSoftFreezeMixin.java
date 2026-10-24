@@ -14,6 +14,8 @@ public abstract class VillagerSoftFreezeMixin
     @Inject(method = "tick", at = @At("HEAD"))
     private void carpetLsc$softFreeze(CallbackInfo ci)
     {
-        VillagerBackpack.tick((Villager) (Object) this);
+        Villager villager = (Villager) (Object) this;
+        VillagerBackpack.tick(villager);
+        lifescicraft.carpetlsc.helpers.TradingPostOptimizer.tick(villager);
     }
 }

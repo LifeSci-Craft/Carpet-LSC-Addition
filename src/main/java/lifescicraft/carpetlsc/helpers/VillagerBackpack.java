@@ -112,7 +112,7 @@ public final class VillagerBackpack
      * Whether the villager is boxed into a single block: standing on something solid with all four
      * sides blocked at both foot and head height, so it has nowhere to walk.
      */
-    private static boolean isConfined(Villager villager)
+    public static boolean isConfined(Villager villager)
     {
         Level level = villager.level();
         BlockPos feet = villager.blockPosition();

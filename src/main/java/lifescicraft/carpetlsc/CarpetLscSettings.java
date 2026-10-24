@@ -100,4 +100,8 @@ public class CarpetLscSettings
     /** The same firework boost, for the happy ghast only. */
     @Rule(categories = {LSC, SURVIVAL, FEATURE})
     public static boolean HappyGhastBoost = false;
+
+    /** Freezes a trader boxed into one block so a large trading hall stops costing pathfinding. */
+    @Rule(categories = {LSC, SURVIVAL, FEATURE})
+    public static boolean VillagerTradeOptimization = false;
 }

@@ -23,6 +23,7 @@ public final class PingCommand
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher)
     {
         dispatcher.register(Commands.literal("ping")
+                .requires(lifescicraft.carpetlsc.helpers.Permissions::isOp)
                 .requires(source -> CarpetLscSettings.CommandPing)
                 .executes(context ->
                 {

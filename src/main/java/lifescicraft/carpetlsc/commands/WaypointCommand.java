@@ -16,6 +16,7 @@ public final class WaypointCommand
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher)
     {
         dispatcher.register(Commands.literal("lscwaypoint")
+                .requires(lifescicraft.carpetlsc.helpers.Permissions::isOp)
                 .requires(source -> source.getEntity() instanceof ServerPlayer)
                 .executes(context -> {
                     DeathCoordinates.resend((ServerPlayer) context.getSource().getEntity());
